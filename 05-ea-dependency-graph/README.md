@@ -48,9 +48,3 @@ flowchart LR
 **Portfolio Deliverables:** README, graph schema diagram, architecture diagram, example impact-analysis walkthrough with screenshots, translation-accuracy evaluation results.
 
 **Evaluation:** NL-to-query translation accuracy against a hand-written set of question/expected-query pairs; traversal correctness (does the graph return the right answer for known synthetic scenarios); summarization faithfulness (does the summary only state what the traversal returned).
-
-**Résumé Bullets.**
-- Built a Neo4j-based enterprise architecture knowledge graph connecting capabilities, applications, APIs, data entities, and technology, enabling multi-hop impact analysis.
-- Implemented a constrained natural-language-to-graph-query interface, letting architects ask plain-English impact questions while preventing unbounded or malformed query generation.
-
-**Interview Story.** *Problem:* impact analysis relies on institutional memory instead of a queryable model. *Constraints:* the graph's correctness depends on real source data, and NL-to-query translation must be safe against a live graph. *Architecture:* deterministic graph ETL + constrained NL translation + LLM summarization. *AI approach:* NLP for the interface, not for the underlying facts. *Governance:* query templates instead of free-form generated Cypher; full query audit log. *Trade-offs:* template-constrained translation sacrifices some flexibility for safety and predictability — a deliberate, defensible choice. *Results:* translation accuracy and traversal correctness on synthetic evaluation scenarios.

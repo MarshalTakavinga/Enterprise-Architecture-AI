@@ -49,9 +49,3 @@ flowchart LR
 **Portfolio Deliverables:** README, sample transcripts and resulting ADRs (before/after), architecture diagram, schema validation test results, screenshots of the review workflow.
 
 **Evaluation:** schema-validity rate on first pass; extraction accuracy against hand-authored reference ADRs for the same synthetic transcripts (precision/recall on key fields); classification accuracy for domain/principle tagging.
-
-**Résumé Bullets.**
-- Built an LLM-based ADR extraction pipeline using structured/function-calling outputs, converting unstructured meeting transcripts into schema-validated draft Architecture Decision Records.
-- Implemented a human-approval workflow ensuring no architecture decision record becomes authoritative without architect sign-off, with full source traceability.
-
-**Interview Story.** *Problem:* decisions aren't documented because writing ADRs is friction. *Constraints:* extracted content must never be invented. *Architecture:* structured-output LLM extraction with schema validation and a repair loop. *AI approach:* function calling over free-form generation specifically to get reliable, machine-checkable structure. *Governance:* explicit human approval gate and full source linkage. *Trade-offs:* stricter schemas reduce hallucination risk but can force awkward extraction for ambiguous meetings — handled via the "insufficient information" fallback. *Results:* extraction accuracy reported against a synthetic gold-standard set, not a production claim.

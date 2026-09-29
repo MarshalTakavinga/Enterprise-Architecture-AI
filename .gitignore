@@ -32,3 +32,6 @@ Thumbs.db
 TOGAF 10 Templates/
 togaf10part01.pdf
 ~$*
+
+# Private career notes (résumé bullets, interview stories) - never publish
+_career-notes/

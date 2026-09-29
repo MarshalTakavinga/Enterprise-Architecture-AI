@@ -114,36 +114,5 @@ documentation backlog. The controls and limitations are set out in
 ├── infra/Dockerfile · docker-compose.yml · Makefile · .env.example   (CI: ../.github/workflows/ea-knowledge-assistant.yml)
 ```
 
-## Résumé bullets
-
-- Built a retrieval-augmented Q&A assistant over a 48-document enterprise architecture repository
-  (principles, standards, ADRs, TOGAF-structured deliverables). It returns clause-level cited answers
-  and refuses questions the repository doesn't cover. On a held-out test set it reached **100%
-  Recall@5 and 0.91 MRR**, and refused 6 of 7 out-of-corpus questions with no false refusals.
-- Designed hybrid BM25 + dense retrieval with rank fusion and an answerability gate tuned on a
-  separate dev split. Added governance controls: forced citations, groundedness checking, audit
-  logging, ingestion redaction, and escalation notices for architecture exceptions. Deployed on
-  PostgreSQL + pgvector with FastAPI, Streamlit, Docker and CI.
-
-## Interview story
-
-- **Problem:** architects can't find answers that already exist.
-- **Constraint:** every answer must be traceable to a clause, and the system must say when it doesn't
-  know.
-- **Architecture:** RAG over pgvector. Chunking follows document type, because a principle quoted
-  without its implications misleads, while a standard needs clause-level citations.
-- **AI approach:** hybrid retrieval. BM25 catches identifiers like `STD-DB-006` and dense retrieval
-  catches paraphrase. There is no fine-tuning, because the corpus changes weekly and citations matter
-  more.
-- **Governance:** a two-layer refusal (a retrieval gate, then the LLM's `NOT_FOUND` rule), exception
-  notices and a full audit log.
-- **Trade-offs:**
-  - pgvector over a dedicated vector DB, for operational simplicity;
-  - the offline LSA baseline, so the project runs anywhere;
-  - no Open Group template text in the corpus, which was a licensing call (ADR-P005).
-- **Results:** measured on a held-out split, with the weak spots stated plainly: 72% key-fact accuracy
-  in extractive mode, and one out-of-corpus miss that only an LLM can catch. None of this is a
-  production claim.
-
 ---
 *All data is synthetic. Harbourline Logistics Group is fictional. TOGAF® is a registered trademark of The Open Group; no Open Group text is used.*

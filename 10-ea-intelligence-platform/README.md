@@ -63,9 +63,3 @@ flowchart TB
 **Portfolio Deliverables:** a single README that explicitly maps which sub-project powers which platform capability (this traceability is itself the strongest portfolio artifact — it shows systems thinking, not just nine separate demos bolted together); one architecture diagram showing the whole platform; a recorded walkthrough demo.
 
 **Evaluation:** platform-level evaluation is the aggregate of each component's evaluation, plus an end-to-end scenario test (the CIO question above) demonstrating cross-component reasoning actually works, not just that each piece works in isolation.
-
-**Résumé Bullets.**
-- Architected an integrated Enterprise Architecture Intelligence Platform unifying portfolio rationalization, dependency analysis, compliance checking, and agentic governance workflows around a shared knowledge graph.
-- Demonstrated a full-stack AI-augmented EA capability spanning RAG, knowledge graphs, scoring models, and multi-agent orchestration, with a consistent human-approval governance boundary enforced across every sub-system.
-
-**Interview Story.** *Problem:* EA information is fragmented across tools that don't talk to each other. *Constraints:* integration must not weaken any individual component's governance boundary. *Architecture:* a shared knowledge-graph spine with every prior project's intelligence attached to it. *AI approach:* explicitly a systems-integration story, not a new-technique story — the sophistication is in the architecture, not in adding more AI. *Governance:* one consistent audit/approval pattern platform-wide. *Trade-offs:* discussed the real engineering cost of integration vs. keeping systems separate, and why a capstone project is the right place to demonstrate that trade-off is worth making. *Results:* end-to-end scenario walkthrough on synthetic data, framed honestly as a capstone prototype, not a production platform claim.

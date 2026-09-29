@@ -48,9 +48,3 @@ flowchart TD
 **Portfolio Deliverables:** README, architecture diagram, sample risk register output, dashboard screenshots, an explicit "what's deterministic vs. AI-generated" section (this distinction is itself a portfolio talking point).
 
 **Evaluation:** matching accuracy against the synthetic ground truth (should be ~100% since it's deterministic — the interesting metric is the anomaly detector's precision/recall on injected synthetic risk-concentration scenarios); narrative faithfulness (does every sentence trace to a real finding — checked programmatically).
-
-**Résumé Bullets.**
-- Designed a technology lifecycle risk system combining deterministic EOL/CVE matching with anomaly detection to surface concentrated architecture risk at the business-capability level.
-- Used an LLM strictly for grounded narrative synthesis over pre-computed risk scores, deliberately avoiding LLM use for the factual matching logic to preserve auditability.
-
-**Interview Story.** *Problem:* lifecycle risk is discovered reactively. *Constraints:* the facts (dates, CVEs) must be exact, not LLM-approximated. *Architecture:* rules engine for facts, anomaly detection for pattern-finding, LLM only for narrative. *AI approach:* this project is explicitly a case study in *not* over-using AI — a strong interview point about judgment. *Governance:* full traceability from narrative sentence to source record. *Trade-offs:* discussed why an LLM was excluded from the core matching logic. *Results:* deterministic matching accuracy plus anomaly-detector precision/recall on synthetic scenarios.

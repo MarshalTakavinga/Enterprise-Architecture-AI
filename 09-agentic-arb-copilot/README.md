@@ -49,9 +49,3 @@ flowchart TD
 - *Phase 4 (production-grade):* add prompt-injection test coverage, human-feedback capture on packet usefulness, and integration with Project 8's rationalization data for redundancy checks during intake.
 
 *(Full 25-part blueprint, including all remaining sections, is provided in Step 4.)*
-
-**Résumé Bullets.**
-- Designed and built a multi-agent Architecture Review Board copilot using scoped tool-calling agents (intake, standards-check, dependency/risk) orchestrated to assemble evidence-linked review packets, with every agent action logged and traceable.
-- Implemented explicit human-in-the-loop governance in a multi-agent architecture workflow, ensuring no architecture review decision is made or implied by the AI system itself.
-
-**Interview Story.** *(Expanded fully in Step 4 — this is the flagship selected for the complete blueprint.)*

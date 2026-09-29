@@ -8,7 +8,7 @@ A portfolio of ten realistic, enterprise-grade projects demonstrating how AI, Ge
 
 1. Read **`EA-AI-Portfolio-Blueprint.docx`** (or `.md`) — the full blueprint. It contains:
    - An EA-lifecycle-wide assessment of where AI genuinely adds value vs. where automation or human judgment wins
-   - The complete specification for all 10 projects below (problem, business value/KPIs, AI use case, architecture, data model, governance, phased plan, evaluation, résumé bullets, interview story)
+   - The complete specification for all 10 projects below (problem, business value/KPIs, AI use case, architecture, data model, governance, phased plan, evaluation)
    - The prioritized build sequence and the reasoning behind the three flagship projects
    - A full 25-part implementation blueprint (with architecture diagrams) for the first flagship, the Agentic Architecture Review Board Copilot
 2. See **`ROADMAP.md`** for the recommended build order and where each project fits.

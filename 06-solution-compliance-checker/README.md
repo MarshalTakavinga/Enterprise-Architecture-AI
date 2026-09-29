@@ -48,9 +48,3 @@ flowchart TD
 **Portfolio Deliverables:** README, architecture diagram, sample non-compliant/compliant/ambiguous findings, precision/recall against a hand-labeled set, screenshots of the ARB packet output.
 
 **Evaluation:** classification accuracy (compliant/non-compliant/ambiguous) against a hand-labeled synthetic set; citation correctness (does the cited clause actually support the verdict); false-non-compliance rate.
-
-**Résumé Bullets.**
-- Built a RAG-grounded architecture compliance checker that classifies solution design sections against a standards corpus with cited, structured findings.
-- Designed an explicit ambiguity-escalation path so the system defers to human review rather than forcing uncertain compliance calls, reducing false-positive governance findings.
-
-**Interview Story.** *Problem:* manual standards compliance checking is slow and inconsistent. *Constraints:* the tool must never force a confident answer on a genuinely ambiguous case. *Architecture:* RAG-grounded per-section classification with a mandatory escalation path. *AI approach:* classification + retrieval, not agents — the workflow is single-pass by design at this stage. *Governance:* citation-forced verdicts, human override logging. *Trade-offs:* precision vs. recall tuned toward flagging more "needs review" cases rather than risking a wrong pass/fail. *Results:* classification accuracy and citation correctness on a labeled synthetic set.

@@ -48,9 +48,3 @@ flowchart TD
 **Portfolio Deliverables:** README with an explicit synthetic-data disclaimer, architecture diagram, sample due-diligence report output, matching precision results, a short write-up of the data-sensitivity considerations (a strong governance talking point for this specific project).
 
 **Evaluation:** cross-portfolio matching precision/recall against a hand-labeled set of known synthetic overlaps; narrative faithfulness to the underlying matched-record attributes.
-
-**Résumé Bullets.**
-- Built a cross-portfolio semantic matching tool for M&A architecture due diligence, identifying application and capability overlaps across two organizations despite inconsistent naming.
-- Designed the system to surface regulatory and data-residency risk flags explicitly rather than summarizing them away, supporting integration planning decisions with traceable evidence.
-
-**Interview Story.** *Problem:* M&A architecture reconciliation is slow, manual, and time-boxed by the deal. *Constraints:* extremely sensitive data in real life; this prototype is explicitly synthetic-data-only with governance called out. *Architecture:* cross-dataset embeddings matching + LLM narrative. *AI approach:* similarity search over classification, since there's no fixed overlap taxonomy. *Governance:* residency/regulatory flags surfaced, not summarized away; explicit human decision ownership. *Trade-offs:* discussed why knowledge-graph modeling was deferred given the deal-timeline framing. *Results:* matching precision/recall on synthetic ground truth.

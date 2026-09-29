@@ -46,9 +46,3 @@ flowchart TD
 **Portfolio Deliverables:** README, architecture diagram, synthetic dataset, before/after portfolio count example, screenshots of the review UI, precision results on a hand-labeled validation subset.
 
 **Evaluation:** precision of top-k candidate pairs against a hand-labeled "true duplicate" set within the synthetic data; reviewer time saved vs. simulated manual pairwise comparison baseline.
-
-**Résumé Bullets.**
-- Built an embeddings-based application portfolio redundancy detector, surfacing semantically similar applications that keyword-based catalog search misses.
-- Designed a human-in-the-loop review workflow so AI-suggested redundancies are validated by an architect before any rationalization action, with decisions logged for auditability.
-
-**Interview Story.** *Problem:* redundant applications persist because they don't look identical on paper. *Constraints:* false positives are costly, so every match needs a human check. *Architecture:* embeddings + nearest-neighbor clustering, LLM only for rationale text. *AI approach:* similarity search, deliberately not classification, since there's no fixed taxonomy of "duplicate types." *Governance:* every finding is logged as a candidate with an explicit architect verdict. *Trade-offs:* recall vs. precision tuning — chose to bias toward higher recall (catch more candidates) since human review is the safety net. *Results:* precision measured against a held-out labeled subset of the synthetic catalog.

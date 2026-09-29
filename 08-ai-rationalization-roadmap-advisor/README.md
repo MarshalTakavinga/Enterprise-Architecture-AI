@@ -49,9 +49,3 @@ flowchart TD
 **Portfolio Deliverables:** README, architecture diagram, sample scorecard and roadmap output, explainability write-up (how each score is computed), evaluation results, screenshots of the steering-committee view.
 
 **Evaluation:** scoring model transparency/explainability (documented, not just claimed); ranking sensibility against hand-reasoned expectations on the synthetic portfolio; roadmap narrative faithfulness to the underlying scores; steering-committee-style review of a sample roadmap for plausibility.
-
-**Résumé Bullets.**
-- Designed an explainable application rationalization scoring system (TIME model) combining usage, cost, technical debt, and redundancy signals into a defensible, committee-ready recommendation.
-- Built an LLM-driven modernization roadmap generator that sequences rationalization recommendations into narrated, wave-based business cases grounded in the underlying scores.
-
-**Interview Story.** *Problem:* rationalization decisions are slow and hard to defend to a steering committee. *Constraints:* the score must be explainable, not a black box, since it's feeding a governance decision. *Architecture:* transparent scoring model + deterministic gap analysis + LLM narrative layer. *AI approach:* chose an interpretable scoring model over a higher-accuracy black-box one, deliberately trading a small amount of predictive power for defensibility. *Governance:* every recommendation is explicitly a recommendation, decisions and rationale logged. *Trade-offs:* discussed explainability vs. sophistication directly. *Results:* documented scoring rationale and roadmap plausibility on the synthetic portfolio, not a claimed cost saving.
