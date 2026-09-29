@@ -27,3 +27,8 @@ Thumbs.db
 # Data / large local artifacts (keep synthetic seed data, ignore generated caches)
 *.sqlite3
 *.log
+
+# Licensed third-party material (The Open Group) - keep local, do not publish
+TOGAF 10 Templates/
+togaf10part01.pdf
+~$*

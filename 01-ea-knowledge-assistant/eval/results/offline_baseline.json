@@ -1,0 +1,918 @@
+{
+  "tag": "offline_baseline",
+  "run_at": "2026-09-29 01:22 UTC",
+  "index": {
+    "corpus_fingerprint": "0c4b3ecf6470b732",
+    "embedder": "lsa",
+    "dim": 256,
+    "documents": 48,
+    "chunks": 552,
+    "built_at": "2026-09-29T01:19:28Z"
+  },
+  "llm_provider": "extractive",
+  "k": 5,
+  "queries": {
+    "dev": 14,
+    "test": 36,
+    "test_answerable": 29,
+    "test_out_of_corpus": 7
+  },
+  "label_sanity_problems": [],
+  "not_found_threshold_from_dev": 0.51,
+  "lexical_weight_from_dev": 0.5,
+  "dev_mrr_by_lexical_weight": {
+    "0.5": 0.9393939393939394,
+    "1.0": 0.8787878787878789,
+    "1.5": 0.8787878787878789,
+    "2.0": 0.8939393939393938,
+    "3.0": 0.8939393939393938
+  },
+  "dev_relevance_scores": [
+    [
+      0.276,
+      "not_found"
+    ],
+    [
+      0.345,
+      "not_found"
+    ],
+    [
+      0.394,
+      "not_found"
+    ],
+    [
+      0.626,
+      "answer"
+    ],
+    [
+      0.646,
+      "answer"
+    ],
+    [
+      0.746,
+      "answer"
+    ],
+    [
+      0.766,
+      "answer"
+    ],
+    [
+      0.797,
+      "answer"
+    ],
+    [
+      0.818,
+      "answer"
+    ],
+    [
+      0.836,
+      "answer"
+    ],
+    [
+      0.837,
+      "answer"
+    ],
+    [
+      0.877,
+      "answer"
+    ],
+    [
+      0.882,
+      "answer"
+    ],
+    [
+      0.907,
+      "answer"
+    ]
+  ],
+  "retrieval_test": {
+    "bm25_only": {
+      "n": 29,
+      "hit@1": 0.7931034482758621,
+      "recall@5": 1.0,
+      "precision@5": 0.593103448275862,
+      "mrr@10": 0.8804597701149425
+    },
+    "dense_only": {
+      "n": 29,
+      "hit@1": 0.8620689655172413,
+      "recall@5": 0.9310344827586207,
+      "precision@5": 0.5793103448275861,
+      "mrr@10": 0.8977011494252874
+    },
+    "hybrid_rrf (1:1)": {
+      "n": 29,
+      "hit@1": 0.7931034482758621,
+      "recall@5": 1.0,
+      "precision@5": 0.6206896551724137,
+      "mrr@10": 0.8793103448275862
+    },
+    "hybrid_rrf (dev-tuned 0.5:1)": {
+      "n": 29,
+      "hit@1": 0.8620689655172413,
+      "recall@5": 1.0,
+      "precision@5": 0.6206896551724137,
+      "mrr@10": 0.9103448275862068
+    }
+  },
+  "end_to_end_test": {
+    "answerable_answered": 1.0,
+    "out_of_corpus_refused": 0.8571428571428571,
+    "answer_contains_key_fact": 0.7241379310344828,
+    "answer_cites_relevant_doc": 0.9655172413793104,
+    "groundedness_rate": 1.0,
+    "every_answer_cited": true,
+    "latency_ms_p50": 30.749979000006533,
+    "latency_ms_p95": 38.5937799999283
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "AP-CATALOG",
+        "STD-INT-001",
+        "ADR-0015",
+        "RA-01"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q03",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0015",
+        "ADR-0015",
+        "STD-INT-001",
+        "AP-CATALOG"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q04",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-EVT-003",
+        "STD-EVT-003",
+        "STD-DAT-004",
+        "STD-EVT-003"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q06",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-API-002",
+        "AP-CATALOG",
+        "STD-API-002"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q07",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0007",
+        "STD-EVT-003",
+        "ADR-0007",
+        "RA-04"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q08",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0030",
+        "ADR-0030",
+        "ADR-0030",
+        "ADD-01"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q10",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0019",
+        "STD-API-002",
+        "ADR-0019"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q11",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DB-006",
+        "STD-DB-006",
+        "STD-DAT-004",
+        "ADR-0024"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q13",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0024",
+        "ADR-0024",
+        "ADR-0012",
+        "STD-DB-006"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q14",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DAT-005",
+        "ADR-0041",
+        "AP-CATALOG",
+        "ADR-0041"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q16",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DAT-004",
+        "STD-DAT-004",
+        "STD-INT-001"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q17",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0012",
+        "ADR-0024",
+        "ADR-0012",
+        "RA-04"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q18",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "RA-04",
+        "ADR-0012",
+        "STD-DAT-005",
+        "STD-INT-001",
+        "STD-INT-001"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q19",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-CTR-012",
+        "STD-IAM-008",
+        "AP-CATALOG"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q21",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-IAM-008",
+        "STD-IAM-008",
+        "AP-CATALOG",
+        "STD-DAT-004"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q22",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DAT-004",
+        "STD-SEC-009",
+        "STD-SEC-009",
+        "STD-DAT-004"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q23",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "RA-03",
+        "STD-NET-011",
+        "ADR-0027",
+        "ADR-0036"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q25",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0036",
+        "RA-03",
+        "ADR-0036",
+        "ADR-0027"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q26",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-CTR-012",
+        "STD-CTR-012",
+        "STD-CTR-012",
+        "RA-02",
+        "RA-02"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q27",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-OBS-010",
+        "STD-DAT-004",
+        "STD-API-002"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q28",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0027",
+        "ADR-0027",
+        "RA-03",
+        "RA-03"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q30",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "RA-03",
+        "ADR-0027",
+        "STD-CLD-007",
+        "ADR-0027",
+        "AP-CATALOG"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q31",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-AI-013",
+        "STD-AI-013",
+        "STD-AI-013"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q33",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DB-006",
+        "STD-DB-006",
+        "ADR-0024"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q34",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "GOV-02",
+        "ADD-01",
+        "PRE-02",
+        "A-01"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": false
+    },
+    {
+      "id": "q36",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0021",
+        "ADR-0021",
+        "STD-CLD-007",
+        "GOV-02"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q37",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "G-02",
+        "G-02",
+        "RA-01",
+        "GOV-02"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q38",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DB-006",
+        "PRE-02",
+        "F-01",
+        "F-01",
+        "PRE-02"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q40",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "PRE-01",
+        "AP-CATALOG",
+        "ADR-0007",
+        "G-02"
+      ],
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "n02",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": []
+    },
+    {
+      "id": "n04",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": []
+    },
+    {
+      "id": "n05",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": []
+    },
+    {
+      "id": "n06",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": []
+    },
+    {
+      "id": "n08",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": []
+    },
+    {
+      "id": "n09",
+      "expect": "not_found",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "PRE-02",
+        "A-01",
+        "A-02",
+        "PRE-02",
+        "G-01"
+      ]
+    },
+    {
+      "id": "n10",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": []
+    }
+  ],
+  "failures": [
+    {
+      "id": "q04",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-EVT-003",
+        "STD-EVT-003",
+        "STD-DAT-004",
+        "STD-EVT-003"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q08",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0030",
+        "ADR-0030",
+        "ADR-0030",
+        "ADD-01"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q18",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "RA-04",
+        "ADR-0012",
+        "STD-DAT-005",
+        "STD-INT-001",
+        "STD-INT-001"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q19",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-CTR-012",
+        "STD-IAM-008",
+        "AP-CATALOG"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q22",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DAT-004",
+        "STD-SEC-009",
+        "STD-SEC-009",
+        "STD-DAT-004"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q27",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-OBS-010",
+        "STD-DAT-004",
+        "STD-API-002"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q31",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-AI-013",
+        "STD-AI-013",
+        "STD-AI-013"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q34",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "GOV-02",
+        "ADD-01",
+        "PRE-02",
+        "A-01"
+      ],
+      "keywords_ok": false,
+      "cites_relevant": false
+    },
+    {
+      "id": "n09",
+      "expect": "not_found",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "PRE-02",
+        "A-01",
+        "A-02",
+        "PRE-02",
+        "G-01"
+      ]
+    }
+  ],
+  "hybrid_top5": {
+    "q01": [
+      "AP-CATALOG#13",
+      "STD-INT-001#4.1",
+      "RA-01#1",
+      "ADR-0015#5",
+      "RA-01#2"
+    ],
+    "q03": [
+      "ADR-0015#5",
+      "ADR-0015#2",
+      "ADR-0015#7",
+      "STD-INT-001#5",
+      "AP-CATALOG#13"
+    ],
+    "q04": [
+      "STD-EVT-003#2",
+      "STD-EVT-003#8",
+      "STD-DAT-004#7",
+      "RA-04#4",
+      "STD-EVT-003#4"
+    ],
+    "q06": [
+      "STD-API-002#5",
+      "AP-CATALOG#14",
+      "STD-INT-001#4.4",
+      "STD-API-002#11",
+      "STD-API-002#4.1"
+    ],
+    "q07": [
+      "ADR-0007#5",
+      "STD-EVT-003#4",
+      "ADR-0007#4",
+      "RA-04#9",
+      "ADR-0007#7"
+    ],
+    "q08": [
+      "ADR-0030#2",
+      "ADR-0030#3",
+      "ADR-0030#4",
+      "RA-01#7",
+      "ADD-01#3.1"
+    ],
+    "q10": [
+      "ADR-0019#5",
+      "STD-API-002#1",
+      "STD-API-002#7",
+      "ADR-0019#2",
+      "ADR-0019#8"
+    ],
+    "q11": [
+      "STD-DB-006#1",
+      "STD-DB-006#5.4",
+      "STD-DB-006#5.1",
+      "STD-DAT-004#6.1",
+      "ADR-0024#5"
+    ],
+    "q13": [
+      "ADR-0024#5",
+      "ADR-0024#8",
+      "ADR-0024#2",
+      "ADR-0012#8",
+      "STD-DB-006#3"
+    ],
+    "q14": [
+      "STD-DAT-005#4.2",
+      "ADR-0041#2",
+      "AP-CATALOG#11",
+      "ADR-0041#6",
+      "STD-DAT-005#1"
+    ],
+    "q16": [
+      "STD-DAT-004#5.4",
+      "STD-DAT-004#4",
+      "STD-DAT-004#5.2",
+      "STD-INT-001#6",
+      "STD-AI-013#5.1"
+    ],
+    "q17": [
+      "ADR-0012#8",
+      "ADR-0024#8",
+      "ADR-0012#7",
+      "ADR-0012#6",
+      "RA-04#9"
+    ],
+    "q18": [
+      "RA-04#1",
+      "ADR-0012#8",
+      "STD-DAT-005#4.3",
+      "STD-INT-001#4.5",
+      "STD-INT-001#2.2"
+    ],
+    "q19": [
+      "STD-CTR-012#7",
+      "STD-IAM-008#4.3",
+      "RA-02#1",
+      "RA-02#8",
+      "AP-CATALOG#15"
+    ],
+    "q21": [
+      "STD-IAM-008#7.1",
+      "STD-IAM-008#7.3",
+      "STD-IAM-008#7.2",
+      "AP-CATALOG#17",
+      "STD-DAT-004#6.1"
+    ],
+    "q22": [
+      "STD-DAT-004#6.1",
+      "STD-SEC-009#6.1",
+      "STD-SEC-009#5",
+      "STD-DAT-004#10",
+      "STD-API-002#6"
+    ],
+    "q23": [
+      "RA-03#1",
+      "STD-NET-011#2",
+      "ADR-0027#2",
+      "STD-NET-011#1",
+      "ADR-0036#5"
+    ],
+    "q25": [
+      "ADR-0036#8",
+      "RA-03#9",
+      "ADR-0036#2",
+      "ADR-0027#8",
+      "ADR-0036#3"
+    ],
+    "q26": [
+      "STD-CTR-012#7",
+      "STD-CTR-012#1",
+      "STD-CTR-012#6",
+      "RA-02#3",
+      "RA-02#5"
+    ],
+    "q27": [
+      "STD-OBS-010#7",
+      "STD-DAT-004#6.3",
+      "STD-OBS-010#1",
+      "STD-API-002#8",
+      "AP-CATALOG#7"
+    ],
+    "q28": [
+      "ADR-0027#3",
+      "ADR-0027#7",
+      "ADR-0027#8",
+      "RA-03#6",
+      "RA-03#9"
+    ],
+    "q30": [
+      "RA-03#8",
+      "ADR-0027#5",
+      "STD-CLD-007#2",
+      "ADR-0027#2",
+      "AP-CATALOG#9"
+    ],
+    "q31": [
+      "STD-AI-013#2.1",
+      "STD-AI-013#5.2",
+      "STD-AI-013#1",
+      "STD-DAT-004#6.1",
+      "ADR-0033#8"
+    ],
+    "q33": [
+      "STD-DB-006#4.1",
+      "STD-DB-006#6.4",
+      "GOV-02#4.2",
+      "STD-DB-006#1",
+      "ADR-0024#5"
+    ],
+    "q34": [
+      "GOV-02#4.2",
+      "ADD-01#6.1",
+      "PRE-02#3",
+      "A-01#2",
+      "STD-TLC-014#8"
+    ],
+    "q36": [
+      "ADR-0021#8",
+      "ADR-0021#1",
+      "ADR-0021#7",
+      "STD-CLD-007#10",
+      "GOV-02#4.1"
+    ],
+    "q37": [
+      "G-02#5",
+      "G-02#1",
+      "G-02#5.2",
+      "RA-01#7",
+      "GOV-02#4.4"
+    ],
+    "q38": [
+      "STD-DB-006#1",
+      "PRE-02#6",
+      "F-01#2",
+      "F-01#3.3",
+      "PRE-02#4"
+    ],
+    "q40": [
+      "PRE-01#4",
+      "AP-CATALOG#6",
+      "PRE-02#10",
+      "ADR-0007#2",
+      "G-02#6"
+    ]
+  }
+}

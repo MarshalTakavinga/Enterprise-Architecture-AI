@@ -1,0 +1,46 @@
+name: ea-knowledge-assistant CI
+
+on:
+  push:
+    paths: ["01-ea-knowledge-assistant/**", ".github/workflows/**"]
+  pull_request:
+    paths: ["01-ea-knowledge-assistant/**"]
+
+defaults:
+  run:
+    working-directory: 01-ea-knowledge-assistant
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: eaka, POSTGRES_PASSWORD: eaka, POSTGRES_DB: eaka }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U eaka" --health-interval 5s --health-retries 10
+    env:
+      EAKA_TEST_DATABASE_URL: postgresql://eaka:eaka@localhost:5432/eaka
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+      - run: pip install ".[pgvector,dev]"
+      - name: Unit, API and pgvector integration tests
+        run: pytest -q
+      - name: Retrieval evaluation (regression gate)
+        run: |
+          python eval/run_eval.py --tag ci
+          python - <<'EOF'
+          import json
+          r = json.load(open("eval/results/ci.json"))
+          hyb = [v for k, v in r["retrieval_test"].items() if k.startswith("hybrid_rrf (dev")][0]
+          e = r["end_to_end_test"]
+          assert hyb["recall@5"] >= 0.95, hyb
+          assert e["out_of_corpus_refused"] >= 0.70, e
+          assert e["every_answer_cited"], e
+          print("eval gate passed")
+          EOF
+      - uses: actions/upload-artifact@v4
+        with: { name: eval-results, path: 01-ea-knowledge-assistant/eval/results/ci.* }

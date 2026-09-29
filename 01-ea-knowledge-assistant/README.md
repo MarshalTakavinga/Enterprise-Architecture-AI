@@ -1,59 +1,149 @@
-# EA Knowledge Assistant (RAG over the Architecture Repository)
+# EA Knowledge Assistant — RAG over the Architecture Repository
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Project 1 of the [Enterprise Architecture + AI Portfolio](../README.md) · Tier: Beginner · Status: **built, tested and evaluated** (offline configuration)
 
-**Tier:** Beginner · **Repo name:** `ea-knowledge-assistant`
+Architects keep re-asking questions that the repository already answers, such as *"are we allowed to
+use NoSQL for this?"* or *"what's our approved async integration pattern?"*. Finding the answer takes
+longer than asking a colleague. This assistant answers from the repository **only**. It cites the exact
+document and clause behind each answer, and says **"not found"** instead of guessing.
 
-**Enterprise Problem.** Architecture principles, standards, ADRs, and reference models live across wikis, SharePoint, and PDFs. Architects routinely re-litigate questions ("are we allowed to use a NoSQL store for this?") that already have a documented, approved answer — because finding it takes longer than asking a colleague or guessing.
+![Streamlit UI: a cited answer and a "not found" refusal](docs/images/ui-demo.png)
 
-**Business Value.** Cuts time-to-answer for standards questions from hours/days to minutes; reduces inconsistent solution decisions caused by architects not finding the applicable standard. KPIs: median time-to-answer for policy questions; % of ARB findings that cite "standard was not known/found" as a root cause (target: reduce toward zero); repository search abandonment rate.
+## What's in this project
 
-**AI Use Case.** Retrieval-Augmented Generation answers architect questions using only the indexed corpus, always returning the source clause and document, with an explicit "not found in the corpus" fallback instead of a guess. **Not delegated to AI:** authoring or amending the standards themselves, and any answer bearing on an active governance exception.
+| | |
+|---|---|
+| **A realistic architecture repository** | 48 original documents (~66k words) for a fictional global freight and port-terminal operator, *Harbourline Logistics Group*: <br>• 16 principles, 15 standards, 12 ADRs and 4 reference architectures <br>• 13 deliverables following the TOGAF ADM structure: Architecture Vision, Statement of Architecture Work, Architecture Definition Document, requirements, roadmap, Architecture Contract, Compliance Assessment, Change Request and more <br>• An ARB charter, an Exceptions Register and a glossary <br>See [`data/README.md`](data/README.md). |
+| **Retrieval pipeline** | Section-aware chunking by document type, so clauses are citable as `STD-INT-001 §4.1`, and ingestion-time redaction. Hybrid BM25 + dense retrieval fused with RRF, plus an answerability gate. |
+| **Grounded answers** | Citation-forced prompt with a `NOT_FOUND` path, a post-generation groundedness check, and a governance notice on any question about architecture exceptions. |
+| **Interfaces** | FastAPI (`/ask`, `/documents`, `/feedback`, `/health`) with API keys and rate limiting; Streamlit chat UI with 👍/👎 feedback; `eaka` CLI. |
+| **Storage** | PostgreSQL + pgvector (docker-compose); an in-memory store for development and CI. |
+| **Evidence** | 50-question hand-labelled evaluation with a dev/test split, 22 tests including a pgvector integration test, and GitHub Actions CI with an evaluation regression gate. |
 
-**Users.** Solution architects, application owners, new architecture hires (onboarding), ARB members preparing for a review.
+## Architecture
 
-**Example Scenario.** A solution architect proposing an event-driven integration asks, "What's our approved pattern for asynchronous integration between domains?" The assistant returns the relevant Integration Architecture Principle, the two approved patterns from the standards catalog, and links to two prior ADRs that applied them — instead of the architect pinging three people over Slack.
-
-**Architecture.**
 ```mermaid
 flowchart LR
-    U[Architect - chat UI] --> API[FastAPI backend]
-    API --> EMB[Embedding service]
-    EMB --> VDB[(pgvector store)]
-    VDB --> API
-    API --> LLM[LLM - answer synthesis]
-    LLM --> API
-    API --> U
-    ING[Ingestion pipeline] --> DOC[(Doc store: standards, ADRs, principles)]
-    DOC --> EMB
-    API --> OBS[Observability / logging]
+    U[Architect: Streamlit / CLI] --> API[FastAPI: auth + rate limit]
+    API --> RET[Hybrid retriever<br/>BM25 + dense, RRF]
+    RET --> VDB[(PostgreSQL + pgvector)]
+    RET --> GATE{Answerable?}
+    GATE -- no --> NF[Not found → gap log]
+    GATE -- yes --> LLM[Cited synthesis<br/>LLM or extractive]
+    LLM --> CHK[Groundedness check +<br/>exception notice]
+    CHK --> U
+    ING[Ingestion: front matter, redaction,<br/>type-aware chunking, embeddings] --> VDB
+    DOCS[(Principles · standards · ADRs ·<br/>RAs · TOGAF deliverables)] --> ING
+    API --> LOG[(Audit log · feedback)]
 ```
-Frontend (Streamlit) → FastAPI → embedding + retrieval against pgvector → LLM synthesizes a cited answer → response includes source document + clause. A nightly ingestion job re-chunks and re-embeds any changed documents so the index never drifts far from the corpus of record.
 
-**EA Artifacts consumed:** architecture principles, technology standards, ADRs, reference architectures. **Generated:** none authoritative — only cited answers and an "unanswered questions" log used to prioritize documentation gaps.
+The full design, including the chunking strategy, request flow and Azure/AWS deployment mapping, is in
+[`docs/architecture.md`](docs/architecture.md). The design decisions are recorded in [`docs/adr/`](docs/adr).
 
-**AI Techniques required:** embeddings, semantic search, RAG, LLM answer synthesis with citation. *Not used:* fine-tuning (unnecessary at this scale), agents (single-turn retrieval doesn't need orchestration).
+## Quickstart
 
-**Recommended Stack:** Python, FastAPI, Streamlit, an LLM API (OpenAI/Azure OpenAI/Anthropic — pick one and justify the choice by data-residency needs), PostgreSQL + pgvector, Docker, GitHub Actions for CI.
+```bash
+# Offline: no API keys, no database
+pip install -e ".[ui,dev]"
+eaka ask "Are we allowed to use a NoSQL database for a new service?"
+streamlit run app/streamlit_app.py
+pytest -q && python eval/run_eval.py
 
-**Data Model:** `Document(id, type, title, source_path, version)` → `Chunk(id, document_id, text, embedding, section_ref)`. Simple by design — this project's job is proving grounded retrieval works, not modeling the enterprise.
+# Full stack: PostgreSQL + pgvector, API and UI
+cp .env.example .env          # optional: set EAKA_LLM_PROVIDER + a key
+docker compose up --build     # UI http://localhost:8501 · API docs http://localhost:8000/docs
+```
 
-**AI Governance:** every answer must carry a citation or explicitly state it found nothing; log every query/answer pair for audit; strip or redact any accidentally-ingested sensitive fields during ingestion; rate-limit and authenticate API access; no prompt-injection surface because there's no external/untrusted content in the corpus (documented as a design decision, revisited if that changes).
+To use an LLM, set `EAKA_LLM_PROVIDER` to `azure_openai`, `anthropic` or `openai` and supply the
+matching key in `.env`. For an organisation with EU and UAE data-residency rules, the recommended
+choice is **Azure OpenAI deployed in the data's own region**. The reasoning is in
+[ADR-P003](docs/adr/ADR-P003-llm-and-embedding-provider.md).
 
-**Implementation Plan.**
-- *Phase 1 (MVP):* ingest ~30–50 synthetic architecture documents; basic chunking + embedding + retrieval; simple Streamlit Q&A UI.
-- *Phase 2 (AI capability):* add citation formatting, "not found" handling, and query logging.
-- *Phase 3 (EA intelligence):* add document-type-aware chunking (principles vs. ADRs need different chunk boundaries) and a feedback button ("was this answer correct?") to build an evaluation set.
-- *Phase 4 (production-grade):* add auth, observability (OpenTelemetry traces on retrieval latency and answer quality), and automated re-indexing on document change.
+## Example
 
-**Repo Structure:** `/app` (FastAPI + Streamlit), `/ingestion`, `/data/synthetic_standards`, `/docs` (architecture diagram, ADRs for this project itself), `/tests`, `/eval` (retrieval + groundedness test set), `README.md`.
+The blueprint's example question is *"What's our approved pattern for asynchronous integration
+between domains?"* The assistant returns:
 
-**Portfolio Deliverables:** README with problem statement and architecture diagram; short demo video/GIF; sample synthetic standards corpus; retrieval evaluation results; a one-page "governance & limitations" section.
+- **Principle AP-08** (Event-First Integration Between Domains);
+- **STD-INT-001 §4.1 INT-P1** Domain Event Publication, which is mandatory;
+- the ADR that moves integrations off the ESB (ADR-0015);
+- the reference architecture RA-01.
 
-**Evaluation:** retrieval precision@k against a hand-labeled query set; groundedness (does the answer's claim appear in the cited chunk — checked programmatically and by spot review); latency (p50/p95); % of queries correctly returning "not found" when the answer isn't in the corpus.
+Each is cited by clause. For *"What is our standard for modernising mainframe COBOL applications?"* the
+assistant refuses and logs the question as a documentation gap (see the screenshot above).
 
-**Résumé Bullets.**
-- Built a retrieval-augmented Q&A system over a synthetic enterprise architecture repository, achieving grounded, citation-backed answers with a measured groundedness rate on a held-out evaluation set.
-- Designed a document ingestion and chunking pipeline for heterogeneous architecture artifacts (principles, standards, ADRs), reducing simulated time-to-answer for policy questions.
+## Evaluation (test split, offline configuration)
 
-**Interview Story.** *Problem:* architects can't efficiently find answers that already exist. *Constraints:* answers must be traceable to a source, not hallucinated. *Architecture:* RAG over pgvector with citation-forced prompting. *AI approach:* embeddings + retrieval, no fine-tuning needed at this scale. *Governance:* explicit "not found" behavior, full query logging. *Trade-offs:* chose pgvector over a dedicated vector DB for operational simplicity at this scale, would reconsider at enterprise volume. *Results:* quantified groundedness and precision on the eval set — not a production deployment claim.
+| Measure | Result |
+|---|---|
+| Retrieval Recall@5 / Hit@1 / MRR@10 (hybrid, dev-tuned) | **100% / 86.2% / 0.910** |
+| Hybrid vs. single retrievers (MRR@10) | BM25 0.880 · dense 0.898 · **hybrid 0.910** |
+| Answerable questions wrongly refused | **0 of 29** |
+| Out-of-corpus questions correctly refused | **6 of 7** (the miss uses only in-corpus vocabulary, so the LLM's `NOT_FOUND` rule is the second gate) |
+| Answers carrying a citation | **100%** |
+| Answer contains the key fact (extractive mode) | 72.4%. Quoting whole sentences is the limit here; LLM synthesis is expected to close this gap. |
+| Latency p50 / p95 (in-process) | 31 ms / 39 ms |
+
+Method, metric definitions, the full report and the commands for the LLM runs are in
+[`eval/README.md`](eval/README.md) and [`eval/results/offline_baseline.md`](eval/results/offline_baseline.md).
+
+**Still to measure:** LLM-mode groundedness and key-fact accuracy, and neural embeddings. No API key
+was available when these results were produced, and the evaluation reports those numbers as pending
+rather than estimating them.
+
+## Governance: what this system does not do
+
+It doesn't author or amend standards, and it doesn't grant, renew or judge architecture exceptions.
+Any answer touching an exception says that the ARB decides. Every answer cites its source or says
+"not found". Every question is logged for audit, and unanswered questions feed the EA Office's
+documentation backlog. The controls and limitations are set out in
+[`docs/governance-and-limitations.md`](docs/governance-and-limitations.md).
+
+## Repository layout
+
+```
+01-ea-knowledge-assistant/
+├── src/eaka/            ingest · redact · lexical (BM25) · embeddings · store (memory/pgvector)
+│                        retrieval · answer · engine · querylog · api · cli
+├── app/                 Streamlit UI
+├── data/corpus/         48-document synthetic architecture repository (+ data/README.md)
+├── data/WORLD_BIBLE.md  shared facts about the fictional enterprise (reusable by Projects 2–10)
+├── eval/                queries.yaml (50 labelled questions), run_eval.py, results/
+├── tests/               ingestion, retrieval/answers, API, pgvector integration
+├── docs/                architecture.md, governance-and-limitations.md, adr/ (ADR-P001…P005), images/
+├── infra/Dockerfile · docker-compose.yml · Makefile · .env.example   (CI: ../.github/workflows/ea-knowledge-assistant.yml)
+```
+
+## Résumé bullets
+
+- Built a retrieval-augmented Q&A assistant over a 48-document enterprise architecture repository
+  (principles, standards, ADRs, TOGAF-structured deliverables). It returns clause-level cited answers
+  and refuses questions the repository doesn't cover. On a held-out test set it reached **100%
+  Recall@5 and 0.91 MRR**, and refused 6 of 7 out-of-corpus questions with no false refusals.
+- Designed hybrid BM25 + dense retrieval with rank fusion and an answerability gate tuned on a
+  separate dev split. Added governance controls: forced citations, groundedness checking, audit
+  logging, ingestion redaction, and escalation notices for architecture exceptions. Deployed on
+  PostgreSQL + pgvector with FastAPI, Streamlit, Docker and CI.
+
+## Interview story
+
+- **Problem:** architects can't find answers that already exist.
+- **Constraint:** every answer must be traceable to a clause, and the system must say when it doesn't
+  know.
+- **Architecture:** RAG over pgvector. Chunking follows document type, because a principle quoted
+  without its implications misleads, while a standard needs clause-level citations.
+- **AI approach:** hybrid retrieval. BM25 catches identifiers like `STD-DB-006` and dense retrieval
+  catches paraphrase. There is no fine-tuning, because the corpus changes weekly and citations matter
+  more.
+- **Governance:** a two-layer refusal (a retrieval gate, then the LLM's `NOT_FOUND` rule), exception
+  notices and a full audit log.
+- **Trade-offs:**
+  - pgvector over a dedicated vector DB, for operational simplicity;
+  - the offline LSA baseline, so the project runs anywhere;
+  - no Open Group template text in the corpus, which was a licensing call (ADR-P005).
+- **Results:** measured on a held-out split, with the weak spots stated plainly: 72% key-fact accuracy
+  in extractive mode, and one out-of-corpus miss that only an LLM can catch. None of this is a
+  production claim.
+
+---
+*All data is synthetic. Harbourline Logistics Group is fictional. TOGAF® is a registered trademark of The Open Group; no Open Group text is used.*

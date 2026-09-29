@@ -1,0 +1,266 @@
+# Hand-labelled evaluation set for the EA Knowledge Assistant.
+#
+# relevant_docs : documents that genuinely answer the question (a retrieved chunk from any of
+#                 them counts as relevant). Primary source first.
+# answer_keywords: facts a correct answer must mention (checked in the answer text, case-insensitive;
+#                 any one alternative separated by "|" is enough).
+# split         : dev = used to tune the not-found threshold; test = reported numbers only.
+# expect        : answer | not_found
+#
+# Questions are deliberately paraphrased (they don't copy section headings) so that retrieval is
+# tested on how architects actually ask, not on keyword echo.
+
+queries:
+  # ---------------------------------------------------------------- integration & APIs
+  - id: q01
+    split: test
+    question: "What's our approved pattern for asynchronous integration between domains?"
+    relevant_docs: [STD-INT-001, AP-CATALOG, RA-01, ADR-0038, ADR-0030]
+    answer_keywords: ["INT-P1|Domain Event Publication"]
+  - id: q02
+    split: dev
+    question: "Can my new service read directly from another domain's database?"
+    relevant_docs: [STD-INT-001, AP-CATALOG]
+    answer_keywords: ["prohibit|MUST NOT|not permitted"]
+  - id: q03
+    split: test
+    question: "Is it still OK to build new MuleSoft flows?"
+    relevant_docs: [ADR-0015, STD-INT-001, STD-TLC-014]
+    answer_keywords: ["2025-06-30|30 June 2025"]
+  - id: q04
+    split: test
+    question: "How should we name Kafka topics?"
+    relevant_docs: [STD-EVT-003, RA-01]
+    answer_keywords: ["<domain>.<entity>.<event>.v<major>|shipment.milestone.recorded.v1"]
+  - id: q05
+    split: dev
+    question: "What do I do if an event payload is bigger than the Kafka message size limit?"
+    relevant_docs: [STD-EVT-003, RA-01]
+    answer_keywords: ["claim-check|claim check"]
+  - id: q06
+    split: test
+    question: "How do we version REST APIs and how much notice is required before deprecating one?"
+    relevant_docs: [STD-API-002]
+    answer_keywords: ["6 months|six months"]
+  - id: q07
+    split: test
+    question: "Why did we pick Confluent Cloud rather than Azure Event Hubs for eventing?"
+    relevant_docs: [ADR-0007]
+    answer_keywords: ["schema registry|Schema Registry|portab"]
+  - id: q08
+    split: test
+    question: "How does the customer portal get shipment status updates?"
+    relevant_docs: [ADR-0030, RA-01, STD-INT-001]
+    answer_keywords: ["event-carried state transfer|INT-P2|read model"]
+  - id: q09
+    split: dev
+    question: "How do HSP services publish domain events consistently with their database writes?"
+    relevant_docs: [ADR-0038, RA-01, STD-INT-001]
+    answer_keywords: ["outbox"]
+  - id: q10
+    split: test
+    question: "Which API gateway product is the standard and why was it selected?"
+    relevant_docs: [ADR-0019, STD-API-002]
+    answer_keywords: ["API Management|APIM"]
+
+  # ---------------------------------------------------------------- data
+  - id: q11
+    split: test
+    question: "Are we allowed to use a NoSQL database for a new service?"
+    relevant_docs: [STD-DB-006, ADR-0012]
+    answer_keywords: ["Cosmos DB"]
+  - id: q12
+    split: dev
+    question: "Can I run MongoDB on my own virtual machines?"
+    relevant_docs: [STD-DB-006]
+    answer_keywords: ["prohibit|MUST NOT"]
+  - id: q13
+    split: test
+    question: "What is the default relational database for new applications?"
+    relevant_docs: [STD-DB-006, ADR-0024]
+    answer_keywords: ["PostgreSQL"]
+  - id: q14
+    split: test
+    question: "Where must personal data about EU customers be stored and processed?"
+    relevant_docs: [STD-DAT-005, AP-CATALOG, ADR-0041]
+    answer_keywords: ["West Europe"]
+  - id: q15
+    split: dev
+    question: "What approval is needed to transfer personal data across borders?"
+    relevant_docs: [STD-DAT-005]
+    answer_keywords: ["Transfer Impact Assessment|TIA"]
+  - id: q16
+    split: test
+    question: "What are the data classification levels and what makes data Restricted?"
+    relevant_docs: [STD-DAT-004]
+    answer_keywords: ["Restricted"]
+  - id: q17
+    split: test
+    question: "Why is container telemetry stored in Cosmos DB instead of PostgreSQL?"
+    relevant_docs: [ADR-0012]
+    answer_keywords: ["write|volume|telemetry"]
+  - id: q18
+    split: test
+    question: "How is the Tidewater data platform organised into layers?"
+    relevant_docs: [RA-04]
+    answer_keywords: ["bronze|medallion"]
+
+  # ---------------------------------------------------------------- cloud, security, network
+  - id: q19
+    split: test
+    question: "When is it acceptable to host a workload on AWS instead of Azure?"
+    relevant_docs: [STD-CLD-007, ADR-0021, AP-CATALOG]
+    answer_keywords: ["Nordhaven|DR|disaster"]
+  - id: q20
+    split: dev
+    question: "Which tags are mandatory on cloud resources?"
+    relevant_docs: [STD-CLD-007]
+    answer_keywords: ["cost-centre|app-id|data-classification"]
+  - id: q21
+    split: test
+    question: "How long can someone hold privileged admin access through PIM?"
+    relevant_docs: [STD-IAM-008]
+    answer_keywords: ["8 hours|eight hours"]
+  - id: q22
+    split: test
+    question: "What TLS version is the minimum and when are customer-managed keys required?"
+    relevant_docs: [STD-SEC-009]
+    answer_keywords: ["TLS 1.2"]
+  - id: q23
+    split: test
+    question: "Can the OT networks at the container terminals reach the internet directly?"
+    relevant_docs: [STD-NET-011, RA-03, AP-CATALOG]
+    answer_keywords: ["no direct internet|MUST NOT|DMZ"]
+  - id: q24
+    split: dev
+    question: "How do equipment vendors get remote access to crane and gate systems?"
+    relevant_docs: [STD-NET-011, RA-03]
+    answer_keywords: ["jump host"]
+  - id: q25
+    split: test
+    question: "Why did we move off MPLS for the WAN?"
+    relevant_docs: [ADR-0036, STD-NET-011]
+    answer_keywords: ["SD-WAN"]
+  - id: q26
+    split: test
+    question: "Where are container images allowed to come from, and can containers run as root?"
+    relevant_docs: [STD-CTR-012, RA-02]
+    answer_keywords: ["hlgacr|Container Registry|non-root"]
+  - id: q27
+    split: test
+    question: "How long are application logs retained and can they contain personal data?"
+    relevant_docs: [STD-OBS-010]
+    answer_keywords: ["13 months"]
+
+  # ---------------------------------------------------------------- resilience & terminals
+  - id: q28
+    split: test
+    question: "What RTO and RPO apply to terminal operating systems?"
+    relevant_docs: [STD-RES-015, ADR-0027]
+    answer_keywords: ["15 min"]
+  - id: q29
+    split: dev
+    question: "How long must a terminal keep operating if the WAN and cloud are down?"
+    relevant_docs: [AP-CATALOG, ADR-0027, RA-03, STD-RES-015]
+    answer_keywords: ["72"]
+  - id: q30
+    split: test
+    question: "Why does Navis N4 run on-premises at each terminal instead of in the cloud?"
+    relevant_docs: [ADR-0027, RA-03]
+    answer_keywords: ["edge|local|continuity"]
+
+  # ---------------------------------------------------------------- AI
+  - id: q31
+    split: test
+    question: "Which generative AI platform are we allowed to use with internal data?"
+    relevant_docs: [STD-AI-013, ADR-0033]
+    answer_keywords: ["Azure OpenAI"]
+  - id: q32
+    split: dev
+    question: "Does a human need to check what the bill of lading extraction AI produces?"
+    relevant_docs: [ADR-0033, STD-AI-013]
+    answer_keywords: ["human|validat"]
+
+  # ---------------------------------------------------------------- lifecycle & governance
+  - id: q33
+    split: test
+    question: "Is Oracle Database still allowed for new systems?"
+    relevant_docs: [STD-TLC-014, STD-DB-006]
+    answer_keywords: ["Contain"]
+  - id: q34
+    split: test
+    question: "When does Java 8 have to be gone?"
+    relevant_docs: [STD-TLC-014]
+    answer_keywords: ["2026-06-30|30 June 2026"]
+  - id: q35
+    split: dev
+    question: "Which submissions need a full Tier 1 ARB review?"
+    relevant_docs: [GOV-01]
+    answer_keywords: ["Restricted|500"]
+  - id: q36
+    split: test
+    question: "What is the status of the exception that keeps Nordhaven TMS on AWS?"
+    relevant_docs: [GOV-02, ADR-0021, F-01]
+    answer_keywords: ["EXC-2025-003|2026-12-31"]
+  - id: q37
+    split: test
+    question: "What did the ARB decide about the Customer Notification Service?"
+    relevant_docs: [G-02]
+    answer_keywords: ["Changes Requested"]
+  - id: q38
+    split: test
+    question: "When is the Baltimore data centre exit planned?"
+    relevant_docs: [F-01, A-01, PRE-01, ADD-01, PRE-02]
+    answer_keywords: ["2027"]
+  - id: q39
+    split: dev
+    question: "Why is a UAE deployment of the customer portal being proposed?"
+    relevant_docs: [H-01, H-02]
+    answer_keywords: ["PDPL|UAE North"]
+  - id: q40
+    split: test
+    question: "What is the target latency for shipment milestone events?"
+    relevant_docs: [ARS-01, A-01, PRE-01]
+    answer_keywords: ["5 min|five minutes"]
+
+  # ---------------------------------------------------------------- out of corpus (must say not found)
+  - id: n01
+    split: dev
+    expect: not_found
+    question: "What is our standard for modernising mainframe COBOL applications?"
+  - id: n02
+    split: test
+    expect: not_found
+    question: "Can we use blockchain to issue electronic bills of lading?"
+  - id: n03
+    split: dev
+    expect: not_found
+    question: "What is the company travel and expense reimbursement policy?"
+  - id: n04
+    split: test
+    expect: not_found
+    question: "What is our quantum-safe cryptography migration plan?"
+  - id: n05
+    split: test
+    expect: not_found
+    question: "How are employee phones enrolled in Intune mobile device management?"
+  - id: n06
+    split: test
+    expect: not_found
+    question: "What are the salary bands for enterprise architects?"
+  - id: n07
+    split: dev
+    expect: not_found
+    question: "How do we buy bunker fuel for chartered vessels?"
+  - id: n08
+    split: test
+    expect: not_found
+    question: "What is the password for the office guest Wi-Fi?"
+  - id: n09
+    split: test
+    expect: not_found
+    question: "What is the timeline for the SAP S/4HANA version upgrade?"
+  - id: n10
+    split: test
+    expect: not_found
+    question: "Which low-code platform should citizen developers use, Power Apps or OutSystems?"
