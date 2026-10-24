@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-10, AP-11, AP-12, AP-15, AP-06, STD-DAT-004, STD-DAT-005, STD-IAM-008, STD-SEC-009, STD-CTR-012, STD-RES-015, STD-OBS-010, ADR-0021, ADR-0027, RA-02, GOV-01, GOV-02]
 ---
 
-# STD-CLD-007 — Cloud Landing Zone & Hosting Standard
+# STD-CLD-007: Cloud Landing Zone & Hosting Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -31,7 +31,7 @@ Terminal edge hosting for Tier 0 systems (Navis N4 on-premises edge clusters, AD
 
 ## 3. Related Principles and Normative References
 
-- **AP-10 Cloud-Smart and Portable** — Azure primary, AWS secondary, avoid unnecessary lock-in.
+- **AP-10 Cloud-Smart and Portable**: Azure primary, AWS secondary, avoid unnecessary lock-in.
 - **AP-11 Managed Services over Self-Managed Infrastructure**; **AP-12 Zero Trust Access**; **AP-15 Everything as Code**; **AP-06 Data Residency Follows Jurisdiction**.
 - **STD-DAT-005** (residency), **STD-CTR-012** (containers), **STD-RES-015** (resilience), **STD-SEC-009** (encryption), **STD-IAM-008** (identity), **STD-OBS-010** (monitoring).
 - **ADR-0021** Temporarily Retain Nordhaven TMS on AWS.
@@ -41,11 +41,11 @@ Normative terms follow RFC 2119.
 
 ## 4. Cloud Providers
 
-### 4.1 Azure — primary cloud
+### 4.1 Azure: primary cloud
 
 Microsoft Azure is Harbourline's **primary cloud**. All new workloads MUST be hosted on Azure unless a condition in §4.2 applies.
 
-### 4.2 AWS — secondary cloud
+### 4.2 AWS: secondary cloud
 
 AWS is the **secondary cloud** and MAY be used only in the following cases:
 
@@ -53,7 +53,7 @@ AWS is the **secondary cloud** and MAY be used only in the following cases:
 |---|---|---|
 | (a) Nordhaven legacy workloads | In **eu-central-1** only, under exception **EXC-2025-003**, until migrated into HSP | Nordhaven TMS (APP-021), ADR-0021 |
 | (b) DR-only workloads | Approved by the ARB where cross-provider recovery is justified | None approved at time of issue |
-| (c) Services with no Azure equivalent | Approved by the ARB (Tier 1) with documented comparison of Azure options | — |
+| (c) Services with no Azure equivalent | Approved by the ARB (Tier 1) with documented comparison of Azure options | n/a |
 
 New AWS accounts MUST be created under the Harbourline AWS Organization with centrally managed guardrails; standalone accounts on corporate cards are prohibited.
 
@@ -130,7 +130,7 @@ Consistent with AP-11, teams MUST choose the highest-level managed service that 
 1. SaaS (if the capability is not differentiating).
 2. PaaS (e.g. App Service, Azure Functions, PostgreSQL Flexible Server).
 3. Containers on AKS or Azure Container Apps (STD-CTR-012).
-4. Virtual machines — only for vendor software that cannot run otherwise, with justification in the design.
+4. Virtual machines: only for vendor software that cannot run otherwise, with justification in the design.
 
 ## 10. Compliance and Exceptions
 

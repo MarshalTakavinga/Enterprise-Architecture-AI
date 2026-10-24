@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-07, AP-08, AP-11, AP-14, STD-INT-001, STD-EVT-003, STD-DB-006, STD-OBS-010, ADR-0007, ADR-0024, ADR-0030, RA-01, APP-022, APP-120]
 ---
 
-# ADR-0038 — Transactional Outbox for Publishing Domain Events from HSP
+# ADR-0038: Transactional Outbox for Publishing Domain Events from HSP
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -49,14 +49,14 @@ For customer visibility (REQ-HSP-014) and downstream customs processing, both fa
 
 ## 4. Considered Options
 
-- **Option A — Transactional outbox table in each service's PostgreSQL database, relayed by the Confluent-managed Debezium PostgreSQL CDC connector.**
-- **Option B — Outbox table with an in-service polling publisher** (background worker reads unsent rows and publishes).
-- **Option C — Kafka transactions / dual-write with retries** in application code.
-- **Option D — CDC directly on business tables** (no outbox; consumers see table-change events).
+- **Option A: Transactional outbox table in each service's PostgreSQL database, relayed by the Confluent-managed Debezium PostgreSQL CDC connector.**
+- **Option B: Outbox table with an in-service polling publisher** (background worker reads unsent rows and publishes).
+- **Option C: Kafka transactions / dual-write with retries** in application code.
+- **Option D: CDC directly on business tables** (no outbox; consumers see table-change events).
 
 ### 4.1 Comparison
 
-| Criterion | A — Outbox + managed Debezium | B — Outbox + polling publisher | C — Dual write | D — CDC on business tables |
+| Criterion | A: Outbox + managed Debezium | B: Outbox + polling publisher | C: Dual write | D: CDC on business tables |
 |---|---|---|---|---|
 | Atomic with DB commit | Yes | Yes | No (cannot span DB and Kafka) | Yes |
 | Commit-to-topic latency (PoC p95) | 1.2 s | 2-10 s (poll interval dependent) | < 0.5 s | 1.1 s |
@@ -68,7 +68,7 @@ For customer visibility (REQ-HSP-014) and downstream customs processing, both fa
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Transactional outbox with the Confluent-managed Debezium CDC connector.** This is the mandatory implementation of **INT-P1** for HSP services whose events must be consistent with a database write.
+**Chosen option A: Transactional outbox with the Confluent-managed Debezium CDC connector.** This is the mandatory implementation of **INT-P1** for HSP services whose events must be consistent with a database write.
 
 Implementation rules:
 

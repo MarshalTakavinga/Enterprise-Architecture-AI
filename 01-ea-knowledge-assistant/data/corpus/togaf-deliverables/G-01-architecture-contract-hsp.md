@@ -1,6 +1,6 @@
 ---
 doc_id: G-01
-title: Architecture Contract — HSP Delivery Programme
+title: Architecture Contract, HSP Delivery Programme
 doc_type: togaf_deliverable
 togaf_phase: G
 version: "1.1"
@@ -13,7 +13,7 @@ classification: Confidential
 related: [GOV-01, GOV-02, A-02, ADD-01, ARS-01, F-01, AP-07, AP-08, AP-12, AP-14, AP-15, STD-INT-001, STD-API-002, STD-EVT-003, STD-DAT-004, STD-DAT-005, STD-DB-006, STD-CLD-007, STD-IAM-008, STD-SEC-009, STD-OBS-010, STD-CTR-012, STD-RES-015, STD-AI-013]
 ---
 
-# G-01 — Architecture Contract — HSP Delivery Programme
+# G-01: Architecture Contract, HSP Delivery Programme
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

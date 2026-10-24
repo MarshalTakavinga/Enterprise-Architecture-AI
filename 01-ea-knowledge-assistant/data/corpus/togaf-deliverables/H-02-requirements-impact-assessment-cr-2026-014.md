@@ -1,6 +1,6 @@
 ---
 doc_id: H-02
-title: Requirements Impact Assessment — CR-2026-014
+title: Requirements Impact Assessment, CR-2026-014
 doc_type: togaf_deliverable
 togaf_phase: H
 version: "1.0"
@@ -13,7 +13,7 @@ classification: Internal
 related: [H-01, ARS-01, ADD-01, F-01, GOV-01, GOV-02, AP-06, AP-10, STD-DAT-005, STD-CLD-007, STD-RES-015, STD-IAM-008, STD-SEC-009, ADR-0030, ADR-0041, RA-02]
 ---
 
-# H-02 — Requirements Impact Assessment — CR-2026-014
+# H-02: Requirements Impact Assessment, CR-2026-014
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

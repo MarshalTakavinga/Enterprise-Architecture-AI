@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-06, AP-10, AP-11, AP-12, STD-CLD-007, STD-DAT-005, STD-DB-006, STD-EVT-003, ADR-0007, ADR-0019, GOV-02, F-01, APP-021, APP-022, APP-120]
 ---
 
-# ADR-0021 — Temporarily Retain Nordhaven TMS on AWS
+# ADR-0021: Temporarily Retain Nordhaven TMS on AWS
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -46,13 +46,13 @@ Nordhaven's platform team is 7 engineers, all AWS-skilled; none have Azure produ
 
 ## 4. Considered Options
 
-- **Option A — Retain on AWS eu-central-1 until HSP migration**, connected via Confluent cluster linking and private connectivity.
-- **Option B — Lift-and-shift to Azure West Europe now** (AKS + MongoDB Atlas on Azure), then migrate into HSP later.
-- **Option C — Accelerate Nordhaven into HSP immediately**, ahead of US lanes.
+- **Option A: Retain on AWS eu-central-1 until HSP migration**, connected via Confluent cluster linking and private connectivity.
+- **Option B: Lift-and-shift to Azure West Europe now** (AKS + MongoDB Atlas on Azure), then migrate into HSP later.
+- **Option C: Accelerate Nordhaven into HSP immediately**, ahead of US lanes.
 
 ### 4.1 Comparison
 
-| Criterion | A — Retain on AWS | B — Lift-and-shift to Azure | C — Accelerate into HSP |
+| Criterion | A: Retain on AWS | B: Lift-and-shift to Azure | C: Accelerate into HSP |
 |---|---|---|---|
 | One-off cost (est.) | EUR 0.3M (connectivity, integration) | EUR 1.6M (migration, re-testing, dual run) | Not estimable; HSP not feature-ready |
 | Double migration | No | Yes | No |
@@ -64,7 +64,7 @@ Nordhaven's platform team is 7 engineers, all AWS-skilled; none have Azure produ
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Retain the Nordhaven TMS in AWS eu-central-1 until it is migrated into HSP.**
+**Chosen option A: Retain the Nordhaven TMS in AWS eu-central-1 until it is migrated into HSP.**
 
 Conditions:
 
@@ -118,7 +118,7 @@ Conditions:
 ## 8. Links
 
 - GOV-02 Architecture Exceptions Register (EXC-2025-003)
-- F-01 Architecture Roadmap & Migration Plan — Horizon 2028 (Nordhaven migration)
+- F-01 Architecture Roadmap & Migration Plan, Horizon 2028 (Nordhaven migration)
 - ADR-0007 Adopt Confluent Cloud as the Enterprise Event Backbone
 - ADR-0019 Azure API Management as the Single API Gateway
 - ARB log entry ARB-2024-026

@@ -1,13 +1,13 @@
 {
   "tag": "offline_baseline",
-  "run_at": "2026-10-23 03:23 UTC",
+  "run_at": "2026-10-24 03:04 UTC",
   "index": {
-    "corpus_fingerprint": "0c4b3ecf6470b732",
+    "corpus_fingerprint": "ca2b012e358ddf4f",
     "embedder": "lsa",
     "dim": 256,
     "documents": 48,
     "chunks": 552,
-    "built_at": "2026-10-23T03:07:14Z"
+    "built_at": "2026-10-24T03:01:28Z"
   },
   "llm_provider": "extractive",
   "k": 5,
@@ -97,14 +97,14 @@
       "n": 29,
       "hit@1": 0.8620689655172413,
       "recall@5": 0.9310344827586207,
-      "precision@5": 0.5793103448275861,
+      "precision@5": 0.5862068965517241,
       "mrr@10": 0.8977011494252874
     },
     "hybrid_rrf (1:1)": {
       "n": 29,
       "hit@1": 0.7931034482758621,
       "recall@5": 1.0,
-      "precision@5": 0.6206896551724137,
+      "precision@5": 0.6275862068965515,
       "mrr@10": 0.8793103448275862
     },
     "hybrid_rrf (dev-tuned 0.5:1)": {
@@ -122,9 +122,10 @@
     "answer_contains_key_fact": 0.7241379310344828,
     "answer_cites_relevant_doc": 0.9655172413793104,
     "groundedness_rate": 1.0,
+    "claim_support_rate": 1.0,
     "every_answer_cited": true,
-    "latency_ms_p50": 196.16434999988996,
-    "latency_ms_p95": 574.6908000000985
+    "latency_ms_p50": 158.4976999997707,
+    "latency_ms_p95": 494.4385000007969
   },
   "rows": [
     {
@@ -146,13 +147,13 @@
         "RA-01#2",
         "STD-INT-001#5"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **AP-CATALOG \u00a713 AP-08 \u2014 Event-First Integration Between Domains:** \u201cDomains integrate asynchronously by publishing and subscribing to business events on the Harbourline Event Backbone; synchronous coupling between domains is the exception. Cross-domain asynchronous integration uses INT-P1 Domain Event Publication; HSP uses a transactional outbox with CDC (ADR-0038).\u201d [1]\n- **STD-INT-001 \u00a74.1 INT-P1 \u2014 Domain Event Publication:** \u201cINT-P1 is mandatory for all cross-domain asynchronous integration.\u201d [2]\n- **ADR-0015 \u00a75 Decision Outcome:** \u201cReplacement patterns: cross-domain asynchronous integration moves to INT-P1 Domain Event Publication (and INT-P2 where consumers need local state); synchronous fa\u00e7ades move to INT-P3 via the Harbourline API Gateway.\u201d [4]\n- **RA-01 \u00a72 Principles & Standards Applied:** \u201cAP-08 Event-First Integration Between Domains | Domains publish facts; consumers subscribe.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **AP-CATALOG \u00a713 AP-08: Event-First Integration Between Domains:** \u201cDomains integrate asynchronously by publishing and subscribing to business events on the Harbourline Event Backbone; synchronous coupling between domains is the exception. Cross-domain asynchronous integration uses INT-P1 Domain Event Publication; HSP uses a transactional outbox with CDC (ADR-0038).\u201d [1]\n- **STD-INT-001 \u00a74.1 INT-P1: Domain Event Publication:** \u201cINT-P1 is mandatory for all cross-domain asynchronous integration.\u201d [2]\n- **ADR-0015 \u00a75 Decision Outcome:** \u201cReplacement patterns: cross-domain asynchronous integration moves to INT-P1 Domain Event Publication (and INT-P2 where consumers need local state); synchronous fa\u00e7ades move to INT-P3 via the Harbourline API Gateway.\u201d [4]\n- **RA-01 \u00a72 Principles & Standards Applied:** \u201cAP-08 Event-First Integration Between Domains | Domains publish facts; consumers subscribe.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **AP-CATALOG \u00a713 AP-08 \u2014 Event-First Integration Between Domains:** \u201cDomains integrate asynchronously by publishing and subscribing to business events on the Harbourline Event Backbone; synchronous coupling between domains is the exception. Cross-domain asynchronous integration uses INT-P1 Domain Event Publication; HSP uses a transactional outbox with CDC (ADR-0038).\u201d [1]",
+            "sentence": "- **AP-CATALOG \u00a713 AP-08: Event-First Integration Between Domains:** \u201cDomains integrate asynchronously by publishing and subscribing to business events on the Harbourline Event Backbone; synchronous coupling between domains is the exception. Cross-domain asynchronous integration uses INT-P1 Domain Event Publication; HSP uses a transactional outbox with CDC (ADR-0038).\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -160,7 +161,7 @@
             ]
           },
           {
-            "sentence": "- **STD-INT-001 \u00a74.1 INT-P1 \u2014 Domain Event Publication:** \u201cINT-P1 is mandatory for all cross-domain asynchronous integration.\u201d [2]",
+            "sentence": "- **STD-INT-001 \u00a74.1 INT-P1: Domain Event Publication:** \u201cINT-P1 is mandatory for all cross-domain asynchronous integration.\u201d [2]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -208,7 +209,7 @@
         "AP-CATALOG#13",
         "ADD-01#5.1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0015 \u00a75 Decision Outcome:** \u201cNo new MuleSoft flows after 2025-06-30. Between now and that date, new flows require Tier 2 review and a named migration target.\u201d [1]\n- **ADR-0015 \u00a72 Context:** \u201cTeams continue to request new MuleSoft flows because the platform is familiar and quick for simple mappings. Every new flow extends the tail of the migration.\u201d [2]\n- **STD-INT-001 \u00a75 Prohibited Patterns:** \u201c5.3 | New MuleSoft Anypoint flows after 2025-06-30 | ADR-0015 freeze; MuleSoft sunset 2026-12-31\u201d [4]\n- **AP-CATALOG \u00a713 AP-08 \u2014 Event-First Integration Between Domains:** \u201cNew MuleSoft flows are prohibited after 2025-06-30 (ADR-0015); remaining flows migrate before sunset on 2026-12-31.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0015 \u00a75 Decision Outcome:** \u201cNo new MuleSoft flows after 2025-06-30. Between now and that date, new flows require Tier 2 review and a named migration target.\u201d [1]\n- **ADR-0015 \u00a72 Context:** \u201cTeams continue to request new MuleSoft flows because the platform is familiar and quick for simple mappings. Every new flow extends the tail of the migration.\u201d [2]\n- **STD-INT-001 \u00a75 Prohibited Patterns:** \u201c5.3 | New MuleSoft Anypoint flows after 2025-06-30 | ADR-0015 freeze; MuleSoft sunset 2026-12-31\u201d [4]\n- **AP-CATALOG \u00a713 AP-08: Event-First Integration Between Domains:** \u201cNew MuleSoft flows are prohibited after 2025-06-30 (ADR-0015); remaining flows migrate before sunset on 2026-12-31.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -238,7 +239,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a713 AP-08 \u2014 Event-First Integration Between Domains:** \u201cNew MuleSoft flows are prohibited after 2025-06-30 (ADR-0015); remaining flows migrate before sunset on 2026-12-31.\u201d [5]",
+            "sentence": "- **AP-CATALOG \u00a713 AP-08: Event-First Integration Between Domains:** \u201cNew MuleSoft flows are prohibited after 2025-06-30 (ADR-0015); remaining flows migrate before sunset on 2026-12-31.\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -332,7 +333,7 @@
         "STD-API-002#4.1",
         "ADD-01#5.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-API-002 \u00a75 Versioning and Lifecycle:** \u201cAPIs MUST use URI major versioning (/v1/, /v2/). A deprecated version MUST remain available for at least 6 months after the deprecation notice.\u201d [1]\n- **AP-CATALOG \u00a714 AP-09 \u2014 API-First for Synchronous Access:** \u201cAPIs are REST with OpenAPI 3.1 contracts and /v1/-style major versioning. Breaking changes require a new major version and at least six months' deprecation notice.\u201d [2]\n- **STD-API-002 \u00a74.1 Architectural style:** \u201cAPIs MUST be RESTful over HTTPS using JSON (application/json) unless an exception applies.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-API-002 \u00a75 Versioning and Lifecycle:** \u201cAPIs MUST use URI major versioning (/v1/, /v2/). A deprecated version MUST remain available for at least 6 months after the deprecation notice.\u201d [1]\n- **AP-CATALOG \u00a714 AP-09: API-First for Synchronous Access:** \u201cAPIs are REST with OpenAPI 3.1 contracts and /v1/-style major versioning. Breaking changes require a new major version and at least six months' deprecation notice.\u201d [2]\n- **STD-API-002 \u00a74.1 Architectural style:** \u201cAPIs MUST be RESTful over HTTPS using JSON (application/json) unless an exception applies.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -346,7 +347,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a714 AP-09 \u2014 API-First for Synchronous Access:** \u201cAPIs are REST with OpenAPI 3.1 contracts and /v1/-style major versioning. Breaking changes require a new major version and at least six months' deprecation notice.\u201d [2]",
+            "sentence": "- **AP-CATALOG \u00a714 AP-09: API-First for Synchronous Access:** \u201cAPIs are REST with OpenAPI 3.1 contracts and /v1/-style major versioning. Breaking changes require a new major version and at least six months' deprecation notice.\u201d [2]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -386,13 +387,13 @@
         "ADR-0007#7",
         "ADR-0021#8"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0007 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Confluent Cloud on Azure, branded internally as the Harbourline Event Backbone (APP-120).\u201d [1]\n- **STD-EVT-003 \u00a74 Platform:** \u201cThe Event Backbone is Confluent Cloud (Apache Kafka) on Azure.\u201d [2]\n- **ADR-0007 \u00a74 Considered Options:** \u201cOption B \u2014 Azure Event Hubs Premium with the Kafka protocol endpoint, plus Azure Schema Registry. Driver (weight) | A \u2014 Confluent Cloud | B \u2014 Event Hubs (Kafka API) | C \u2014 Extend MuleSoft\u201d [3]\n- **RA-04 \u00a79 Related ADRs:** \u201cADR-0007 \u2014 Adopt Confluent Cloud as the Enterprise Event Backbone\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0007 \u00a75 Decision Outcome:** \u201cChosen option A: Confluent Cloud on Azure, branded internally as the Harbourline Event Backbone (APP-120).\u201d [1]\n- **STD-EVT-003 \u00a74 Platform:** \u201cThe Event Backbone is Confluent Cloud (Apache Kafka) on Azure.\u201d [2]\n- **ADR-0007 \u00a74 Considered Options:** \u201cOption B: Azure Event Hubs Premium with the Kafka protocol endpoint, plus Azure Schema Registry. Driver (weight) | A: Confluent Cloud | B: Event Hubs (Kafka API) | C: Extend MuleSoft\u201d [3]\n- **RA-04 \u00a79 Related ADRs:** \u201cADR-0007: Adopt Confluent Cloud as the Enterprise Event Backbone\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **ADR-0007 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Confluent Cloud on Azure, branded internally as the Harbourline Event Backbone (APP-120).\u201d [1]",
+            "sentence": "- **ADR-0007 \u00a75 Decision Outcome:** \u201cChosen option A: Confluent Cloud on Azure, branded internally as the Harbourline Event Backbone (APP-120).\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -408,7 +409,7 @@
             ]
           },
           {
-            "sentence": "- **ADR-0007 \u00a74 Considered Options:** \u201cOption B \u2014 Azure Event Hubs Premium with the Kafka protocol endpoint, plus Azure Schema Registry. Driver (weight) | A \u2014 Confluent Cloud | B \u2014 Event Hubs (Kafka API) | C \u2014 Extend MuleSoft\u201d [3]",
+            "sentence": "- **ADR-0007 \u00a74 Considered Options:** \u201cOption B: Azure Event Hubs Premium with the Kafka protocol endpoint, plus Azure Schema Registry. Driver (weight) | A: Confluent Cloud | B: Event Hubs (Kafka API) | C: Extend MuleSoft\u201d [3]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -416,7 +417,7 @@
             ]
           },
           {
-            "sentence": "- **RA-04 \u00a79 Related ADRs:** \u201cADR-0007 \u2014 Adopt Confluent Cloud as the Enterprise Event Backbone\u201d [4]",
+            "sentence": "- **RA-04 \u00a79 Related ADRs:** \u201cADR-0007: Adopt Confluent Cloud as the Enterprise Event Backbone\u201d [4]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -511,13 +512,13 @@
         "GOV-03#6",
         "STD-CTR-012#4"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0019 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Azure API Management Premium, multi-region, designated the Harbourline API Gateway (APP-121). All synchronous APIs, internal and external, MUST be published through the Harbourline API Gateway.\u201d [1]\n- **STD-API-002 \u00a71 Purpose:** \u201cThis standard sets the rules for designing, securing, versioning, publishing and retiring application programming interfaces (APIs) at Harbourline Logistics Group. It is the detailed companion to pattern INT-P3 (Synchronous Request/Response via API Gateway) in STD-INT-001.\u201d [2]\n- **ADR-0019 \u00a78 Links:** \u201cSTD-API-002 API Design & Management Standard; STD-INT-001 \u00a7INT-P3\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0019 \u00a75 Decision Outcome:** \u201cChosen option A: Azure API Management Premium, multi-region, designated the Harbourline API Gateway (APP-121). All synchronous APIs, internal and external, MUST be published through the Harbourline API Gateway.\u201d [1]\n- **STD-API-002 \u00a71 Purpose:** \u201cThis standard sets the rules for designing, securing, versioning, publishing and retiring application programming interfaces (APIs) at Harbourline Logistics Group. It is the detailed companion to pattern INT-P3 (Synchronous Request/Response via API Gateway) in STD-INT-001.\u201d [2]\n- **ADR-0019 \u00a78 Links:** \u201cSTD-API-002 API Design & Management Standard; STD-INT-001 \u00a7INT-P3\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **ADR-0019 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Azure API Management Premium, multi-region, designated the Harbourline API Gateway (APP-121). All synchronous APIs, internal and external, MUST be published through the Harbourline API Gateway.\u201d [1]",
+            "sentence": "- **ADR-0019 \u00a75 Decision Outcome:** \u201cChosen option A: Azure API Management Premium, multi-region, designated the Harbourline API Gateway (APP-121). All synchronous APIs, internal and external, MUST be published through the Harbourline API Gateway.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -565,13 +566,13 @@
         "ADR-0024#5",
         "STD-TLC-014#5"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DB-006 \u00a71 Purpose:** \u201cThis standard tells solution teams which database technologies they MAY use, which is the default, and \u2014 in particular \u2014 when a NoSQL database such as Azure Cosmos DB is allowed and when it is not.\u201d [1]\n- **STD-DB-006 \u00a75.4 When NoSQL is NOT allowed:** \u201cMongoDB API on Cosmos DB, Cassandra API and Gremlin API are not approved for new use; requests are treated as new technology (Tier 1).\u201d [2]\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cUse in non-production | Allowed | Allowed | Allowed if access-controlled | Prohibited unless masked\u201d [4]\n- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DB-006 \u00a71 Purpose:** \u201cThis standard tells solution teams which database technologies they MAY use, which is the default, and (in particular) when a NoSQL database such as Azure Cosmos DB is allowed and when it is not.\u201d [1]\n- **STD-DB-006 \u00a75.4 When NoSQL is NOT allowed:** \u201cMongoDB API on Cosmos DB, Cassandra API and Gremlin API are not approved for new use; requests are treated as new technology (Tier 1).\u201d [2]\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cUse in non-production | Allowed | Allowed | Allowed if access-controlled | Prohibited unless masked\u201d [4]\n- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option A: Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-DB-006 \u00a71 Purpose:** \u201cThis standard tells solution teams which database technologies they MAY use, which is the default, and \u2014 in particular \u2014 when a NoSQL database such as Azure Cosmos DB is allowed and when it is not.\u201d [1]",
+            "sentence": "- **STD-DB-006 \u00a71 Purpose:** \u201cThis standard tells solution teams which database technologies they MAY use, which is the default, and (in particular) when a NoSQL database such as Azure Cosmos DB is allowed and when it is not.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -595,7 +596,7 @@
             ]
           },
           {
-            "sentence": "- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [5]",
+            "sentence": "- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option A: Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -627,13 +628,13 @@
         "STD-DB-006#3",
         "RA-02#9"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [1]\n- **ADR-0024 \u00a72 Context:** \u201cThe programme needs a default relational engine before the first services are built in Q1 2025.\u201d [3]\n- **ADR-0012 \u00a78 Links:** \u201cADR-0024 PostgreSQL Flexible Server as Default Relational Database\u201d [4]\n- **STD-DB-006 \u00a73 Related Principles and Normative References:** \u201cADR-0024 PostgreSQL Flexible Server as Default Relational Database; ADR-0012 Azure Cosmos DB for Container Telemetry Storage.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option A: Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [1]\n- **ADR-0024 \u00a72 Context:** \u201cThe programme needs a default relational engine before the first services are built in Q1 2025.\u201d [3]\n- **ADR-0012 \u00a78 Links:** \u201cADR-0024 PostgreSQL Flexible Server as Default Relational Database\u201d [4]\n- **STD-DB-006 \u00a73 Related Principles and Normative References:** \u201cADR-0024 PostgreSQL Flexible Server as Default Relational Database; ADR-0012 Azure Cosmos DB for Container Telemetry Storage.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option: A \u2014 Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [1]",
+            "sentence": "- **ADR-0024 \u00a75 Decision Outcome:** \u201cChosen option A: Azure Database for PostgreSQL Flexible Server is the default relational database for new applications and for re-platformed in-house applications. Oracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -689,7 +690,7 @@
         "STD-DAT-005#1",
         "STD-DAT-005#5.1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-005 \u00a74.2 Residency requirements:** \u201cPersonal data of EU data subjects MUST be stored and processed only in West Europe (primary) or North Europe (DR). Canadian customer personal data MUST be stored in Canada Central/Canada East where the customer contract requires Canadian residency.\u201d [1]\n- **ADR-0041 \u00a72 Context:** \u201cUnder STD-DAT-005, personal data of EU data subjects must be stored and processed in West Europe (DR: North Europe).\u201d [2]\n- **AP-CATALOG \u00a711 AP-06 \u2014 Data Residency Follows Jurisdiction:** \u201cPersonal and regulated data is stored and processed in the jurisdiction required by law or contract, and moves across borders only through an approved transfer mechanism.\u201d [3]\n- **ADR-0041 \u00a76 Consequences:** \u201cEU customer personal data is stored and processed in West Europe, satisfying AP-06, STD-DAT-005 and REQ-HSP-021.\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-005 \u00a74.2 Residency requirements:** \u201cPersonal data of EU data subjects MUST be stored and processed only in West Europe (primary) or North Europe (DR). Canadian customer personal data MUST be stored in Canada Central/Canada East where the customer contract requires Canadian residency.\u201d [1]\n- **ADR-0041 \u00a72 Context:** \u201cUnder STD-DAT-005, personal data of EU data subjects must be stored and processed in West Europe (DR: North Europe).\u201d [2]\n- **AP-CATALOG \u00a711 AP-06: Data Residency Follows Jurisdiction:** \u201cPersonal and regulated data is stored and processed in the jurisdiction required by law or contract, and moves across borders only through an approved transfer mechanism.\u201d [3]\n- **ADR-0041 \u00a76 Consequences:** \u201cEU customer personal data is stored and processed in West Europe, satisfying AP-06, STD-DAT-005 and REQ-HSP-021.\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -711,7 +712,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a711 AP-06 \u2014 Data Residency Follows Jurisdiction:** \u201cPersonal and regulated data is stored and processed in the jurisdiction required by law or contract, and moves across borders only through an approved transfer mechanism.\u201d [3]",
+            "sentence": "- **AP-CATALOG \u00a711 AP-06: Data Residency Follows Jurisdiction:** \u201cPersonal and regulated data is stored and processed in the jurisdiction required by law or contract, and moves across borders only through an approved transfer mechanism.\u201d [3]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -743,8 +744,8 @@
         "STD-DAT-004"
       ],
       "retrieved": [
-        "STD-DAT-004#5.4",
         "STD-DAT-004#4",
+        "STD-DAT-004#5.4",
         "STD-DAT-004#5.2",
         "STD-DAT-004#7",
         "STD-DAT-004#5.3",
@@ -752,13 +753,13 @@
         "STD-AI-013#5.1",
         "STD-SEC-009#6.1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-004 \u00a75.4 Restricted:** \u201cData MUST be classified Restricted if it falls into any of the following categories: Where a data set combines categories, the highest classification applies.\u201d [1]\n- **STD-DAT-004 \u00a74 Roles:** \u201cData Owner | Business leader accountable for a data domain (AP-05); assigns classification and approves access to Restricted data\u201d [2]\n- **STD-DAT-004 \u00a77 Labelling and Tagging:** \u201cEvery Azure resource MUST carry the data-classification tag with one of public, internal, confidential, restricted (STD-CLD-007). Data sets in the Tidewater catalogue (Unity Catalog) MUST carry classification tags at table level, and column-level tags for Restricted fields.\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-004 \u00a74 Roles:** \u201cData Owner | Business leader accountable for a data domain (AP-05); assigns classification and approves access to Restricted data\u201d [1]\n- **STD-DAT-004 \u00a75.4 Restricted:** \u201cData MUST be classified Restricted if it falls into any of the following categories: Where a data set combines categories, the highest classification applies.\u201d [2]\n- **STD-DAT-004 \u00a77 Labelling and Tagging:** \u201cEvery Azure resource MUST carry the data-classification tag with one of public, internal, confidential, restricted (STD-CLD-007). Data sets in the Tidewater catalogue (Unity Catalog) MUST carry classification tags at table level, and column-level tags for Restricted fields.\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-DAT-004 \u00a75.4 Restricted:** \u201cData MUST be classified Restricted if it falls into any of the following categories: Where a data set combines categories, the highest classification applies.\u201d [1]",
+            "sentence": "- **STD-DAT-004 \u00a74 Roles:** \u201cData Owner | Business leader accountable for a data domain (AP-05); assigns classification and approves access to Restricted data\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -766,7 +767,7 @@
             ]
           },
           {
-            "sentence": "- **STD-DAT-004 \u00a74 Roles:** \u201cData Owner | Business leader accountable for a data domain (AP-05); assigns classification and approves access to Restricted data\u201d [2]",
+            "sentence": "- **STD-DAT-004 \u00a75.4 Restricted:** \u201cData MUST be classified Restricted if it falls into any of the following categories: Where a data set combines categories, the highest classification applies.\u201d [2]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -807,7 +808,7 @@
         "ADR-0012#4",
         "STD-DB-006#3"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0012 \u00a78 Links:** \u201cADR-0024 PostgreSQL Flexible Server as Default Relational Database APP-090 Container Tracking Service; APP-080 Tidewater Data Platform\u201d [1]\n- **ADR-0024 \u00a78 Links:** \u201cADR-0012 Use Azure Cosmos DB for Container Telemetry Storage\u201d [2]\n- **ADR-0012 \u00a77 Compliance with Principles & Standards:** \u201cSTD-DB-006 Database Technology Selection | This ADR is the reference case for \"Cosmos DB for high-volume telemetry with key-based access\"; partition-key design reviewed by the data architect.\u201d [3]\n- **RA-04 \u00a79 Related ADRs:** \u201cADR-0012 \u2014 Use Azure Cosmos DB for Container Telemetry Storage\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0012 \u00a78 Links:** \u201cADR-0024 PostgreSQL Flexible Server as Default Relational Database APP-090 Container Tracking Service; APP-080 Tidewater Data Platform\u201d [1]\n- **ADR-0024 \u00a78 Links:** \u201cADR-0012 Use Azure Cosmos DB for Container Telemetry Storage\u201d [2]\n- **ADR-0012 \u00a77 Compliance with Principles & Standards:** \u201cSTD-DB-006 Database Technology Selection | This ADR is the reference case for \"Cosmos DB for high-volume telemetry with key-based access\"; partition-key design reviewed by the data architect.\u201d [3]\n- **RA-04 \u00a79 Related ADRs:** \u201cADR-0012: Use Azure Cosmos DB for Container Telemetry Storage\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -837,7 +838,7 @@
             ]
           },
           {
-            "sentence": "- **RA-04 \u00a79 Related ADRs:** \u201cADR-0012 \u2014 Use Azure Cosmos DB for Container Telemetry Storage\u201d [5]",
+            "sentence": "- **RA-04 \u00a79 Related ADRs:** \u201cADR-0012: Use Azure Cosmos DB for Container Telemetry Storage\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -871,7 +872,7 @@
         "STD-DB-006#2",
         "STD-INT-001#4.6"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **RA-04 \u00a71 Purpose & Applicability:** \u201cTidewater (APP-080) is Harbourline's analytical data platform.\u201d [1]\n- **ADR-0012 \u00a78 Links:** \u201cAPP-090 Container Tracking Service; APP-080 Tidewater Data Platform\u201d [2]\n- **STD-DAT-005 \u00a74.3 Analytics and aggregation:** \u201cAggregated or anonymised data MAY be centralised in the Tidewater Data Platform in East US 2.\u201d [3]\n- **STD-INT-001 \u00a74.5 INT-P5 \u2014 Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]\n- **STD-INT-001 \u00a72.2 Out of scope:** \u201cAnalytical data sharing *within* the Tidewater Data Platform (APP-080), which is governed by RA-04.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **RA-04 \u00a71 Purpose & Applicability:** \u201cTidewater (APP-080) is Harbourline's analytical data platform.\u201d [1]\n- **ADR-0012 \u00a78 Links:** \u201cAPP-090 Container Tracking Service; APP-080 Tidewater Data Platform\u201d [2]\n- **STD-DAT-005 \u00a74.3 Analytics and aggregation:** \u201cAggregated or anonymised data MAY be centralised in the Tidewater Data Platform in East US 2.\u201d [3]\n- **STD-INT-001 \u00a74.5 INT-P5: Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]\n- **STD-INT-001 \u00a72.2 Out of scope:** \u201cAnalytical data sharing *within* the Tidewater Data Platform (APP-080), which is governed by RA-04.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -901,7 +902,7 @@
             ]
           },
           {
-            "sentence": "- **STD-INT-001 \u00a74.5 INT-P5 \u2014 Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]",
+            "sentence": "- **STD-INT-001 \u00a74.5 INT-P5: Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -941,7 +942,7 @@
         "ADR-0021#3",
         "STD-CLD-007#4.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-CTR-012 \u00a77 Workload Security:** \u201cPrivileged containers, host networking, host PID/IPC and hostPath mounts MUST NOT be used in workload namespaces. Workloads MUST authenticate to Azure services with Entra Workload ID (federated managed identity).\u201d [1]\n- **STD-IAM-008 \u00a74.3 Workloads:** \u201cAzure workloads MUST authenticate using managed identities (system- or user-assigned).\u201d [2]\n- **AP-CATALOG \u00a715 AP-10 \u2014 Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-CTR-012 \u00a77 Workload Security:** \u201cPrivileged containers, host networking, host PID/IPC and hostPath mounts MUST NOT be used in workload namespaces. Workloads MUST authenticate to Azure services with Entra Workload ID (federated managed identity).\u201d [1]\n- **STD-IAM-008 \u00a74.3 Workloads:** \u201cAzure workloads MUST authenticate using managed identities (system- or user-assigned).\u201d [2]\n- **AP-CATALOG \u00a715 AP-10: Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -963,7 +964,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a715 AP-10 \u2014 Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
+            "sentence": "- **AP-CATALOG \u00a715 AP-10: Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -985,23 +986,23 @@
         "STD-IAM-008",
         "STD-IAM-008",
         "AP-CATALOG",
-        "STD-DAT-004"
+        "STD-SEC-009"
       ],
       "retrieved": [
         "STD-IAM-008#7.1",
         "STD-IAM-008#7.3",
         "STD-IAM-008#7.2",
         "AP-CATALOG#17",
-        "STD-DAT-004#6.1",
-        "STD-SEC-009#6.4"
+        "STD-SEC-009#6.4",
+        "STD-DAT-004#6.1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-IAM-008 \u00a77.1 Just-in-time access:** \u201cAll privileged roles \u2014 Entra ID directory roles, Azure subscription Owner/Contributor, AWS administrator roles, database administrator roles for Restricted systems \u2014 MUST be granted through Entra Privileged Identity Management (PIM) as eligible, not permanent, assignments.\u201d [1]\n- **STD-IAM-008 \u00a77.3 Recertification:** \u201cSystems holding Restricted data | Quarterly | Data Owner\u201d [2]\n- **AP-CATALOG \u00a717 AP-12 \u2014 Zero Trust Access:** \u201cNo user, device or workload is trusted because of its network location; every access is authenticated, authorised with least privilege and continuously evaluated. Privileged access uses Entra PIM with just-in-time elevation of at most 8 hours.\u201d [4]\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cAccess model | Open | Entra ID authenticated | Role-based, owner-approved | Role-based and privileged access via Entra PIM\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-IAM-008 \u00a77.1 Just-in-time access:** \u201cAll privileged roles (Entra ID directory roles, Azure subscription Owner/Contributor, AWS administrator roles, database administrator roles for Restricted systems) MUST be granted through Entra Privileged Identity Management (PIM) as eligible, not permanent, assignments.\u201d [1]\n- **STD-IAM-008 \u00a77.3 Recertification:** \u201cSystems holding Restricted data | Quarterly | Data Owner\u201d [2]\n- **AP-CATALOG \u00a717 AP-12: Zero Trust Access:** \u201cNo user, device or workload is trusted because of its network location; every access is authenticated, authorised with least privilege and continuously evaluated. Privileged access uses Entra PIM with just-in-time elevation of at most 8 hours.\u201d [4]\n- **STD-SEC-009 \u00a76.4 Separation of duties:** \u201cKey Vault administrative roles MUST be activated through Entra PIM, just-in-time, in accordance with STD-IAM-008.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-IAM-008 \u00a77.1 Just-in-time access:** \u201cAll privileged roles \u2014 Entra ID directory roles, Azure subscription Owner/Contributor, AWS administrator roles, database administrator roles for Restricted systems \u2014 MUST be granted through Entra Privileged Identity Management (PIM) as eligible, not permanent, assignments.\u201d [1]",
+            "sentence": "- **STD-IAM-008 \u00a77.1 Just-in-time access:** \u201cAll privileged roles (Entra ID directory roles, Azure subscription Owner/Contributor, AWS administrator roles, database administrator roles for Restricted systems) MUST be granted through Entra Privileged Identity Management (PIM) as eligible, not permanent, assignments.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1017,7 +1018,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a717 AP-12 \u2014 Zero Trust Access:** \u201cNo user, device or workload is trusted because of its network location; every access is authenticated, authorised with least privilege and continuously evaluated. Privileged access uses Entra PIM with just-in-time elevation of at most 8 hours.\u201d [4]",
+            "sentence": "- **AP-CATALOG \u00a717 AP-12: Zero Trust Access:** \u201cNo user, device or workload is trusted because of its network location; every access is authenticated, authorised with least privilege and continuously evaluated. Privileged access uses Entra PIM with just-in-time elevation of at most 8 hours.\u201d [4]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1025,7 +1026,7 @@
             ]
           },
           {
-            "sentence": "- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cAccess model | Open | Entra ID authenticated | Role-based, owner-approved | Role-based and privileged access via Entra PIM\u201d [5]",
+            "sentence": "- **STD-SEC-009 \u00a76.4 Separation of duties:** \u201cKey Vault administrative roles MUST be activated through Entra PIM, just-in-time, in accordance with STD-IAM-008.\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1059,13 +1060,13 @@
         "STD-SEC-009#4.1",
         "STD-SEC-009#10"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | \u2014 | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]\n- **STD-SEC-009 \u00a76.1 Key stores:** \u201cRestricted | Azure Key Vault Premium or Managed HSM | HSM-backed (FIPS 140-2 Level 2 minimum; Level 3 for Managed HSM) Nordhaven on AWS (EXC-2025-003) | AWS KMS customer-managed keys in eu-central-1 | HSM-backed\u201d [2]\n- **STD-SEC-009 \u00a75 Encryption at Rest:** \u201cRestricted data MUST be encrypted with customer-managed keys (CMK) held in Azure Key Vault Premium or Azure Key Vault Managed HSM (see \u00a76).\u201d [3]\n- **STD-DAT-004 \u00a710 Document History:** \u201cOT configuration (NIS2) and crew passport data; customer-managed keys and PIM mandatory; masking rule for non-production; extended to Nordhaven; ARB-2024-041\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | n/a | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]\n- **STD-SEC-009 \u00a76.1 Key stores:** \u201cRestricted | Azure Key Vault Premium or Managed HSM | HSM-backed (FIPS 140-2 Level 2 minimum; Level 3 for Managed HSM) Nordhaven on AWS (EXC-2025-003) | AWS KMS customer-managed keys in eu-central-1 | HSM-backed\u201d [2]\n- **STD-SEC-009 \u00a75 Encryption at Rest:** \u201cRestricted data MUST be encrypted with customer-managed keys (CMK) held in Azure Key Vault Premium or Azure Key Vault Managed HSM (see \u00a76).\u201d [3]\n- **STD-DAT-004 \u00a710 Document History:** \u201cOT configuration (NIS2) and crew passport data; customer-managed keys and PIM mandatory; masking rule for non-production; extended to Nordhaven; ARB-2024-041\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | \u2014 | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]",
+            "sentence": "- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | n/a | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1185,7 +1186,7 @@
         "ADR-0036#6",
         "GOV-02#5.1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0036 \u00a78 Links:** \u201cSTD-NET-011 Network Security, SD-WAN & OT Segmentation Standard\u201d [1]\n- **RA-03 \u00a79 Related ADRs:** \u201cADR-0036 \u2014 Replace MPLS WAN with Fortinet Secure SD-WAN\u201d [2]\n- **ADR-0036 \u00a72 Context:** \u201cMPLS costs USD 4.6M/year; the median site has 50 Mbps at ~USD 5,200/month. The major MPLS contracts expire between June 2024 and March 2025.\u201d [3]\n- **ADR-0027 \u00a78 Links:** \u201cADR-0036 Replace MPLS WAN with Fortinet Secure SD-WAN\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0036 \u00a78 Links:** \u201cSTD-NET-011 Network Security, SD-WAN & OT Segmentation Standard\u201d [1]\n- **RA-03 \u00a79 Related ADRs:** \u201cADR-0036: Replace MPLS WAN with Fortinet Secure SD-WAN\u201d [2]\n- **ADR-0036 \u00a72 Context:** \u201cMPLS costs USD 4.6M/year; the median site has 50 Mbps at ~USD 5,200/month. The major MPLS contracts expire between June 2024 and March 2025.\u201d [3]\n- **ADR-0027 \u00a78 Links:** \u201cADR-0036 Replace MPLS WAN with Fortinet Secure SD-WAN\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -1199,7 +1200,7 @@
             ]
           },
           {
-            "sentence": "- **RA-03 \u00a79 Related ADRs:** \u201cADR-0036 \u2014 Replace MPLS WAN with Fortinet Secure SD-WAN\u201d [2]",
+            "sentence": "- **RA-03 \u00a79 Related ADRs:** \u201cADR-0036: Replace MPLS WAN with Fortinet Secure SD-WAN\u201d [2]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1320,13 +1321,13 @@
         "STD-OBS-010#6",
         "ADD-01#4.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-OBS-010 \u00a77 Content Rules \u2014 What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]\n- **STD-DAT-004 \u00a76.3 Personal data:** \u201cPseudonymised personal data remains personal data and retains its classification; only effectively anonymised data MAY be downgraded. Personal data MUST NOT be written to application or platform logs (STD-OBS-010).\u201d [2]\n- **STD-API-002 \u00a78 Observability and Documentation:** \u201cRequest and response bodies MUST NOT be logged at the gateway where they may contain personal data.\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-OBS-010 \u00a77 Content Rules: What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]\n- **STD-DAT-004 \u00a76.3 Personal data:** \u201cPseudonymised personal data remains personal data and retains its classification; only effectively anonymised data MAY be downgraded. Personal data MUST NOT be written to application or platform logs (STD-OBS-010).\u201d [2]\n- **STD-API-002 \u00a78 Observability and Documentation:** \u201cRequest and response bodies MUST NOT be logged at the gateway where they may contain personal data.\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-OBS-010 \u00a77 Content Rules \u2014 What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]",
+            "sentence": "- **STD-OBS-010 \u00a77 Content Rules: What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1374,7 +1375,7 @@
         "RA-03#9",
         "RA-03#2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0027 \u00a73 Decision Drivers:** \u201cOperational continuity at the quay: Tier 0 targets of RTO 15 min, RPO 0-5 min, and 72-hour autonomy. Enable cloud analytics and customer visibility using terminal data.\u201d [1]\n- **ADR-0027 \u00a77 Compliance with Principles & Standards:** \u201cSTD-RES-015 | Meets Tier 0 RTO/RPO and semi-annual test cadence.\u201d [2]\n- **RA-03 \u00a76 Non-Functional Characteristics:** \u201cN4 RTO / RPO | 15 min / 0-5 min (Tier 0)\u201d [4]\n- **RA-03 \u00a79 Related ADRs:** \u201cADR-0027 \u2014 Edge-Hosted Terminal Operating System with Local Failover\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0027 \u00a73 Decision Drivers:** \u201cOperational continuity at the quay: Tier 0 targets of RTO 15 min, RPO 0-5 min, and 72-hour autonomy. Enable cloud analytics and customer visibility using terminal data.\u201d [1]\n- **ADR-0027 \u00a77 Compliance with Principles & Standards:** \u201cSTD-RES-015 | Meets Tier 0 RTO/RPO and semi-annual test cadence.\u201d [2]\n- **RA-03 \u00a76 Non-Functional Characteristics:** \u201cN4 RTO / RPO | 15 min / 0-5 min (Tier 0)\u201d [4]\n- **RA-03 \u00a79 Related ADRs:** \u201cADR-0027: Edge-Hosted Terminal Operating System with Local Failover\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -1404,7 +1405,7 @@
             ]
           },
           {
-            "sentence": "- **RA-03 \u00a79 Related ADRs:** \u201cADR-0027 \u2014 Edge-Hosted Terminal Operating System with Local Failover\u201d [5]",
+            "sentence": "- **RA-03 \u00a79 Related ADRs:** \u201cADR-0027: Edge-Hosted Terminal Operating System with Local Failover\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1437,7 +1438,7 @@
         "AP-CATALOG#9",
         "RA-03#1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **RA-03 \u00a78 Anti-Patterns:** \u201cAnti-pattern | Why rejected | Do instead\u201d [1]\n- **ADR-0027 \u00a75 Decision Outcome:** \u201cChosen option: B \u2014 Navis N4 remains on-premises at each terminal on a 2-node edge cluster. Cloud is used only for replication, DR copies and analytics.\u201d [2]\n- **STD-CLD-007 \u00a72 Scope:** \u201cTerminal edge hosting for Tier 0 systems (Navis N4 on-premises edge clusters, ADR-0027) is out of scope and governed by RA-03 and STD-NET-011.\u201d [3]\n- **ADR-0027 \u00a72 Context:** \u201cToday each terminal runs N4 on ageing single servers with nightly backups; a hardware failure at HFX-T1 in November 2023 stopped quay operations for 3 hours 40 minutes, with two vessels delayed.\u201d [4]\n- **AP-CATALOG \u00a79 AP-04 \u2014 Business Continuity at the Quay:** \u201cNavis N4 (APP-030) runs on a two-node edge cluster at each terminal (ADR-0027); the cloud is used for replication and analytics only.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **RA-03 \u00a78 Anti-Patterns:** \u201cAnti-pattern | Why rejected | Do instead\u201d [1]\n- **ADR-0027 \u00a75 Decision Outcome:** \u201cChosen option B: Navis N4 remains on-premises at each terminal on a 2-node edge cluster. Cloud is used only for replication, DR copies and analytics.\u201d [2]\n- **STD-CLD-007 \u00a72 Scope:** \u201cTerminal edge hosting for Tier 0 systems (Navis N4 on-premises edge clusters, ADR-0027) is out of scope and governed by RA-03 and STD-NET-011.\u201d [3]\n- **ADR-0027 \u00a72 Context:** \u201cToday each terminal runs N4 on ageing single servers with nightly backups; a hardware failure at HFX-T1 in November 2023 stopped quay operations for 3 hours 40 minutes, with two vessels delayed.\u201d [4]\n- **AP-CATALOG \u00a79 AP-04: Business Continuity at the Quay:** \u201cNavis N4 (APP-030) runs on a two-node edge cluster at each terminal (ADR-0027); the cloud is used for replication and analytics only.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -1451,7 +1452,7 @@
             ]
           },
           {
-            "sentence": "- **ADR-0027 \u00a75 Decision Outcome:** \u201cChosen option: B \u2014 Navis N4 remains on-premises at each terminal on a 2-node edge cluster. Cloud is used only for replication, DR copies and analytics.\u201d [2]",
+            "sentence": "- **ADR-0027 \u00a75 Decision Outcome:** \u201cChosen option B: Navis N4 remains on-premises at each terminal on a 2-node edge cluster. Cloud is used only for replication, DR copies and analytics.\u201d [2]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1475,7 +1476,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a79 AP-04 \u2014 Business Continuity at the Quay:** \u201cNavis N4 (APP-030) runs on a two-node edge cluster at each terminal (ADR-0027); the cloud is used for replication and analytics only.\u201d [5]",
+            "sentence": "- **AP-CATALOG \u00a79 AP-04: Business Continuity at the Quay:** \u201cNavis N4 (APP-030) runs on a two-node edge cluster at each terminal (ADR-0027); the cloud is used for replication and analytics only.\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1559,13 +1560,13 @@
         "ADR-0024#5",
         "ADR-0024#2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DB-006 \u00a74.1 Technology catalogue:** \u201cAzure Database for PostgreSQL \u2013 Flexible Server | Adopt (default) | All new transactional/relational workloads Oracle Database | Contain | Existing systems only; no new Oracle databases\u201d [1]\n- **STD-DB-006 \u00a76.4 Oracle:** \u201cNo new Oracle databases MAY be created. Existing Oracle databases MUST have a documented migration or retirement plan.\u201d [2]\n- **ADR-0024 \u00a75 Decision Outcome:** \u201cOracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DB-006 \u00a74.1 Technology catalogue:** \u201cAzure Database for PostgreSQL: Flexible Server | Adopt (default) | All new transactional/relational workloads Oracle Database | Contain | Existing systems only; no new Oracle databases\u201d [1]\n- **STD-DB-006 \u00a76.4 Oracle:** \u201cNo new Oracle databases MAY be created. Existing Oracle databases MUST have a documented migration or retirement plan.\u201d [2]\n- **ADR-0024 \u00a75 Decision Outcome:** \u201cOracle Database moves to Contain: no new Oracle databases; existing ones may continue until their application is retired.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-DB-006 \u00a74.1 Technology catalogue:** \u201cAzure Database for PostgreSQL \u2013 Flexible Server | Adopt (default) | All new transactional/relational workloads Oracle Database | Contain | Existing systems only; no new Oracle databases\u201d [1]",
+            "sentence": "- **STD-DB-006 \u00a74.1 Technology catalogue:** \u201cAzure Database for PostgreSQL: Flexible Server | Adopt (default) | All new transactional/relational workloads Oracle Database | Contain | Existing systems only; no new Oracle databases\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1613,13 +1614,13 @@
         "STD-TLC-014#8",
         "PRE-01#3.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **GOV-02 \u00a74.2 EXC-2026-001 \u2014 FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]\n- **ADD-01 \u00a76.1 Baseline:** \u201cBaltimore data centre: Oracle 12c RAC on Linux, Java 8 application servers, Windows Server 2012 R2 file transfer hosts.\u201d [2]\n- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021) \u2014 acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]\n- **A-01 \u00a72 Problem Statement:** \u201cOracle 12c reaches end of extended support in 2027 and Java 8 in 2026; FreightMaster cannot be modernised in place without a near-total rewrite.\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **GOV-02 \u00a74.2 EXC-2026-001: FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]\n- **ADD-01 \u00a76.1 Baseline:** \u201cBaltimore data centre: Oracle 12c RAC on Linux, Java 8 application servers, Windows Server 2012 R2 file transfer hosts.\u201d [2]\n- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021): acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]\n- **A-01 \u00a72 Problem Statement:** \u201cOracle 12c reaches end of extended support in 2027 and Java 8 in 2026; FreightMaster cannot be modernised in place without a near-total rewrite.\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **GOV-02 \u00a74.2 EXC-2026-001 \u2014 FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]",
+            "sentence": "- **GOV-02 \u00a74.2 EXC-2026-001: FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1635,7 +1636,7 @@
             ]
           },
           {
-            "sentence": "- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021) \u2014 acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]",
+            "sentence": "- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021): acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1675,13 +1676,13 @@
         "GOV-02#4.1",
         "RA-04#9"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **ADR-0021 \u00a78 Links:** \u201cF-01 Architecture Roadmap & Migration Plan \u2014 Horizon 2028 (Nordhaven migration)\u201d [1]\n- **ADR-0021 \u00a77 Compliance with Principles & Standards:** \u201cSTD-DB-006 | MongoDB Atlas permitted as Trial for Nordhaven only.\u201d [3]\n- **STD-CLD-007 \u00a710 Compliance and Exceptions:** \u201cEXC-2025-003 (Nordhaven TMS on AWS eu-central-1) is the reference example of a case (a) exception: time-bound, renewable once, with the HSP migration as its remediation plan.\u201d [4]\n- **GOV-02 \u00a74.1 EXC-2025-003 \u2014 Nordhaven TMS hosted on AWS eu-central-1:** \u201cSystem | APP-021 Nordhaven TMS (Java 11, MongoDB Atlas) Justification. Re-platforming Nordhaven TMS to Azure ahead of its planned migration into HSP would duplicate effort.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **ADR-0021 \u00a78 Links:** \u201cF-01 Architecture Roadmap & Migration Plan, Horizon 2028 (Nordhaven migration)\u201d [1]\n- **ADR-0021 \u00a77 Compliance with Principles & Standards:** \u201cSTD-DB-006 | MongoDB Atlas permitted as Trial for Nordhaven only.\u201d [3]\n- **STD-CLD-007 \u00a710 Compliance and Exceptions:** \u201cEXC-2025-003 (Nordhaven TMS on AWS eu-central-1) is the reference example of a case (a) exception: time-bound, renewable once, with the HSP migration as its remediation plan.\u201d [4]\n- **GOV-02 \u00a74.1 EXC-2025-003: Nordhaven TMS hosted on AWS eu-central-1:** \u201cSystem | APP-021 Nordhaven TMS (Java 11, MongoDB Atlas) Justification. Re-platforming Nordhaven TMS to Azure ahead of its planned migration into HSP would duplicate effort.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **ADR-0021 \u00a78 Links:** \u201cF-01 Architecture Roadmap & Migration Plan \u2014 Horizon 2028 (Nordhaven migration)\u201d [1]",
+            "sentence": "- **ADR-0021 \u00a78 Links:** \u201cF-01 Architecture Roadmap & Migration Plan, Horizon 2028 (Nordhaven migration)\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1705,7 +1706,7 @@
             ]
           },
           {
-            "sentence": "- **GOV-02 \u00a74.1 EXC-2025-003 \u2014 Nordhaven TMS hosted on AWS eu-central-1:** \u201cSystem | APP-021 Nordhaven TMS (Java 11, MongoDB Atlas) Justification. Re-platforming Nordhaven TMS to Azure ahead of its planned migration into HSP would duplicate effort.\u201d [5]",
+            "sentence": "- **GOV-02 \u00a74.1 EXC-2025-003: Nordhaven TMS hosted on AWS eu-central-1:** \u201cSystem | APP-021 Nordhaven TMS (Java 11, MongoDB Atlas) Justification. Re-platforming Nordhaven TMS to Azure ahead of its planned migration into HSP would duplicate effort.\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1737,7 +1738,7 @@
         "GOV-02#4.4",
         "H-01#1"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **G-02 \u00a75 Decision:** \u201cThe ARB decided Changes Requested (ARB-2026-031).\u201d [1]\n- **G-02 \u00a71 Review Summary:** \u201cApplication | Customer Notification Service (CNS), APP-055\u201d [2]\n- **RA-01 \u00a77 Worked Example at Harbourline \u2014 Shipment Milestones:** \u201cCustomer Notification Service (APP-055) is expected to subscribe to the same topics and decide whether to alert the customer.\u201d [4]\n- **GOV-02 \u00a74.4 EXC-2026-004 \u2014 CNS use of Twilio US region for EU phone numbers:** \u201cSystem | APP-055 Customer Notification Service Justification (as submitted). Twilio's SMS service would process EU customer phone numbers in its US region.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **G-02 \u00a75 Decision:** \u201cThe ARB decided Changes Requested (ARB-2026-031).\u201d [1]\n- **G-02 \u00a71 Review Summary:** \u201cApplication | Customer Notification Service (CNS), APP-055\u201d [2]\n- **RA-01 \u00a77 Worked Example at Harbourline: Shipment Milestones:** \u201cCustomer Notification Service (APP-055) is expected to subscribe to the same topics and decide whether to alert the customer.\u201d [4]\n- **GOV-02 \u00a74.4 EXC-2026-004: CNS use of Twilio US region for EU phone numbers:** \u201cSystem | APP-055 Customer Notification Service Justification (as submitted). Twilio's SMS service would process EU customer phone numbers in its US region.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -1759,7 +1760,7 @@
             ]
           },
           {
-            "sentence": "- **RA-01 \u00a77 Worked Example at Harbourline \u2014 Shipment Milestones:** \u201cCustomer Notification Service (APP-055) is expected to subscribe to the same topics and decide whether to alert the customer.\u201d [4]",
+            "sentence": "- **RA-01 \u00a77 Worked Example at Harbourline: Shipment Milestones:** \u201cCustomer Notification Service (APP-055) is expected to subscribe to the same topics and decide whether to alert the customer.\u201d [4]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1767,7 +1768,7 @@
             ]
           },
           {
-            "sentence": "- **GOV-02 \u00a74.4 EXC-2026-004 \u2014 CNS use of Twilio US region for EU phone numbers:** \u201cSystem | APP-055 Customer Notification Service Justification (as submitted). Twilio's SMS service would process EU customer phone numbers in its US region.\u201d [5]",
+            "sentence": "- **GOV-02 \u00a74.4 EXC-2026-004: CNS use of Twilio US region for EU phone numbers:** \u201cSystem | APP-055 Customer Notification Service Justification (as submitted). Twilio's SMS service would process EU customer phone numbers in its US region.\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1800,7 +1801,7 @@
         "PRE-02#4",
         "ADD-01#2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DB-006 \u00a71 Purpose:** \u201cIt reduces the number of database engines Harbourline has to operate, secure and license, supports exit from the Baltimore data centre by 30 June 2027, and retires the Oracle estate that underpins FreightMaster TMS (APP-020).\u201d [1]\n- **PRE-02 \u00a76 Constraints:** \u201cBaltimore data centre exit is fixed at 30 June 2027; FreightMaster must be retired or relocated before then.\u201d [2]\n- **F-01 \u00a72 Planning Constraints:** \u201cBaltimore data centre exit | 2027-06-30 | Horizon 2028 goal 3\u201d [3]\n- **F-01 \u00a73.3 TA3 \u2014 Target Architecture (Q4 2027):** \u201cFreightMaster is formally retired (Q3 2027), Oracle 12c is gone, the Baltimore data centre is exited (2027-06-30), AWS eu-central-1 hosts no shipment workloads, and Sterling B2B carries only long-tail carrier EDI.\u201d [4]\n- **PRE-02 \u00a74 Objectives:** \u201cProduce a sequenced roadmap that retires FreightMaster in time for the Baltimore data centre exit and migrates Nordhaven lanes without service disruption.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DB-006 \u00a71 Purpose:** \u201cIt reduces the number of database engines Harbourline has to operate, secure and license, supports exit from the Baltimore data centre by 30 June 2027, and retires the Oracle estate that underpins FreightMaster TMS (APP-020).\u201d [1]\n- **PRE-02 \u00a76 Constraints:** \u201cBaltimore data centre exit is fixed at 30 June 2027; FreightMaster must be retired or relocated before then.\u201d [2]\n- **F-01 \u00a72 Planning Constraints:** \u201cBaltimore data centre exit | 2027-06-30 | Horizon 2028 goal 3\u201d [3]\n- **F-01 \u00a73.3 TA3: Target Architecture (Q4 2027):** \u201cFreightMaster is formally retired (Q3 2027), Oracle 12c is gone, the Baltimore data centre is exited (2027-06-30), AWS eu-central-1 hosts no shipment workloads, and Sterling B2B carries only long-tail carrier EDI.\u201d [4]\n- **PRE-02 \u00a74 Objectives:** \u201cProduce a sequenced roadmap that retires FreightMaster in time for the Baltimore data centre exit and migrates Nordhaven lanes without service disruption.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -1830,7 +1831,7 @@
             ]
           },
           {
-            "sentence": "- **F-01 \u00a73.3 TA3 \u2014 Target Architecture (Q4 2027):** \u201cFreightMaster is formally retired (Q3 2027), Oracle 12c is gone, the Baltimore data centre is exited (2027-06-30), AWS eu-central-1 hosts no shipment workloads, and Sterling B2B carries only long-tail carrier EDI.\u201d [4]",
+            "sentence": "- **F-01 \u00a73.3 TA3: Target Architecture (Q4 2027):** \u201cFreightMaster is formally retired (Q3 2027), Oracle 12c is gone, the Baltimore data centre is exited (2027-06-30), AWS eu-central-1 hosts no shipment workloads, and Sterling B2B carries only long-tail carrier EDI.\u201d [4]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1870,7 +1871,7 @@
         "G-02#6",
         "ADR-0030#2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **PRE-01 \u00a74 Horizon 2028 Business Goals:** \u201cG2 | Real-time shipment and container visibility | % shipments with milestone events visible < 5 min latency | 95%\u201d [1]\n- **AP-CATALOG \u00a76 AP-01 \u2014 Customer Visibility by Default:** \u201cEvery shipment-affecting service in HSP (APP-022) publishes milestone events such as shipment.milestone.recorded.v1 so that Harbourline Connect (APP-050) and CNS (APP-055) can consume them. The target of 95% of milestone events reaching customers within 5 minutes (REQ-HSP-014) is a design constraint, not a reporting metric.\u201d [2]\n- **ADR-0007 \u00a72 Context:** \u201cMedian end-to-end latency for a shipment milestone reaching the portal is 22 minutes, and the p95 is above 90 minutes.\u201d [4]\n- **G-02 \u00a76 Guidance for the Resubmitted Design:** \u201cLatency budget (Kenji Watanabe): the end-to-end target for an alert is the HSP milestone latency (REQ-HSP-014, < 5 min p95) plus the CNS delivery SLO.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **PRE-01 \u00a74 Horizon 2028 Business Goals:** \u201cG2 | Real-time shipment and container visibility | % shipments with milestone events visible < 5 min latency | 95%\u201d [1]\n- **AP-CATALOG \u00a76 AP-01: Customer Visibility by Default:** \u201cEvery shipment-affecting service in HSP (APP-022) publishes milestone events such as shipment.milestone.recorded.v1 so that Harbourline Connect (APP-050) and CNS (APP-055) can consume them. The target of 95% of milestone events reaching customers within 5 minutes (REQ-HSP-014) is a design constraint, not a reporting metric.\u201d [2]\n- **ADR-0007 \u00a72 Context:** \u201cMedian end-to-end latency for a shipment milestone reaching the portal is 22 minutes, and the p95 is above 90 minutes.\u201d [4]\n- **G-02 \u00a76 Guidance for the Resubmitted Design:** \u201cLatency budget (Kenji Watanabe): the end-to-end target for an alert is the HSP milestone latency (REQ-HSP-014, < 5 min p95) plus the CNS delivery SLO.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -1884,7 +1885,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a76 AP-01 \u2014 Customer Visibility by Default:** \u201cEvery shipment-affecting service in HSP (APP-022) publishes milestone events such as shipment.milestone.recorded.v1 so that Harbourline Connect (APP-050) and CNS (APP-055) can consume them. The target of 95% of milestone events reaching customers within 5 minutes (REQ-HSP-014) is a design constraint, not a reporting metric.\u201d [2]",
+            "sentence": "- **AP-CATALOG \u00a76 AP-01: Customer Visibility by Default:** \u201cEvery shipment-affecting service in HSP (APP-022) publishes milestone events such as shipment.milestone.recorded.v1 so that Harbourline Connect (APP-050) and CNS (APP-055) can consume them. The target of 95% of milestone events reaching customers within 5 minutes (REQ-HSP-014) is a design constraint, not a reporting metric.\u201d [2]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -1956,8 +1957,8 @@
         "STD-OBS-010#2.2",
         "STD-AI-013#2.1",
         "STD-SEC-009#2.2",
-        "GOV-03#6",
-        "AP-CATALOG#17"
+        "STD-IAM-008#2",
+        "GOV-03#6"
       ],
       "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
     },
@@ -2226,7 +2227,7 @@
         "STD-DB-006#2",
         "STD-INT-001#4.6"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **RA-04 \u00a71 Purpose & Applicability:** \u201cTidewater (APP-080) is Harbourline's analytical data platform.\u201d [1]\n- **ADR-0012 \u00a78 Links:** \u201cAPP-090 Container Tracking Service; APP-080 Tidewater Data Platform\u201d [2]\n- **STD-DAT-005 \u00a74.3 Analytics and aggregation:** \u201cAggregated or anonymised data MAY be centralised in the Tidewater Data Platform in East US 2.\u201d [3]\n- **STD-INT-001 \u00a74.5 INT-P5 \u2014 Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]\n- **STD-INT-001 \u00a72.2 Out of scope:** \u201cAnalytical data sharing *within* the Tidewater Data Platform (APP-080), which is governed by RA-04.\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **RA-04 \u00a71 Purpose & Applicability:** \u201cTidewater (APP-080) is Harbourline's analytical data platform.\u201d [1]\n- **ADR-0012 \u00a78 Links:** \u201cAPP-090 Container Tracking Service; APP-080 Tidewater Data Platform\u201d [2]\n- **STD-DAT-005 \u00a74.3 Analytics and aggregation:** \u201cAggregated or anonymised data MAY be centralised in the Tidewater Data Platform in East US 2.\u201d [3]\n- **STD-INT-001 \u00a74.5 INT-P5: Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]\n- **STD-INT-001 \u00a72.2 Out of scope:** \u201cAnalytical data sharing *within* the Tidewater Data Platform (APP-080), which is governed by RA-04.\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -2256,7 +2257,7 @@
             ]
           },
           {
-            "sentence": "- **STD-INT-001 \u00a74.5 INT-P5 \u2014 Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]",
+            "sentence": "- **STD-INT-001 \u00a74.5 INT-P5: Batch Data Ingestion:** \u201cINT-P5 is permitted only for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.\u201d [4]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -2296,7 +2297,7 @@
         "ADR-0021#3",
         "STD-CLD-007#4.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-CTR-012 \u00a77 Workload Security:** \u201cPrivileged containers, host networking, host PID/IPC and hostPath mounts MUST NOT be used in workload namespaces. Workloads MUST authenticate to Azure services with Entra Workload ID (federated managed identity).\u201d [1]\n- **STD-IAM-008 \u00a74.3 Workloads:** \u201cAzure workloads MUST authenticate using managed identities (system- or user-assigned).\u201d [2]\n- **AP-CATALOG \u00a715 AP-10 \u2014 Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-CTR-012 \u00a77 Workload Security:** \u201cPrivileged containers, host networking, host PID/IPC and hostPath mounts MUST NOT be used in workload namespaces. Workloads MUST authenticate to Azure services with Entra Workload ID (federated managed identity).\u201d [1]\n- **STD-IAM-008 \u00a74.3 Workloads:** \u201cAzure workloads MUST authenticate using managed identities (system- or user-assigned).\u201d [2]\n- **AP-CATALOG \u00a715 AP-10: Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
@@ -2318,7 +2319,7 @@
             ]
           },
           {
-            "sentence": "- **AP-CATALOG \u00a715 AP-10 \u2014 Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
+            "sentence": "- **AP-CATALOG \u00a715 AP-10: Cloud-Smart and Portable:** \u201cWorkloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit. New workloads land in the Azure Landing Zone in an approved region (STD-CLD-007).\u201d [5]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -2352,13 +2353,13 @@
         "STD-SEC-009#4.1",
         "STD-SEC-009#10"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | \u2014 | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]\n- **STD-SEC-009 \u00a76.1 Key stores:** \u201cRestricted | Azure Key Vault Premium or Managed HSM | HSM-backed (FIPS 140-2 Level 2 minimum; Level 3 for Managed HSM) Nordhaven on AWS (EXC-2025-003) | AWS KMS customer-managed keys in eu-central-1 | HSM-backed\u201d [2]\n- **STD-SEC-009 \u00a75 Encryption at Rest:** \u201cRestricted data MUST be encrypted with customer-managed keys (CMK) held in Azure Key Vault Premium or Azure Key Vault Managed HSM (see \u00a76).\u201d [3]\n- **STD-DAT-004 \u00a710 Document History:** \u201cOT configuration (NIS2) and crew passport data; customer-managed keys and PIM mandatory; masking rule for non-production; extended to Nordhaven; ARB-2024-041\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | n/a | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]\n- **STD-SEC-009 \u00a76.1 Key stores:** \u201cRestricted | Azure Key Vault Premium or Managed HSM | HSM-backed (FIPS 140-2 Level 2 minimum; Level 3 for Managed HSM) Nordhaven on AWS (EXC-2025-003) | AWS KMS customer-managed keys in eu-central-1 | HSM-backed\u201d [2]\n- **STD-SEC-009 \u00a75 Encryption at Rest:** \u201cRestricted data MUST be encrypted with customer-managed keys (CMK) held in Azure Key Vault Premium or Azure Key Vault Managed HSM (see \u00a76).\u201d [3]\n- **STD-DAT-004 \u00a710 Document History:** \u201cOT configuration (NIS2) and crew passport data; customer-managed keys and PIM mandatory; masking rule for non-production; extended to Nordhaven; ARB-2024-041\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | \u2014 | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]",
+            "sentence": "- **STD-DAT-004 \u00a76.1 Control matrix:** \u201cEncryption at rest | n/a | MUST (platform keys) | MUST (platform keys) | MUST, customer-managed keys in Key Vault (HSM-backed)\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -2415,13 +2416,13 @@
         "STD-OBS-010#6",
         "ADD-01#4.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **STD-OBS-010 \u00a77 Content Rules \u2014 What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]\n- **STD-DAT-004 \u00a76.3 Personal data:** \u201cPseudonymised personal data remains personal data and retains its classification; only effectively anonymised data MAY be downgraded. Personal data MUST NOT be written to application or platform logs (STD-OBS-010).\u201d [2]\n- **STD-API-002 \u00a78 Observability and Documentation:** \u201cRequest and response bodies MUST NOT be logged at the gateway where they may contain personal data.\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **STD-OBS-010 \u00a77 Content Rules: What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]\n- **STD-DAT-004 \u00a76.3 Personal data:** \u201cPseudonymised personal data remains personal data and retains its classification; only effectively anonymised data MAY be downgraded. Personal data MUST NOT be written to application or platform logs (STD-OBS-010).\u201d [2]\n- **STD-API-002 \u00a78 Observability and Documentation:** \u201cRequest and response bodies MUST NOT be logged at the gateway where they may contain personal data.\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **STD-OBS-010 \u00a77 Content Rules \u2014 What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]",
+            "sentence": "- **STD-OBS-010 \u00a77 Content Rules: What Must Not Be Logged:** \u201cLogs, traces, span attributes and metric labels MUST NOT contain personal data. Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -2522,13 +2523,13 @@
         "STD-TLC-014#8",
         "PRE-01#3.2"
       ],
-      "answer": "Relevant passages from the architecture repository:\n- **GOV-02 \u00a74.2 EXC-2026-001 \u2014 FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]\n- **ADD-01 \u00a76.1 Baseline:** \u201cBaltimore data centre: Oracle 12c RAC on Linux, Java 8 application servers, Windows Server 2012 R2 file transfer hosts.\u201d [2]\n- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021) \u2014 acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]\n- **A-01 \u00a72 Problem Statement:** \u201cOracle 12c reaches end of extended support in 2027 and Java 8 in 2026; FreightMaster cannot be modernised in place without a near-total rewrite.\u201d [4]",
+      "answer": "Relevant passages from the architecture repository:\n- **GOV-02 \u00a74.2 EXC-2026-001: FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]\n- **ADD-01 \u00a76.1 Baseline:** \u201cBaltimore data centre: Oracle 12c RAC on Linux, Java 8 application servers, Windows Server 2012 R2 file transfer hosts.\u201d [2]\n- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021): acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]\n- **A-01 \u00a72 Problem Statement:** \u201cOracle 12c reaches end of extended support in 2027 and Java 8 in 2026; FreightMaster cannot be modernised in place without a near-total rewrite.\u201d [4]",
       "groundedness_detail": {
         "supported_rate": 1.0,
         "invalid_citations": [],
         "sentences": [
           {
-            "sentence": "- **GOV-02 \u00a74.2 EXC-2026-001 \u2014 FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]",
+            "sentence": "- **GOV-02 \u00a74.2 EXC-2026-001: FreightMaster on Oracle 12c extended support:** \u201cUpgrading Oracle and Java for a system being retired offers no lasting value and would divert HSP engineering capacity. Java 8 runtime pinned to the last vendor-supported build; no new libraries added.\u201d [1]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -2544,7 +2545,7 @@
             ]
           },
           {
-            "sentence": "- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021) \u2014 acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]",
+            "sentence": "- **PRE-02 \u00a73 Description of the Request:** \u201cNordhaven TMS (APP-021): acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.\u201d [3]",
             "supported": true,
             "overlap": 1.0,
             "cites": [
@@ -2706,8 +2707,8 @@
       "STD-DAT-005#1"
     ],
     "q16": [
-      "STD-DAT-004#5.4",
       "STD-DAT-004#4",
+      "STD-DAT-004#5.4",
       "STD-DAT-004#5.2",
       "STD-INT-001#6",
       "STD-AI-013#5.1"
@@ -2738,7 +2739,7 @@
       "STD-IAM-008#7.3",
       "STD-IAM-008#7.2",
       "AP-CATALOG#17",
-      "STD-DAT-004#6.1"
+      "STD-SEC-009#6.4"
     ],
     "q22": [
       "STD-DAT-004#6.1",

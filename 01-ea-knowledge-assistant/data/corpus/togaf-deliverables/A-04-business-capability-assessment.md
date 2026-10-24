@@ -1,6 +1,6 @@
 ---
 doc_id: A-04
-title: Business Capability Assessment — Horizon 2028 Shipment Platform
+title: Business Capability Assessment, Horizon 2028 Shipment Platform
 doc_type: togaf_deliverable
 togaf_phase: A
 version: "1.1"
@@ -13,7 +13,7 @@ classification: Internal
 related: [A-01, A-02, A-03, ADD-01, ARS-01, F-01, PRE-01, AP-01, AP-02, AP-03, AP-04, AP-07, AP-16]
 ---
 
-# A-04 — Business Capability Assessment — Horizon 2028 Shipment Platform
+# A-04: Business Capability Assessment, Horizon 2028 Shipment Platform
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -130,7 +130,7 @@ Prioritisation combined gap size, strategic importance, and dependency (a capabi
 | P2 | 4.1 Customs Declaration re-integration; 4.3 Screening for all lanes | Hard dependency for FreightMaster retirement | TA2 |
 | P3 | 2.5 Exception Management; 4.2 Document Management; 1.3 Self-Service booking | Improves efficiency after consolidation | TA2-TA3 |
 | P3 | 8.1 / 8.2 Analytics; 3.2 Capacity Procurement; 3.3 Partner APIs | Benefits realisation and optimisation | TA3 (Q4 2027) |
-| Hold | 5.x, 6.x, 7.3, 1.1 | No change in scope; interface work only | — |
+| Hold | 5.x, 6.x, 7.3, 1.1 | No change in scope; interface work only | n/a |
 
 ## 8. Implications for Later Phases
 

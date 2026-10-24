@@ -13,13 +13,13 @@ classification: Internal
 related: [AP-09, AP-12, AP-14, AP-15, STD-INT-001, STD-IAM-008, STD-SEC-009, STD-OBS-010, STD-TLC-014, ADR-0019, RA-01, RA-02, GOV-01, GOV-02]
 ---
 
-# STD-API-002 — API Design & Management Standard
+# STD-API-002: API Design & Management Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
 ## 1. Purpose
 
-This standard sets the rules for designing, securing, versioning, publishing and retiring application programming interfaces (APIs) at Harbourline Logistics Group. It gives consumers — internal teams, customers integrating with Harbourline Digital, and logistics partners — a predictable experience across every API, and it enables the Harbourline API Gateway to enforce security and traffic policy consistently.
+This standard sets the rules for designing, securing, versioning, publishing and retiring application programming interfaces (APIs) at Harbourline Logistics Group. It gives consumers (internal teams, customers integrating with Harbourline Digital, and logistics partners) a predictable experience across every API, and it enables the Harbourline API Gateway to enforce security and traffic policy consistently.
 
 It is the detailed companion to pattern INT-P3 (Synchronous Request/Response via API Gateway) in STD-INT-001.
 
@@ -35,8 +35,8 @@ Service-to-service calls within a single bounded context are out of scope, excep
 
 ## 3. Related Principles and Normative References
 
-- **AP-09 API-First for Synchronous Access** — synchronous access to another domain's data or functions is through a published, contract-first API.
-- **AP-12 Zero Trust Access** — every call is authenticated and authorised; network location grants no trust.
+- **AP-09 API-First for Synchronous Access**: synchronous access to another domain's data or functions is through a published, contract-first API.
+- **AP-12 Zero Trust Access**: every call is authenticated and authorised; network location grants no trust.
 - **AP-14 Observable by Default** and **AP-15 Everything as Code**.
 - **STD-INT-001** (pattern INT-P3), **STD-IAM-008** (identity), **STD-SEC-009** (TLS and certificates), **STD-OBS-010** (telemetry), **STD-TLC-014** (radar status of GraphQL and SOAP).
 - **ADR-0019** Azure API Management as the Single API Gateway.
@@ -56,7 +56,7 @@ Service-to-service calls within a single bounded context are out of scope, excep
 | REST + OpenAPI 3.1 | Adopt | Default for all published APIs |
 | GraphQL | Trial | Harbourline Connect BFF only |
 | SOAP/WSDL | Contain | Existing services only; no new APIs |
-| gRPC | — | Internal to a bounded context only |
+| gRPC | n/a | Internal to a bounded context only |
 
 ### 4.2 Contract-first design
 
@@ -74,7 +74,7 @@ Service-to-service calls within a single bounded context are out of scope, excep
 ## 5. Versioning and Lifecycle
 
 1. APIs MUST use **URI major versioning** (`/v1/`, `/v2/`). Minor, backward-compatible changes (adding optional fields or endpoints) MUST NOT change the major version.
-2. Breaking changes — removing or renaming fields, changing types, tightening validation — REQUIRE a new major version.
+2. Breaking changes (removing or renaming fields, changing types, tightening validation) REQUIRE a new major version.
 3. A deprecated version MUST remain available for at least **6 months** after the deprecation notice. Notice MUST be given through the developer portal, the `Deprecation` and `Sunset` HTTP response headers, and direct communication to registered consumers.
 4. APIs consumed by external customers or partners SHOULD receive 12 months' notice where contractual terms permit.
 5. No more than two major versions of an API SHOULD be live at once.
@@ -110,9 +110,9 @@ Service-to-service calls within a single bounded context are out of scope, excep
 
 | Use an API (INT-P3) when | Do not use an API when |
 |---|---|
-| A user is waiting for a response (quote, booking confirmation) | A consumer only needs to know that something changed — subscribe to an event (INT-P1) |
-| A command must be validated synchronously | A consumer needs high-volume reads of another domain's data — build a read model (INT-P2) |
-| A partner requires on-demand lookups (e.g. `GET /v1/shipments/{id}/milestones`) | Bulk data is needed for analytics — use INT-P5 into Tidewater |
+| A user is waiting for a response (quote, booking confirmation) | A consumer only needs to know that something changed: subscribe to an event (INT-P1) |
+| A command must be validated synchronously | A consumer needs high-volume reads of another domain's data: build a read model (INT-P2) |
+| A partner requires on-demand lookups (e.g. `GET /v1/shipments/{id}/milestones`) | Bulk data is needed for analytics: use INT-P5 into Tidewater |
 
 ## 10. Compliance and Exceptions
 

@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-14, AP-15, AP-04, AP-12, STD-SEC-009, STD-DAT-004, STD-CTR-012, STD-RES-015, STD-EVT-003, RA-02, GOV-01, GOV-02]
 ---
 
-# STD-OBS-010 — Observability & Logging Standard
+# STD-OBS-010: Observability & Logging Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -86,7 +86,7 @@ Every signal MUST carry the resource attributes `service.name`, `service.version
 
 Retention MUST NOT be reduced below these values without an approved exception. Longer retention required by legal hold is set by the Group DPO or legal counsel and overrides this table.
 
-## 7. Content Rules — What Must Not Be Logged
+## 7. Content Rules: What Must Not Be Logged
 
 1. Logs, traces, span attributes and metric labels MUST NOT contain personal data. This includes names, email addresses, phone numbers, passport numbers, customer contact details and free-text fields that may contain them.
 2. Logs MUST NOT contain secrets, access tokens, API keys, session cookies, connection strings or cryptographic material (STD-SEC-009).

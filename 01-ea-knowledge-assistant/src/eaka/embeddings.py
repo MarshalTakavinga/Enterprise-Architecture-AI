@@ -1,10 +1,10 @@
 """Embedding back-ends behind one small interface.
 
-* ``lsa``  — TF-IDF + truncated SVD (latent semantic analysis). Runs offline with no model
+* ``lsa``: TF-IDF + truncated SVD (latent semantic analysis). Runs offline with no model
              download; the default so the project works anywhere, and the baseline in /eval.
-* ``openai`` / ``azure_openai`` — hosted embedding models (e.g. text-embedding-3-small).
+* ``openai`` / ``azure_openai``: hosted embedding models (e.g. text-embedding-3-small).
   Azure OpenAI is the choice when data residency matters (see docs/adr/ADR-P003).
-* ``sentence_transformers`` — local open model (e.g. BAAI/bge-small-en-v1.5), no data leaves the host.
+* ``sentence_transformers``: local open model (e.g. BAAI/bge-small-en-v1.5), no data leaves the host.
 """
 from __future__ import annotations
 

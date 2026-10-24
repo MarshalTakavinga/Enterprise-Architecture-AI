@@ -1,6 +1,6 @@
 ---
 doc_id: A-03
-title: Stakeholder Map & Communications Plan — Horizon 2028 Shipment Platform
+title: Stakeholder Map & Communications Plan, Horizon 2028 Shipment Platform
 doc_type: togaf_deliverable
 togaf_phase: A
 version: "1.2"
@@ -13,7 +13,7 @@ classification: Internal
 related: [A-01, A-02, A-04, GOV-01, F-01, AP-02, AP-04, AP-06, AP-16]
 ---
 
-# A-03 — Stakeholder Map & Communications Plan — Horizon 2028 Shipment Platform
+# A-03: Stakeholder Map & Communications Plan, Horizon 2028 Shipment Platform
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -25,8 +25,8 @@ This document identifies the people and groups who influence or are affected by 
 
 Stakeholders were identified in workshops held 2024-10-21 and 2024-11-04 with the sponsor, the Programme Director and domain architects. Each was classified on two scales:
 
-- **Power** — ability to change scope, budget, or design decisions (High / Medium / Low).
-- **Interest** — how much the outcome affects their objectives (High / Medium / Low).
+- **Power**: ability to change scope, budget, or design decisions (High / Medium / Low).
+- **Interest**: how much the outcome affects their objectives (High / Medium / Low).
 
 The resulting quadrants drive engagement: *Manage closely* (high/high), *Keep satisfied* (high power, lower interest), *Keep informed* (lower power, high interest), *Monitor* (low/low).
 

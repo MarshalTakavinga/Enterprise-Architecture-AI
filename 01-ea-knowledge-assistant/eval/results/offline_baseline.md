@@ -1,6 +1,6 @@
-# Evaluation results — `offline_baseline`
+# Evaluation results: `offline_baseline`
 
-Run 2026-10-23 03:23 UTC · index `0c4b3ecf6470b732` · 48 documents / 552 chunks · embedder `lsa` · answers `extractive`
+Run 2026-10-24 03:04 UTC · index `ca2b012e358ddf4f` · 48 documents / 552 chunks · embedder `lsa` · answers `extractive`
 Test split: 29 answerable + 7 out-of-corpus questions (dev split of 14 used only to tune the not-found threshold = 0.51; lexical:dense fusion weight = 0.5:1).
 
 ## Retrieval (test split, answerable questions)
@@ -8,8 +8,8 @@ Test split: 29 answerable + 7 out-of-corpus questions (dev split of 14 used only
 | Retriever | Hit@1 | Recall@5 | Precision@5 | MRR@10 |
 |---|---|---|---|---|
 | bm25_only | 79.3% | 100.0% | 59.3% | 0.880 |
-| dense_only | 86.2% | 93.1% | 57.9% | 0.898 |
-| hybrid_rrf (1:1) | 79.3% | 100.0% | 62.1% | 0.879 |
+| dense_only | 86.2% | 93.1% | 58.6% | 0.898 |
+| hybrid_rrf (1:1) | 79.3% | 100.0% | 62.8% | 0.879 |
 | hybrid_rrf (dev-tuned 0.5:1) | 86.2% | 100.0% | 62.1% | 0.910 |
 
 ## End to end (test split)
@@ -21,9 +21,10 @@ Test split: 29 answerable + 7 out-of-corpus questions (dev split of 14 used only
 | Out-of-corpus questions correctly refused ("not found") | 85.7% |
 | Answer contains the key fact | 72.4% |
 | Answer cites a relevant document | 96.6% |
-| Groundedness (answers whose claims are supported by their citations) | 100.0% |
+| Claim support (factual sentences supported by the passage they cite) | 100.0% |
+| Fully grounded answers (>= 90% of an answer's sentences cited and supported) | 100.0% |
 | Every answer carries a citation | yes |
-| Latency p50 / p95 | 196 ms / 575 ms |
+| Latency p50 / p95 | 158 ms / 494 ms |
 
 ## Failures
 

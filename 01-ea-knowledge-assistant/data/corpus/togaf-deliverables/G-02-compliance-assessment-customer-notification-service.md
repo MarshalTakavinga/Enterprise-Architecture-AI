@@ -1,6 +1,6 @@
 ---
 doc_id: G-02
-title: Compliance Assessment — Customer Notification Service (APP-055)
+title: Compliance Assessment, Customer Notification Service (APP-055)
 doc_type: togaf_deliverable
 togaf_phase: G
 version: "1.0"
@@ -13,7 +13,7 @@ classification: Internal
 related: [GOV-01, GOV-02, AP-06, AP-08, AP-14, STD-INT-001, STD-EVT-003, STD-DAT-004, STD-DAT-005, STD-OBS-010, ADR-0015, ADR-0030, ADR-0038, RA-01]
 ---
 
-# G-02 — Compliance Assessment — Customer Notification Service (APP-055)
+# G-02: Compliance Assessment, Customer Notification Service (APP-055)
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -26,7 +26,7 @@ related: [GOV-01, GOV-02, AP-06, AP-08, AP-14, STD-INT-001, STD-EVT-003, STD-DAT
 | Application | Customer Notification Service (CNS), APP-055 |
 | Business owner | Harbourline Digital |
 | Solution architect | Julia Brandt |
-| Review tier | Tier 1 — new system processing personal data with a proposed cross-border transfer |
+| Review tier | Tier 1: new system processing personal data with a proposed cross-border transfer |
 | ARB attendees | David Okafor (Chair), Priya Raman (Security), Amara Osei (Integration), Lena Vogel (Data), Kenji Watanabe (Cloud); Marieke de Vries (DPO, advisory); Samuel Adeyemi (Secretary) |
 | Quorum | Met (Chair + 4 voting members incl. Security) |
 | **Decision** | **Changes Requested** |

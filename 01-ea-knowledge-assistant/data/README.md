@@ -1,4 +1,4 @@
-# Synthetic architecture repository — Harbourline Logistics Group
+# Synthetic architecture repository: Harbourline Logistics Group
 
 `corpus/` contains **48 original documents** (~66,000 words) forming the architecture repository of
 *Harbourline Logistics Group*, a **fictional** global freight, port-terminal and contract-logistics company
@@ -8,7 +8,7 @@ USD 118M "Horizon 2028" programme to consolidate three transport management syst
 The documents are written to behave like a real repository: they cross-reference each other by ID,
 carry owners, versions, approval decisions and review dates, contain normative MUST/SHOULD clauses,
 and include the inconsistencies and open issues real repositories have (for example an exception that
-expires before the migration it covers is due — see GOV-02 and ADR-0021).
+expires before the migration it covers is due: see GOV-02 and ADR-0021).
 
 | Folder | Documents | Examples |
 |---|---|---|

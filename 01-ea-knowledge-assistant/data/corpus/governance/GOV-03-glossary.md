@@ -13,7 +13,7 @@ classification: Internal
 related: [GOV-01, GOV-02, AP-CATALOG, STD-TLC-014]
 ---
 
-# GOV-03 — Glossary of Enterprise Architecture and Harbourline Terms
+# GOV-03: Glossary of Enterprise Architecture and Harbourline Terms
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -42,7 +42,7 @@ This glossary gives the agreed meaning of architecture terms and Harbourline-spe
 | Dispensation | Synonym for exception. |
 | Exception | Time-limited, approved permission to deviate from a standard clause, numbered `EXC-YYYY-NNN`; max 12 months, renewable once; recorded in GOV-02. |
 | Gap Analysis | Comparison of baseline and target to identify what must be added, changed or removed. |
-| RACI | Responsible, Accountable, Consulted, Informed — a matrix assigning roles to activities. |
+| RACI | Responsible, Accountable, Consulted, Informed: a matrix assigning roles to activities. |
 | Request for Architecture Work | The sponsor's formal request that starts Phase A; for HSP, PRE-02. |
 | Solution Building Block | A concrete product or service implementing an architecture building block, such as Confluent Cloud implementing the event backbone. |
 | Stakeholder | A person or group with an interest in or influence over an architecture; mapped in A-03. |
@@ -82,7 +82,7 @@ This glossary gives the agreed meaning of architecture terms and Harbourline-spe
 | RPO / RTO | Recovery Point Objective (maximum tolerable data loss) and Recovery Time Objective (maximum tolerable downtime), set by tier in STD-RES-015. |
 | SCCs | Standard Contractual Clauses used as a transfer mechanism for personal data leaving the EU. |
 | Service tier (0-3) | Resilience classification in STD-RES-015; Tier 0 is terminal operations. |
-| SLO | Service Level Objective — a measurable reliability target for a service. |
+| SLO | Service Level Objective: a measurable reliability target for a service. |
 | System of Record | The single authoritative source for a data domain (AP-07). |
 | TIA (Transfer Impact Assessment) | Assessment of risks of a cross-border personal data transfer, approved by the DPO under STD-DAT-005. |
 | Transactional outbox | Writing an event to an outbox table in the same transaction as the business change, then publishing it asynchronously. |
@@ -95,7 +95,7 @@ This glossary gives the agreed meaning of architecture terms and Harbourline-spe
 | IT/OT DMZ | The Purdue level 3.5 zone through which all data between terminal OT and IT must pass. |
 | OT (Operational Technology) | Systems that monitor or control physical equipment, such as gates and crane interfaces. |
 | OT jump host | The only permitted path for remote vendor access to OT, with session recording and time-bound approval. |
-| PIM | Entra Privileged Identity Management — just-in-time elevation, maximum 8 hours at Harbourline. |
+| PIM | Entra Privileged Identity Management: just-in-time elevation, maximum 8 hours at Harbourline. |
 | Purdue model | Layered reference model for industrial networks (levels 0-5) used to place terminal systems. |
 | SD-WAN | Software-defined WAN; Fortinet Secure SD-WAN (FortiGate) at all sites since ADR-0036. |
 | Zero Trust | Access model in which no request is trusted by network location (AP-12). |
@@ -106,8 +106,8 @@ This glossary gives the agreed meaning of architecture terms and Harbourline-spe
 |---|---|
 | AIU-NNN | ID of an entry in the AI Use Case Register (STD-AI-013), e.g., AIU-004 for DocIntel. |
 | BAL-T1 / HFX-T1 / RTM-T2 / JEA-T4 | Harbourline's container terminals in Baltimore, Halifax, Rotterdam Maasvlakte and Jebel Ali. |
-| CNS | Customer Notification Service (APP-055) — email, SMS and push shipment alerts. |
-| CTS | Container Tracking Service (APP-090) — reefer and smart-container telemetry on IoT Hub and Cosmos DB. |
+| CNS | Customer Notification Service (APP-055): email, SMS and push shipment alerts. |
+| CTS | Container Tracking Service (APP-090): reefer and smart-container telemetry on IoT Hub and Cosmos DB. |
 | DocIntel | Bill of lading extraction service (APP-130) using Azure AI Document Intelligence and Azure OpenAI with human validation. |
 | EA Office | The central Enterprise Architecture team led by Samuel Adeyemi. |
 | FreightMaster | Legacy in-house TMS (APP-020) on Oracle 12c; retiring by Q3 2027. |
@@ -117,12 +117,12 @@ This glossary gives the agreed meaning of architecture terms and Harbourline-spe
 | Harbourline Event Backbone | Confluent Cloud Kafka on Azure (APP-120), selected in ADR-0007. |
 | HLG | Harbourline Logistics Group. |
 | Horizon 2028 | Board-approved transformation programme (Nov 2024, USD 118M, four years). |
-| HSP | Harbourline Shipment Platform (APP-022) — cloud-native target TMS and system of record for shipments. |
+| HSP | Harbourline Shipment Platform (APP-022): cloud-native target TMS and system of record for shipments. |
 | INT-P1 to INT-P5 | Approved integration patterns in STD-INT-001. |
 | Kestrel Digital Partners | System integrator delivering HSP under Architecture Contract G-01. |
 | Nordhaven | Nordhaven Freight GmbH, Hamburg, acquired March 2024; its TMS is APP-021. |
 | TMS | Transport Management System. |
-| Tidewater | Tidewater Data Platform (APP-080) — Databricks lakehouse with Unity Catalog. |
+| Tidewater | Tidewater Data Platform (APP-080): Databricks lakehouse with Unity Catalog. |
 | `hlgacr` | The Azure Container Registry from which all production images must be pulled (STD-CTR-012). |
 | `hlg-*` management groups | Landing zone management groups: `hlg-platform`, `hlg-corp`, `hlg-online`, `hlg-sandbox` (STD-CLD-007). |
 

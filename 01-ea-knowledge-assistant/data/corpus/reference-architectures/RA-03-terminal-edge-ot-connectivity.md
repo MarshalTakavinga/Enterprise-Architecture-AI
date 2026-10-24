@@ -12,7 +12,7 @@ classification: Confidential
 related: [AP-04, AP-12, AP-13, AP-14, STD-NET-011, STD-RES-015, STD-IAM-008, STD-DAT-004, STD-OBS-010, ADR-0007, ADR-0027, ADR-0036, RA-01, RA-04]
 ---
 
-# RA-03 — Terminal Edge & OT Connectivity
+# RA-03: Terminal Edge & OT Connectivity
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -53,23 +53,23 @@ It is written to satisfy the US Coast Guard maritime cybersecurity rule (33 CFR 
 
 ```mermaid
 flowchart TB
-    subgraph L01["Levels 0-1 — Field devices"]
+    subgraph L01["Levels 0-1, Field devices"]
         PLC[Crane PLCs] 
         CAM[Gate OCR cameras]
     end
-    subgraph L2["Level 2 — Supervisory"]
+    subgraph L2["Level 2, Supervisory"]
         HMI[Crane / gate HMIs]
     end
-    subgraph L3["Level 3 — Site operations"]
+    subgraph L3["Level 3, Site operations"]
         N4[Navis N4<br/>2-node edge cluster]
         GATE[Gate automation servers]
     end
-    subgraph DMZ["Level 3.5 — IT/OT DMZ"]
+    subgraph DMZ["Level 3.5, IT/OT DMZ"]
         FWOT[FortiGate OT boundary pair]
         BRK[Edge Kafka broker]
         JH[OT jump host<br/>session recording]
     end
-    subgraph IT["Level 4-5 — Site IT & WAN"]
+    subgraph IT["Level 4-5, Site IT & WAN"]
         FWSD[FortiGate SD-WAN HA pair]
         ISP1[ISP A] 
         ISP2[ISP B]
@@ -106,7 +106,7 @@ flowchart TB
 | Security | IEC 62443 target security level SL-2 for level 3, SL-3 for DMZ conduits |
 | DR testing | Semi-annual node-loss and WAN-loss drills per terminal |
 
-## 7. Worked Example at Harbourline — Rotterdam RTM-T2
+## 7. Worked Example at Harbourline: Rotterdam RTM-T2
 
 RTM-T2 runs Navis N4 on a two-node edge cluster in the terminal building, with a third witness node in the gate house. In the March 2026 semi-annual drill, both ISP links were disconnected for 74 hours. Gate throughput stayed within 3% of the prior week, the edge broker buffered 5.1 million events, and replication to the Event Backbone completed 47 minutes after the links were restored. HSP milestone latency for Rotterdam containers breached the 5-minute target only during the outage window, which is an accepted consequence documented in ADR-0027.
 
@@ -125,9 +125,9 @@ A remaining gap at BAL-T1 is the 14 gate servers on Windows Server 2012 R2, runn
 
 ## 9. Related ADRs
 
-- ADR-0027 — Edge-Hosted Terminal Operating System with Local Failover
-- ADR-0036 — Replace MPLS WAN with Fortinet Secure SD-WAN
-- ADR-0007 — Adopt Confluent Cloud as the Enterprise Event Backbone
+- ADR-0027: Edge-Hosted Terminal Operating System with Local Failover
+- ADR-0036: Replace MPLS WAN with Fortinet Secure SD-WAN
+- ADR-0007: Adopt Confluent Cloud as the Enterprise Event Backbone
 
 ## 10. Document History
 

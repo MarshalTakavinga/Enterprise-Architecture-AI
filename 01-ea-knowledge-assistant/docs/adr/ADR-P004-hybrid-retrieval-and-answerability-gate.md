@@ -1,4 +1,4 @@
-# ADR-P004 — Hybrid retrieval with an answerability gate
+# ADR-P004: Hybrid retrieval with an answerability gate
 
 **Status:** Accepted · **Date:** 2026-09-28 · **Decider:** Marshal Takavinga
 
@@ -20,7 +20,7 @@ always "the best of what's there".
    split. Below it, the assistant says "not found" **before** any LLM call.
 3. **A second gate:** the LLM must answer `NOT_FOUND` when the passages don't contain the answer.
 
-## Evidence (test split, offline configuration — eval/results/offline_baseline.md)
+## Evidence (test split, offline configuration, eval/results/offline_baseline.md)
 | Retriever | Hit@1 | Recall@5 | MRR@10 |
 |---|---|---|---|
 | BM25 only | 79.3% | 100% | 0.880 |

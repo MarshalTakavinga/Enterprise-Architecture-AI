@@ -23,7 +23,7 @@ primary one actually contains the expected answer keyword.
 | Answerable answered | Share of answerable questions the gate did *not* wrongly refuse. |
 | Out-of-corpus refused | Share of out-of-corpus questions answered with "not found" instead of a guess. |
 | Answer contains key fact | The answer text includes the labelled key fact (for example "West Europe" or "2025-06-30"). |
-| Answer passage reached the model | The key fact appears in a retrieved passage from an expected document — separates retrieval misses from generation misses. |
+| Answer passage reached the model | The key fact appears in a retrieved passage from an expected document: separates retrieval misses from generation misses. |
 | Claim support | Share of factual sentences (headings and labels excluded) that cite a valid source and share at least 50% of their content words with it (`eaka.answer.check_groundedness`). |
 | Fully grounded answers | Share of answers where at least 90% of factual sentences are cited and supported. |
 | Latency p50/p95 | End to end, measured in-process. |

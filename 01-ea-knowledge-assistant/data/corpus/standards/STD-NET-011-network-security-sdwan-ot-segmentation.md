@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-04, AP-12, AP-13, AP-15, STD-SEC-009, STD-IAM-008, STD-CLD-007, STD-OBS-010, STD-RES-015, ADR-0036, ADR-0027, RA-03, GOV-01, GOV-02]
 ---
 
-# STD-NET-011 — Network Security, SD-WAN & OT Segmentation Standard
+# STD-NET-011: Network Security, SD-WAN & OT Segmentation Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -47,10 +47,10 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted a
 
 | Class | Examples | FortiGate deployment | WAN links |
 |---|---|---|---|
-| A — Terminal | BAL-T1, HFX-T1, RTM-T2, JEA-T4 | HA pair (IT edge) + separate HA pair (IT/OT DMZ) | 2 diverse ISPs + 5G |
-| B — Data centre / hub | Baltimore DC, Azure hubs | HA pair | 2 ISPs or ExpressRoute + Internet |
-| C — Warehouse | Contract logistics sites | HA pair | 2 ISPs, or 1 ISP + 5G |
-| D — Office | Regional offices | Single unit permitted if < 50 users | 1 ISP + LTE/5G |
+| A: Terminal | BAL-T1, HFX-T1, RTM-T2, JEA-T4 | HA pair (IT edge) + separate HA pair (IT/OT DMZ) | 2 diverse ISPs + 5G |
+| B: Data centre / hub | Baltimore DC, Azure hubs | HA pair | 2 ISPs or ExpressRoute + Internet |
+| C: Warehouse | Contract logistics sites | HA pair | 2 ISPs, or 1 ISP + 5G |
+| D: Office | Regional offices | Single unit permitted if < 50 users | 1 ISP + LTE/5G |
 
 ### 4.2 Platform rules
 

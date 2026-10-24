@@ -13,7 +13,7 @@ classification: Internal
 related: [GOV-01, PRE-01, STD-TLC-014, STD-INT-001, STD-DAT-004, STD-DAT-005, STD-CLD-007, STD-AI-013, STD-RES-015]
 ---
 
-# AP-CATALOG — Enterprise Architecture Principles Catalog
+# AP-CATALOG: Enterprise Architecture Principles Catalog
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -45,11 +45,11 @@ Reviewers test the submission against the principles first and the standards sec
 
 ### 3.3 In decision records
 
-ADRs record compliance with principles in their "Compliance with principles/standards" section. ARB decision minutes cite principles by ID (e.g., "AP-06 not satisfied — TIA outstanding"), which makes decisions traceable and searchable in the repository.
+ADRs record compliance with principles in their "Compliance with principles/standards" section. ARB decision minutes cite principles by ID (e.g., "AP-06 not satisfied, TIA outstanding"), which makes decisions traceable and searchable in the repository.
 
 ## 4. Precedence and Conflict Resolution
 
-Principles occasionally pull in different directions — for instance, AP-11 (managed services) against AP-04 (terminal autonomy), or AP-01 (visibility) against AP-06 (residency). The ARB resolves conflicts in this order:
+Principles occasionally pull in different directions, for instance, AP-11 (managed services) against AP-04 (terminal autonomy), or AP-01 (visibility) against AP-06 (residency). The ARB resolves conflicts in this order:
 
 1. **Law and regulation first.** Where a principle expresses a legal obligation (AP-02, AP-06, and the regulatory parts of AP-12 and AP-13), it prevails. No business benefit justifies non-compliance with NIS2, GDPR, PIPEDA, UAE PDPL, 33 CFR Part 101 Subpart F or customs filing rules.
 2. **Safety and operational continuity second.** AP-04 and AP-13 prevail over efficiency principles (AP-03, AP-10, AP-11) for Tier 0 terminal services.
@@ -81,7 +81,7 @@ Each principle has an ID, a name, a domain (Business, Data, Application, Technol
 | AP-15 | Everything as Code | Technology |
 | AP-16 | Accountable Use of AI | Governance |
 
-## 6. AP-01 — Customer Visibility by Default
+## 6. AP-01: Customer Visibility by Default
 
 ### 6.1 Statement
 Any capability that changes the state of a customer's shipment, container or customs declaration must make that change visible to the customer, subject to authorisation, without the customer having to ask.
@@ -98,7 +98,7 @@ Real-time visibility is Horizon 2028 goal 2 and the most frequent reason custome
 ### 6.4 Related standards
 STD-INT-001, STD-EVT-003, STD-API-002, STD-IAM-008.
 
-## 7. AP-02 — Compliance by Design
+## 7. AP-02: Compliance by Design
 
 ### 7.1 Statement
 Regulatory, contractual and customs obligations are identified during design and implemented as architectural requirements, not retrofitted as controls after go-live.
@@ -116,7 +116,7 @@ Harbourline Europe is an essential entity under NIS2; the US terminals fall unde
 ### 7.4 Related standards
 STD-DAT-004, STD-DAT-005, STD-SEC-009, STD-OBS-010, STD-NET-011.
 
-## 8. AP-03 — Reuse, then Buy, then Build
+## 8. AP-03: Reuse, then Buy, then Build
 
 ### 8.1 Statement
 Before building a capability, teams first reuse an existing enterprise capability, then evaluate a commercial product or SaaS service, and only then build custom software.
@@ -133,7 +133,7 @@ Harbourline runs three transport management systems today because previous progr
 ### 8.4 Related standards
 STD-TLC-014, STD-INT-001.
 
-## 9. AP-04 — Business Continuity at the Quay
+## 9. AP-04: Business Continuity at the Quay
 
 ### 9.1 Statement
 Terminal operations must continue safely for at least 72 hours after a complete loss of WAN connectivity or cloud services.
@@ -151,7 +151,7 @@ A terminal that stops moving containers incurs vessel delay costs within hours a
 ### 9.4 Related standards
 STD-RES-015, STD-NET-011.
 
-## 10. AP-05 — Data Is an Asset with a Named Owner
+## 10. AP-05: Data Is an Asset with a Named Owner
 
 ### 10.1 Statement
 Every data domain and every data product has a named business owner who is accountable for its quality, classification and access decisions.
@@ -168,7 +168,7 @@ Unowned data decays: quality issues go unresolved and access requests stall. Nam
 ### 10.4 Related standards
 STD-DAT-004, STD-EVT-003, STD-CLD-007.
 
-## 11. AP-06 — Data Residency Follows Jurisdiction
+## 11. AP-06: Data Residency Follows Jurisdiction
 
 ### 11.1 Statement
 Personal and regulated data is stored and processed in the jurisdiction required by law or contract, and moves across borders only through an approved transfer mechanism.
@@ -179,13 +179,13 @@ GDPR, PIPEDA, UAE PDPL and customer contracts impose location and transfer const
 ### 11.3 Implications
 - EU personal data resides in Azure West Europe with DR in North Europe; Harbourline Connect serves EU customers from its West Europe stamp (ADR-0041).
 - UAE personal data for Harbourline Gulf resides in UAE North; CR-2026-014 proposes a UAE stamp for Harbourline Connect for this reason.
-- Any cross-border transfer — including to SaaS sub-processors such as SMS providers — requires a Transfer Impact Assessment approved by the DPO before go-live (see EXC-2026-004).
+- Any cross-border transfer (including to SaaS sub-processors such as SMS providers) requires a Transfer Impact Assessment approved by the DPO before go-live (see EXC-2026-004).
 - Pseudonymised data remains personal data; only aggregated or anonymised data may be centralised in the Tidewater East US 2 workspace.
 
 ### 11.4 Related standards
 STD-DAT-005, STD-DAT-004, STD-CLD-007.
 
-## 12. AP-07 — One System of Record per Data Domain
+## 12. AP-07: One System of Record per Data Domain
 
 ### 12.1 Statement
 Each data domain has exactly one authoritative system of record; all other copies are derived, read-only and traceable to it.
@@ -202,7 +202,7 @@ Three TMS platforms each claiming to be authoritative for shipments is the root 
 ### 12.4 Related standards
 STD-DB-006, STD-INT-001.
 
-## 13. AP-08 — Event-First Integration Between Domains
+## 13. AP-08: Event-First Integration Between Domains
 
 ### 13.1 Statement
 Domains integrate asynchronously by publishing and subscribing to business events on the Harbourline Event Backbone; synchronous coupling between domains is the exception.
@@ -220,7 +220,7 @@ Event-first integration decouples release cycles, supports near-real-time visibi
 ### 13.4 Related standards
 STD-INT-001, STD-EVT-003.
 
-## 14. AP-09 — API-First for Synchronous Access
+## 14. AP-09: API-First for Synchronous Access
 
 ### 14.1 Statement
 Where a consumer genuinely needs an immediate answer, capabilities are exposed as managed, versioned APIs published through the Harbourline API Gateway.
@@ -238,7 +238,7 @@ Consistent API contracts reduce integration effort, enable partner self-service 
 ### 14.4 Related standards
 STD-API-002, STD-INT-001, STD-IAM-008.
 
-## 15. AP-10 — Cloud-Smart and Portable
+## 15. AP-10: Cloud-Smart and Portable
 
 ### 15.1 Statement
 Workloads are hosted in Azure by default, in AWS only where approved, and on-premises only where AP-04 or AP-13 requires; designs avoid lock-in that brings no proportionate benefit.
@@ -255,7 +255,7 @@ Exiting the Baltimore data centre by 30 June 2027 (Horizon 2028 goal 3) requires
 ### 15.4 Related standards
 STD-CLD-007, STD-DB-006, STD-CTR-012, STD-TLC-014.
 
-## 16. AP-11 — Managed Services over Self-Managed Infrastructure
+## 16. AP-11: Managed Services over Self-Managed Infrastructure
 
 ### 16.1 Statement
 Teams use provider-managed platform services in preference to operating their own infrastructure, middleware or databases.
@@ -272,7 +272,7 @@ Self-managed platforms consume scarce engineering capacity, increase patch backl
 ### 16.4 Related standards
 STD-CLD-007, STD-CTR-012, STD-DB-006.
 
-## 17. AP-12 — Zero Trust Access
+## 17. AP-12: Zero Trust Access
 
 ### 17.1 Statement
 No user, device or workload is trusted because of its network location; every access is authenticated, authorised with least privilege and continuously evaluated.
@@ -290,7 +290,7 @@ The flat, perimeter-based network of the MPLS era does not suit a cloud-first, m
 ### 17.4 Related standards
 STD-IAM-008, STD-SEC-009, STD-NET-011.
 
-## 18. AP-13 — Separate IT and OT
+## 18. AP-13: Separate IT and OT
 
 ### 18.1 Statement
 Terminal operational technology is segmented from corporate IT and from the internet, and crosses that boundary only through controlled, inspected conduits.
@@ -307,7 +307,7 @@ A compromise of gate or crane systems threatens safety as well as operations. IE
 ### 18.4 Related standards
 STD-NET-011, STD-IAM-008.
 
-## 19. AP-14 — Observable by Default
+## 19. AP-14: Observable by Default
 
 ### 19.1 Statement
 Every service emits traces, metrics and logs in a standard form from its first release, and defines health endpoints and, where tiered, SLOs.
@@ -324,7 +324,7 @@ Diagnosing incidents across HSP microservices, the Event Backbone and partner in
 ### 19.4 Related standards
 STD-OBS-010, STD-RES-015.
 
-## 20. AP-15 — Everything as Code
+## 20. AP-15: Everything as Code
 
 ### 20.1 Statement
 Infrastructure, configuration, policy and deployment pipelines are defined as version-controlled code and applied through automation.
@@ -341,7 +341,7 @@ Manual changes cause drift, are not auditable and slow down regional stamp deplo
 ### 20.4 Related standards
 STD-CLD-007, STD-CTR-012.
 
-## 21. AP-16 — Accountable Use of AI
+## 21. AP-16: Accountable Use of AI
 
 ### 21.1 Statement
 Every AI-assisted decision or output that affects customers, employees, customs or safety has a named human who is accountable for it.

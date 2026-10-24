@@ -1,4 +1,4 @@
-# ADR-P003 — Pluggable LLM and embedding providers; Azure OpenAI recommended for Harbourline
+# ADR-P003: Pluggable LLM and embedding providers; Azure OpenAI recommended for Harbourline
 
 **Status:** Accepted · **Date:** 2026-09-28 · **Decider:** Marshal Takavinga
 

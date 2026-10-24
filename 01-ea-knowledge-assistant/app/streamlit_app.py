@@ -51,7 +51,7 @@ def feedback(qid: str, ok: bool) -> None:
 
 with st.sidebar:
     st.header("Harbourline EA Knowledge Assistant")
-    st.caption("Cited answers from the architecture repository — principles, standards, ADRs, "
+    st.caption("Cited answers from the architecture repository: principles, standards, ADRs, "
                "reference architectures and TOGAF deliverables. **Synthetic data; fictional company.**")
     if not API_URL:
         m = engine().meta
@@ -65,7 +65,7 @@ with st.sidebar:
             st.session_state["pending"] = ex
     st.divider()
     st.caption("This assistant answers only from indexed documents and says so when it can't. "
-               "It does not author standards or decide exceptions — the ARB does.")
+               "It does not author standards or decide exceptions. The ARB does.")
 
 st.session_state.setdefault("history", [])
 q = st.chat_input("Ask about a principle, standard, ADR or reference architecture…")
@@ -87,13 +87,13 @@ for i, a in enumerate(reversed(st.session_state["history"])):
         if a["citations"]:
             with st.expander(f"Sources ({len(a['citations'])})", expanded=False):
                 for c in a["citations"]:
-                    st.markdown(f"**[{c['n']}] {c['doc_id']} {c['section_ref']}** — {c['title']}")
+                    st.markdown(f"**[{c['n']}] {c['doc_id']} {c['section_ref']}** · {c['title']}")
                     st.caption(c["quote"])
         cols = st.columns([1, 1, 8])
-        grounded = "✅ grounded" if a.get("grounded") else ("—" if a.get("grounded") is None else "⚠ check citations")
+        grounded = "✅ grounded" if a.get("grounded") else ("n/a" if a.get("grounded") is None else "⚠ check citations")
         cols[2].caption(f"{a['provider']} · {a['latency_ms']} ms · {grounded}")
         if a.get("query_id"):
             if cols[0].button("👍", key=f"up{i}"):
-                feedback(a["query_id"], True); st.toast("Thanks — logged for the evaluation set")
+                feedback(a["query_id"], True); st.toast("Thanks, logged for the evaluation set")
             if cols[1].button("👎", key=f"down{i}"):
-                feedback(a["query_id"], False); st.toast("Thanks — logged for review")
+                feedback(a["query_id"], False); st.toast("Thanks, logged for review")

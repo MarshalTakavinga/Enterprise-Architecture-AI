@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-03, AP-08, AP-09, AP-11, STD-INT-001, STD-API-002, STD-EVT-003, STD-TLC-014, ADR-0007, ADR-0019, ADR-0038, RA-01, APP-122, APP-120, APP-121]
 ---
 
-# ADR-0015 — Sunset MuleSoft ESB and Freeze New Flows
+# ADR-0015: Sunset MuleSoft ESB and Freeze New Flows
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -53,13 +53,13 @@ Teams continue to request new MuleSoft flows because the platform is familiar an
 
 ## 4. Considered Options
 
-- **Option A — Renew MuleSoft and keep it as a strategic platform** alongside Confluent and APIM.
-- **Option B — Contain now, freeze new flows on 2025-06-30, decommission by 2026-12-31**, migrating to INT-P1/INT-P3.
-- **Option C — Immediate freeze (2024-10-01) with decommission by 2025-12-31.**
+- **Option A: Renew MuleSoft and keep it as a strategic platform** alongside Confluent and APIM.
+- **Option B: Contain now, freeze new flows on 2025-06-30, decommission by 2026-12-31**, migrating to INT-P1/INT-P3.
+- **Option C: Immediate freeze (2024-10-01) with decommission by 2025-12-31.**
 
 ### 4.1 Comparison
 
-| Criterion | A — Renew | B — Freeze 2025-06-30, exit 2026-12-31 | C — Immediate freeze, exit 2025-12-31 |
+| Criterion | A: Renew | B: Freeze 2025-06-30, exit 2026-12-31 | C: Immediate freeze, exit 2025-12-31 |
 |---|---|---|---|
 | Subscription cost FY2027 onward | USD 1.9M/yr | USD 0 | USD 0 |
 | One-off migration cost (est.) | None | USD 3.4M over 27 months | USD 3.9M over 15 months (premium for compressed schedule) |

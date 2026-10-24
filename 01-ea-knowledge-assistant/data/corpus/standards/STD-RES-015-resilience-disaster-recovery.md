@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-04, AP-06, AP-10, AP-11, AP-14, STD-CLD-007, STD-DAT-005, STD-SEC-009, STD-OBS-010, STD-CTR-012, STD-NET-011, ADR-0027, RA-02, RA-03, GOV-01, GOV-02]
 ---
 
-# STD-RES-015 — Resilience & Disaster Recovery Standard
+# STD-RES-015: Resilience & Disaster Recovery Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -56,7 +56,7 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted a
 2. The business owner proposes the tier from a business impact assessment; the Principal Cloud Architect confirms it. Customer-facing or regulatory-filing services MUST NOT be below Tier 1 without ARB approval.
 3. A service MUST NOT have a synchronous runtime dependency on a service of a lower tier. Where such a dependency exists, the dependency MUST be raised to the higher tier or decoupled asynchronously via the Event Backbone.
 
-## 5. Tier 0 — Terminal Edge
+## 5. Tier 0: Terminal Edge
 
 1. Tier 0 systems MUST run at the terminal on a local cluster of at least two nodes with automatic failover (ADR-0027, RA-03).
 2. Tier 0 systems MUST operate with full functionality for at least 72 hours with WAN and all cloud services unavailable. Authentication, time synchronisation, name resolution and licensing MUST all be locally available.
@@ -65,7 +65,7 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted a
 5. Edge sites MUST have UPS capacity for orderly operation for at least 30 minutes and generator backup for 72 hours.
 6. Each terminal MUST maintain an off-site encrypted backup of Tier 0 configuration and data, restorable to replacement hardware within 24 hours from spare stock held on site.
 
-## 6. Tier 1 — Cloud Critical
+## 6. Tier 1: Cloud Critical
 
 1. Tier 1 services MUST be deployed across three availability zones in the primary region, with no single-zone component.
 2. Tier 1 services MUST have a DR capability in the paired region, using only approved region pairs that keep data within its jurisdiction (STD-DAT-005):

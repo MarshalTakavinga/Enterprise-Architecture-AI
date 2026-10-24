@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-08, AP-05, AP-14, STD-INT-001, STD-DAT-004, STD-SEC-009, STD-OBS-010, ADR-0007, ADR-0021, ADR-0030, ADR-0038, RA-01, GOV-01, GOV-02]
 ---
 
-# STD-EVT-003 — Event Streaming Standard
+# STD-EVT-003: Event Streaming Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

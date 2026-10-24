@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-10, AP-11, AP-15, STD-DB-006, STD-SEC-009, STD-RES-015, STD-TLC-014, ADR-0012, ADR-0038, RA-02, APP-020, APP-022]
 ---
 
-# ADR-0024 — PostgreSQL Flexible Server as Default Relational Database
+# ADR-0024: PostgreSQL Flexible Server as Default Relational Database
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -44,15 +44,15 @@ The Harbourline Shipment Platform (APP-022), now funded under Horizon 2028, will
 
 ## 4. Considered Options
 
-- **Option A — Azure Database for PostgreSQL Flexible Server.**
-- **Option B — Azure SQL Database** (vCore, General Purpose / Business Critical).
-- **Option C — Oracle Database** (Oracle Database@Azure or Oracle on Azure VMs with existing licences).
+- **Option A: Azure Database for PostgreSQL Flexible Server.**
+- **Option B: Azure SQL Database** (vCore, General Purpose / Business Critical).
+- **Option C: Oracle Database** (Oracle Database@Azure or Oracle on Azure VMs with existing licences).
 
 ### 4.1 Comparison
 
 Cost figures are for a reference fleet of 30 databases, average 4 vCores, zone-redundant HA, over 3 years.
 
-| Criterion | A — PostgreSQL Flexible Server | B — Azure SQL Database | C — Oracle |
+| Criterion | A: PostgreSQL Flexible Server | B: Azure SQL Database | C: Oracle |
 |---|---|---|---|
 | 3-year cost (est.) | USD 1.9M | USD 3.0M (General Purpose, zone-redundant) | USD 5.8M incl. licences and support |
 | Managed HA / PITR | Zone-redundant HA, 35-day PITR | Built-in, strong | Depends on deployment model; VMs self-managed |
@@ -64,7 +64,7 @@ Cost figures are for a reference fleet of 30 databases, average 4 vCores, zone-r
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Azure Database for PostgreSQL Flexible Server is the default relational database** for new applications and for re-platformed in-house applications.
+**Chosen option A: Azure Database for PostgreSQL Flexible Server is the default relational database** for new applications and for re-platformed in-house applications.
 
 - **Azure SQL Database** remains Adopt for vendor packages that require SQL Server; it is not the default for in-house builds.
 - **Oracle Database** moves to **Contain**: no new Oracle databases; existing ones may continue until their application is retired. Oracle 12c is set to Retire (2027-03-31) on the radar.

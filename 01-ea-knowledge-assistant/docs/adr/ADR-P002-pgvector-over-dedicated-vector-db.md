@@ -1,9 +1,9 @@
-# ADR-P002 — PostgreSQL + pgvector as the vector store
+# ADR-P002: PostgreSQL + pgvector as the vector store
 
 **Status:** Accepted · **Date:** 2026-09-28 · **Decider:** Marshal Takavinga
 
 ## Context
-The index holds about 550 chunks today. A large real enterprise repository might reach 50–100k
+The index holds about 550 chunks today. A large real enterprise repository might reach 50-100k
 chunks. The service also needs to store document metadata and, in the future, the audit log.
 
 ## Options

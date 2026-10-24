@@ -1,6 +1,6 @@
 ---
 doc_id: PRE-02
-title: Request for Architecture Work — Shipment Platform Consolidation
+title: Request for Architecture Work, Shipment Platform Consolidation
 doc_type: togaf_deliverable
 togaf_phase: Preliminary
 version: "1.0"
@@ -13,7 +13,7 @@ classification: Internal
 related: [PRE-01, GOV-01, A-01, A-02, AP-03, AP-07, AP-08, ADR-0007, ADR-0015]
 ---
 
-# PRE-02 — Request for Architecture Work — Shipment Platform Consolidation
+# PRE-02: Request for Architecture Work, Shipment Platform Consolidation
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -26,7 +26,7 @@ related: [PRE-01, GOV-01, A-01, A-02, AP-03, AP-07, AP-08, ADR-0007, ADR-0015]
 | Requesting organisation | Group IT, on behalf of Ocean & Air Forwarding, Customs Brokerage and Harbourline Digital |
 | Architecture lead requested | David Okafor, Chief Architect |
 | Programme | Horizon 2028 (subject to Board approval, November 2024) |
-| Review route | Tier 1 — new system, Restricted data, cross-border data, cost > USD 500k (GOV-01 §6) |
+| Review route | Tier 1: new system, Restricted data, cross-border data, cost > USD 500k (GOV-01 §6) |
 
 ## 2. Sponsor and Organisation
 
@@ -36,13 +36,13 @@ The sponsor is the CIO, who will be accountable to the Board for Horizon 2028. T
 
 Harbourline currently manages shipments in three transport management systems:
 
-- **FreightMaster TMS (APP-020)** — in-house, built 2009, running on Oracle 12c and Java 8 in the Baltimore data centre; used by Harbourline Inc., Harbourline Canada and Harbourline Gulf.
-- **Nordhaven TMS (APP-021)** — acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.
-- **FreightMaster Rotterdam instance** — a 2019 fork of APP-020 with its own Oracle 12c schema in the Rotterdam server room, used by Harbourline Europe B.V.
+- **FreightMaster TMS (APP-020)**: in-house, built 2009, running on Oracle 12c and Java 8 in the Baltimore data centre; used by Harbourline Inc., Harbourline Canada and Harbourline Gulf.
+- **Nordhaven TMS (APP-021)**: acquired with Nordhaven; Java 11 with MongoDB Atlas on AWS eu-central-1; used for German and Central European lanes.
+- **FreightMaster Rotterdam instance**: a 2019 fork of APP-020 with its own Oracle 12c schema in the Rotterdam server room, used by Harbourline Europe B.V.
 
 Shipment status reaches customers through overnight batch extracts and polling by the portal, typically 2 to 6 hours late. Billing disputes arise from mismatched records across systems.
 
-The sponsor requests architecture work to define a single target shipment platform — provisionally named the Harbourline Shipment Platform (HSP) — together with the transition path that retires the existing systems and enables real-time visibility.
+The sponsor requests architecture work to define a single target shipment platform (provisionally named the Harbourline Shipment Platform (HSP)) together with the transition path that retires the existing systems and enables real-time visibility.
 
 ## 4. Objectives
 

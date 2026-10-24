@@ -1,6 +1,6 @@
-# Evaluation results — `claude`
+# Evaluation results: `claude`
 
-Run 2026-10-24 01:48 UTC · index `0da24c934d96e8fc` · 48 documents / 552 chunks · embedder `lsa` · answers `anthropic`
+Run 2026-10-24 01:48 UTC Â· index `0da24c934d96e8fc` Â· 48 documents / 552 chunks Â· embedder `lsa` Â· answers `anthropic`
 Test split: 29 answerable + 7 out-of-corpus questions (dev split of 14 used only to tune the not-found threshold = 0.51; lexical:dense fusion weight = 0.5:1).
 
 ## Retrieval (test split, answerable questions)

@@ -1,4 +1,4 @@
-# Harbourline Logistics Group — Architecture Repository World Bible
+# Harbourline Logistics Group: Architecture Repository World Bible
 
 > Internal authoring reference used to keep every synthetic corpus document consistent.
 > **Harbourline Logistics Group is fictional.** Real vendor products are named only because real
@@ -11,9 +11,9 @@
 - **Name:** Harbourline Logistics Group ("Harbourline", "HLG"). HQ: Baltimore, Maryland, USA.
 - **Business:** global freight forwarding, port & terminal operations, contract logistics, customs brokerage.
 - **Size:** ~9,400 employees, ~USD 4.2B revenue, ~60 sites (offices, warehouses, terminals) in 11 countries.
-- **Regions & legal entities:** North America (Harbourline Inc. — US; Harbourline Canada Ltd. — Halifax),
-  Europe (Harbourline Europe B.V. — Rotterdam; Nordhaven Freight GmbH — Hamburg, acquired **March 2024**),
-  Middle East (Harbourline Gulf FZE — Jebel Ali, Dubai).
+- **Regions & legal entities:** North America (Harbourline Inc.: US; Harbourline Canada Ltd.: Halifax),
+  Europe (Harbourline Europe B.V.: Rotterdam; Nordhaven Freight GmbH: Hamburg, acquired **March 2024**),
+  Middle East (Harbourline Gulf FZE: Jebel Ali, Dubai).
 - **Container terminals operated (4):** Baltimore (Seagirt-adjacent, "BAL-T1"), Halifax ("HFX-T1"),
   Rotterdam Maasvlakte ("RTM-T2"), Jebel Ali ("JEA-T4").
 - **Business units:** Ocean & Air Forwarding; Port & Terminal Services; Contract Logistics & Warehousing;
@@ -30,7 +30,7 @@
 
 | Name | Role |
 |---|---|
-| Elena Marsh | Chief Information Officer (CIO) — executive sponsor of Horizon 2028 |
+| Elena Marsh | Chief Information Officer (CIO): executive sponsor of Horizon 2028 |
 | David Okafor | Chief Architect; **Chair of the Architecture Review Board (ARB)** |
 | Amara Osei | Lead Integration Architect (owns integration, API, event standards) |
 | Priya Raman | Principal Security Architect (ARB member) |
@@ -50,9 +50,9 @@
 
 - **Architecture Review Board (ARB):** meets **every Thursday**; chaired by David Okafor; quorum = Chair + 3 voting members,
   one of whom must be the security architect or delegate. Voting members: Chief Architect, Lead Integration, Security, Data, Cloud, Network/OT architects.
-- **Review tiers:** Tier 1 (full ARB review) — new systems, any Restricted data, cross-border data transfer, new technology not on the radar,
-  or cost > USD 500k. Tier 2 (delegated review by two domain architects, reported to ARB) — changes to existing systems with no standards deviation.
-  Tier 3 (self-certification checklist) — minor changes.
+- **Review tiers:** Tier 1 (full ARB review): new systems, any Restricted data, cross-border data transfer, new technology not on the radar,
+  or cost > USD 500k. Tier 2 (delegated review by two domain architects, reported to ARB): changes to existing systems with no standards deviation.
+  Tier 3 (self-certification checklist): minor changes.
 - **Decisions:** Approved, Approved with Conditions, Changes Requested, Rejected. Decisions recorded in the ARB log with ID format `ARB-YYYY-NNN`.
 - **Exceptions / dispensations:** ID format `EXC-YYYY-NNN`; max duration 12 months, renewable once; must have a remediation plan; recorded in the Exceptions Register.
 - **Change requests:** `CR-YYYY-NNN`.
@@ -82,7 +82,7 @@
 
 Each principle: Name, Statement, Rationale, Implications (TOGAF style), plus "Related standards".
 
-## 5. Standards (15) — owners, versions, key rules
+## 5. Standards (15): owners, versions, key rules
 
 | ID | Title | Owner | Version / effective |
 |---|---|---|---|
@@ -105,11 +105,11 @@ Each principle: Name, Statement, Rationale, Implications (TOGAF style), plus "Re
 Key facts that MUST be consistent:
 
 **STD-INT-001 Integration Patterns.** Approved patterns:
-- **INT-P1 Domain Event Publication** — a domain publishes business events (facts) to the Event Backbone; mandatory for cross-domain asynchronous integration. Transactional outbox required when the event must be consistent with a DB write.
-- **INT-P2 Event-Carried State Transfer** — events carry the full state needed by consumers so consumers maintain a local read model; used for high-read consumers such as the customer portal.
-- **INT-P3 Synchronous Request/Response via API Gateway** — for queries/commands needing an immediate answer; all through Azure API Management.
-- **INT-P4 Managed File Transfer / EDI** — for external partners (carriers, customs brokers) using EDIFACT/X12 via the B2B gateway (IBM Sterling B2B Integrator, status Contain → target partner APIs).
-- **INT-P5 Batch Data Ingestion** — into Tidewater data platform only; not for operational integration.
+- **INT-P1 Domain Event Publication**: a domain publishes business events (facts) to the Event Backbone; mandatory for cross-domain asynchronous integration. Transactional outbox required when the event must be consistent with a DB write.
+- **INT-P2 Event-Carried State Transfer**: events carry the full state needed by consumers so consumers maintain a local read model; used for high-read consumers such as the customer portal.
+- **INT-P3 Synchronous Request/Response via API Gateway**: for queries/commands needing an immediate answer; all through Azure API Management.
+- **INT-P4 Managed File Transfer / EDI**: for external partners (carriers, customs brokers) using EDIFACT/X12 via the B2B gateway (IBM Sterling B2B Integrator, status Contain → target partner APIs).
+- **INT-P5 Batch Data Ingestion**: into Tidewater data platform only; not for operational integration.
 - **Prohibited:** new point-to-point database links across domains; shared databases across domains; new MuleSoft flows after **2025-06-30**; synchronous call chains deeper than 3 hops.
 
 **STD-API-002.** REST + OpenAPI 3.1 contracts; URI major versioning `/v1/`; deprecation notice ≥ 6 months; all APIs published through Azure API Management ("Harbourline API Gateway"); OAuth 2.0 client credentials / auth code + PKCE via Entra ID; rate limits default 1,000 req/min per client; GraphQL = Trial (portal BFF only); SOAP = Contain.
@@ -136,9 +136,9 @@ Key facts that MUST be consistent:
 
 **STD-AI-013.** Approved LLM platform: **Azure OpenAI Service** deployed in approved regions (data stays in-region); AWS Bedrock = Trial for Nordhaven only. Public consumer AI tools must not receive Internal/Confidential/Restricted data. Every AI use case registered in the AI Use Case Register (ID `AIU-NNN`) with a risk tier; high-impact decisions (customs, safety, HR) require human review before action; RAG answers must cite sources; prompts/responses logged 90 days; EU AI Act assessment for EU-facing use cases.
 
-**STD-TLC-014 radar (selected entries):** Adopt: PostgreSQL Flexible Server, AKS, Confluent Cloud, Azure API Management, Terraform, OpenTelemetry, .NET 8, Java 21, Python 3.11+, React 18. Trial: GraphQL (BFF), pgvector, AWS Bedrock (Nordhaven), Microsoft Fabric. Contain: Oracle Database, MuleSoft Anypoint (sunset **2026-12-31**), IBM Sterling B2B, SOAP, .NET Framework 4.8, Java 11. Retire: Oracle 12c (2027-03-31), Windows Server 2012 R2 (overdue — under EXC-2026-002), Java 8 (2026-06-30), MPLS circuits (done 2025), CentOS 7 (2025-12-31).
+**STD-TLC-014 radar (selected entries):** Adopt: PostgreSQL Flexible Server, AKS, Confluent Cloud, Azure API Management, Terraform, OpenTelemetry, .NET 8, Java 21, Python 3.11+, React 18. Trial: GraphQL (BFF), pgvector, AWS Bedrock (Nordhaven), Microsoft Fabric. Contain: Oracle Database, MuleSoft Anypoint (sunset **2026-12-31**), IBM Sterling B2B, SOAP, .NET Framework 4.8, Java 11. Retire: Oracle 12c (2027-03-31), Windows Server 2012 R2 (overdue: under EXC-2026-002), Java 8 (2026-06-30), MPLS circuits (done 2025), CentOS 7 (2025-12-31).
 
-**STD-RES-015.** Service tiers: **Tier 0** (terminal operations — Navis N4, gate, crane control interfaces): RTO 15 min, RPO 0-5 min, must operate at the edge with 72-hour autonomy (AP-04). **Tier 1** (HSP, customs filing, customer portal): RTO 1 h, RPO 15 min, multi-zone + paired-region DR. **Tier 2** (CRM, WMS, finance): RTO 8 h, RPO 1 h. **Tier 3** (internal tools): RTO 72 h, RPO 24 h. DR tests annually for Tier 1, semi-annually for Tier 0.
+**STD-RES-015.** Service tiers: **Tier 0** (terminal operations: Navis N4, gate, crane control interfaces): RTO 15 min, RPO 0-5 min, must operate at the edge with 72-hour autonomy (AP-04). **Tier 1** (HSP, customs filing, customer portal): RTO 1 h, RPO 15 min, multi-zone + paired-region DR. **Tier 2** (CRM, WMS, finance): RTO 8 h, RPO 1 h. **Tier 3** (internal tools): RTO 72 h, RPO 24 h. DR tests annually for Tier 1, semi-annually for Tier 0.
 
 ## 6. Application landscape (IDs used in docs)
 
@@ -163,9 +163,9 @@ Key facts that MUST be consistent:
 | APP-121 | Harbourline API Gateway | Azure API Management (Premium, multi-region) |
 | APP-122 | MuleSoft Anypoint ESB | Legacy; Contain; sunset 2026-12-31; ~140 flows remaining (from 310 in 2024) |
 | APP-123 | IBM Sterling B2B Integrator | EDI with carriers/customs brokers; Contain |
-| APP-130 | DocIntel — Bill of Lading Extraction | Azure AI Document Intelligence + Azure OpenAI; AIU-004; human validation |
+| APP-130 | DocIntel: Bill of Lading Extraction | Azure AI Document Intelligence + Azure OpenAI; AIU-004; human validation |
 
-## 7. ADRs (12) — IDs, titles, decisions
+## 7. ADRs (12): IDs, titles, decisions
 
 | ID | Title | Status / date | Decision in one line |
 |---|---|---|---|
@@ -186,28 +186,28 @@ ADR format: Title, Status, Date, Deciders, Context, Decision Drivers, Considered
 
 ## 8. Reference architectures (4)
 
-- **RA-01 Event-Driven Domain Integration** — Owner Amara Osei. Building blocks: domain service → outbox → CDC → Event Backbone → consumers (read models), schema registry, DLQ, API Gateway for queries. Worked example: shipment milestones to portal & CNS.
-- **RA-02 Cloud-Native Application on the Azure Landing Zone** — Owner Kenji Watanabe. Front Door + WAF → AKS (private) → PostgreSQL Flex (private endpoint), Key Vault, managed identity, OTel, zone-redundant; regional stamp model.
-- **RA-03 Terminal Edge & OT Connectivity** — Owner Tomasz Nowak. Purdue levels, IEC 62443 zones, edge cluster for Navis N4, IT/OT DMZ, one-way data replication to cloud via DMZ broker, OT jump host, FortiGate pairs, dual ISP + 5G.
-- **RA-04 Tidewater Enterprise Data Platform** — Owner Lena Vogel. Medallion (bronze/silver/gold) in Databricks + Unity Catalog; ingestion via Kafka connectors & batch; EU personal data in West Europe workspace; data products per domain with named owners.
+- **RA-01 Event-Driven Domain Integration**: Owner Amara Osei. Building blocks: domain service → outbox → CDC → Event Backbone → consumers (read models), schema registry, DLQ, API Gateway for queries. Worked example: shipment milestones to portal & CNS.
+- **RA-02 Cloud-Native Application on the Azure Landing Zone**: Owner Kenji Watanabe. Front Door + WAF → AKS (private) → PostgreSQL Flex (private endpoint), Key Vault, managed identity, OTel, zone-redundant; regional stamp model.
+- **RA-03 Terminal Edge & OT Connectivity**: Owner Tomasz Nowak. Purdue levels, IEC 62443 zones, edge cluster for Navis N4, IT/OT DMZ, one-way data replication to cloud via DMZ broker, OT jump host, FortiGate pairs, dual ISP + 5G.
+- **RA-04 Tidewater Enterprise Data Platform**: Owner Lena Vogel. Medallion (bronze/silver/gold) in Databricks + Unity Catalog; ingestion via Kafka connectors & batch; EU personal data in West Europe workspace; data products per domain with named owners.
 
-## 9. TOGAF-style deliverables (original content, TOGAF structure) — all about Horizon 2028 / HSP unless stated
+## 9. TOGAF-style deliverables (original content, TOGAF structure): all about Horizon 2028 / HSP unless stated
 
-- **GOV-01 Architecture Governance Framework & ARB Charter** (Preliminary) — tailored ADM, org model for EA, ARB tiers, exception process, repository structure.
+- **GOV-01 Architecture Governance Framework & ARB Charter** (Preliminary): tailored ADM, org model for EA, ARB tiers, exception process, repository structure.
 - **PRE-01 Business Principles, Goals and Drivers** (Preliminary).
-- **PRE-02 Request for Architecture Work — Shipment Platform Consolidation** (Preliminary → A), sponsor Elena Marsh, dated 2024-10-07.
-- **A-01 Architecture Vision — Horizon 2028 Shipment Platform** (Phase A), incl. value propositions, KPIs, baseline/target summary, risks.
-- **A-02 Statement of Architecture Work — Shipment Platform Consolidation** (Phase A), scope, roles, plan, acceptance criteria, signed 2024-12-02.
+- **PRE-02 Request for Architecture Work: Shipment Platform Consolidation** (Preliminary → A), sponsor Elena Marsh, dated 2024-10-07.
+- **A-01 Architecture Vision: Horizon 2028 Shipment Platform** (Phase A), incl. value propositions, KPIs, baseline/target summary, risks.
+- **A-02 Statement of Architecture Work: Shipment Platform Consolidation** (Phase A), scope, roles, plan, acceptance criteria, signed 2024-12-02.
 - **A-03 Stakeholder Map & Communications Plan** (Phase A).
-- **A-04 Business Capability Assessment** (Phase A/B) — capability map with maturity 1-5 (e.g., Shipment Booking 2→4, Shipment Visibility 2→5, Customs Declaration 3→4, Terminal Operations 4→4, Carrier Management 2→4, Billing & Invoicing 3→4).
-- **ADD-01 Architecture Definition Document — Shipment Platform** (Phases B-D): baseline (3 TMS, MuleSoft, Oracle), target (HSP), gap analysis table, building blocks.
-- **ARS-01 Architecture Requirements Specification — Shipment Platform** (requirements, IDs `REQ-HSP-NNN`, incl. NFRs e.g., REQ-HSP-014 milestone latency < 5 min p95; REQ-HSP-021 EU personal data in West Europe).
-- **F-01 Architecture Roadmap & Migration Plan — Horizon 2028**: Transition Architecture 1 (Nov 2025, US lanes live on HSP), TA2 (Q2 2027, Nordhaven migrated, EU lanes), TA3/target (Q4 2027, FreightMaster retired, Baltimore DC exit June 2027). Work packages WP-01..WP-10.
-- **G-01 Architecture Contract — HSP Delivery Programme** between EA Office and HSP delivery (vendor partner: "Kestrel Digital Partners", fictional SI).
-- **G-02 Compliance Assessment — Customer Notification Service (APP-055)**, ARB-2026-031, dated 2026-08-20: findings — (1) proposes direct REST polling of HSP every 30s instead of subscribing to events → non-compliant with STD-INT-001 INT-P1/AP-08; (2) uses Twilio SMS with EU phone numbers processed in US → needs TIA under STD-DAT-005 (needs human review); (3) plans to use MuleSoft for email templating → non-compliant (ADR-0015); (4) observability compliant. Decision: **Changes Requested**.
-- **H-01 Change Request CR-2026-014 — Add UAE deployment stamp for Harbourline Connect** (driver: UAE PDPL + Jebel Ali customers), raised 2026-06-11 by Omar Haddad.
-- **H-02 Requirements Impact Assessment — CR-2026-014**.
-- **GOV-02 Architecture Exceptions Register** — active: EXC-2025-003 (Nordhaven TMS on AWS eu-central-1, expires 2026-12-31, renewed once), EXC-2026-001 (FreightMaster Oracle 12c extended support to 2027-03-31), EXC-2026-002 (Windows Server 2012 R2 on 14 terminal gate servers, ESU, expires 2026-11-30, remediation by Tomasz Nowak), EXC-2026-004 (CNS may use Twilio US region pending TIA — **status: Requested, not approved**). Closed: EXC-2024-007 (MPLS at Halifax until SD-WAN cutover — closed 2025-03).
+- **A-04 Business Capability Assessment** (Phase A/B): capability map with maturity 1-5 (e.g., Shipment Booking 2→4, Shipment Visibility 2→5, Customs Declaration 3→4, Terminal Operations 4→4, Carrier Management 2→4, Billing & Invoicing 3→4).
+- **ADD-01 Architecture Definition Document: Shipment Platform** (Phases B-D): baseline (3 TMS, MuleSoft, Oracle), target (HSP), gap analysis table, building blocks.
+- **ARS-01 Architecture Requirements Specification: Shipment Platform** (requirements, IDs `REQ-HSP-NNN`, incl. NFRs e.g., REQ-HSP-014 milestone latency < 5 min p95; REQ-HSP-021 EU personal data in West Europe).
+- **F-01 Architecture Roadmap & Migration Plan: Horizon 2028**: Transition Architecture 1 (Nov 2025, US lanes live on HSP), TA2 (Q2 2027, Nordhaven migrated, EU lanes), TA3/target (Q4 2027, FreightMaster retired, Baltimore DC exit June 2027). Work packages WP-01..WP-10.
+- **G-01 Architecture Contract: HSP Delivery Programme** between EA Office and HSP delivery (vendor partner: "Kestrel Digital Partners", fictional SI).
+- **G-02 Compliance Assessment: Customer Notification Service (APP-055)**, ARB-2026-031, dated 2026-08-20: findings: (1) proposes direct REST polling of HSP every 30s instead of subscribing to events → non-compliant with STD-INT-001 INT-P1/AP-08; (2) uses Twilio SMS with EU phone numbers processed in US → needs TIA under STD-DAT-005 (needs human review); (3) plans to use MuleSoft for email templating → non-compliant (ADR-0015); (4) observability compliant. Decision: **Changes Requested**.
+- **H-01 Change Request CR-2026-014: Add UAE deployment stamp for Harbourline Connect** (driver: UAE PDPL + Jebel Ali customers), raised 2026-06-11 by Omar Haddad.
+- **H-02 Requirements Impact Assessment: CR-2026-014**.
+- **GOV-02 Architecture Exceptions Register**: active: EXC-2025-003 (Nordhaven TMS on AWS eu-central-1, expires 2026-12-31, renewed once), EXC-2026-001 (FreightMaster Oracle 12c extended support to 2027-03-31), EXC-2026-002 (Windows Server 2012 R2 on 14 terminal gate servers, ESU, expires 2026-11-30, remediation by Tomasz Nowak), EXC-2026-004 (CNS may use Twilio US region pending TIA, **status: Requested, not approved**). Closed: EXC-2024-007 (MPLS at Halifax until SD-WAN cutover, closed 2025-03).
 - **GOV-03 Glossary** of EA and Harbourline terms.
 
 ## 10. Writing rules for all corpus docs
@@ -229,8 +229,8 @@ classification: Internal
 related: [AP-08, AP-09, STD-EVT-003, ADR-0007, ADR-0038, RA-01]
 ---
 ```
-2. Immediately after front matter: `# <doc_id> — <title>` then a one-line blockquote: `> Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.`
-3. Use **numbered headings** (`## 1. Purpose`, `## 4. Approved Patterns`, `### 4.1 INT-P1 — Domain Event Publication`) so clauses can be cited as `STD-INT-001 §4.1`.
+2. Immediately after front matter: `# <doc_id>: <title>` then a one-line blockquote: `> Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.`
+3. Use **numbered headings** (`## 1. Purpose`, `## 4. Approved Patterns`, `### 4.1 INT-P1: Domain Event Publication`) so clauses can be cited as `STD-INT-001 §4.1`.
 4. Write like a real enterprise document: specific, normative ("MUST", "MUST NOT", "SHOULD" per RFC 2119 in standards), concrete numbers, named owners, dates. No filler, no marketing tone. Use tables where a real doc would.
 5. Cross-reference other docs by ID only as listed in this bible. Do not invent new standards/ADR IDs beyond this bible (you may reference ARB decision IDs `ARB-YYYY-NNN`, requirement IDs `REQ-HSP-NNN`, work packages `WP-NN`, AI use case IDs `AIU-NNN`).
 6. Length: standards 900-1,600 words; ADRs 600-1,000; principles catalog ~3,000; TOGAF deliverables 1,000-2,000; RAs 900-1,400.

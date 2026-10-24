@@ -12,7 +12,7 @@ classification: Confidential
 related: [AP-04, AP-10, AP-13, STD-NET-011, STD-RES-015, STD-CLD-007, ADR-0036, RA-03, APP-030, APP-031]
 ---
 
-# ADR-0027 — Edge-Hosted Terminal Operating System with Local Failover
+# ADR-0027: Edge-Hosted Terminal Operating System with Local Failover
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -50,13 +50,13 @@ Constraints:
 
 ## 4. Considered Options
 
-- **Option A — Cloud-hosted N4 in Azure** per region, with terminals connected over SD-WAN.
-- **Option B — Edge-hosted N4 on a 2-node cluster at each terminal**, with asynchronous replication to Azure for DR copy and analytics.
-- **Option C — Status quo** (single server per terminal, nightly backup).
+- **Option A: Cloud-hosted N4 in Azure** per region, with terminals connected over SD-WAN.
+- **Option B: Edge-hosted N4 on a 2-node cluster at each terminal**, with asynchronous replication to Azure for DR copy and analytics.
+- **Option C: Status quo** (single server per terminal, nightly backup).
 
 ### 4.1 Comparison
 
-| Criterion | A — Cloud-hosted | B — Edge 2-node cluster | C — Status quo |
+| Criterion | A: Cloud-hosted | B: Edge 2-node cluster | C: Status quo |
 |---|---|---|---|
 | Survives 72-hour WAN/cloud loss | No | Yes | Yes, but no hardware resilience |
 | Latency to equipment | 12-38 ms typical, unbounded spikes | < 2 ms (local) | < 2 ms |
@@ -68,7 +68,7 @@ Constraints:
 
 ## 5. Decision Outcome
 
-**Chosen option: B — Navis N4 remains on-premises at each terminal on a 2-node edge cluster.** Cloud is used only for replication, DR copies and analytics.
+**Chosen option B: Navis N4 remains on-premises at each terminal on a 2-node edge cluster.** Cloud is used only for replication, DR copies and analytics.
 
 Design elements (detailed in RA-03):
 

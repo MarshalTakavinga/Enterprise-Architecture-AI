@@ -1,4 +1,4 @@
-# ADR-P005 — Write an original corpus instead of filling The Open Group's TOGAF templates
+# ADR-P005: Write an original corpus instead of filling The Open Group's TOGAF templates
 
 **Status:** Accepted · **Date:** 2026-09-28 · **Decider:** Marshal Takavinga
 
@@ -26,6 +26,6 @@ No Open Group text is used. The template files remain local only and are exclude
 - ✅ The portfolio is safe to publish, and the content shows the author's own architecture judgement
   rather than a template.
 - ✅ One consistent fictional enterprise, recorded in `data/WORLD_BIBLE.md`, can be reused by
-  Projects 2–10.
+  Projects 2-10.
 - ⚠ The documents are not formally "TOGAF template deliverables". They are described as following the
   ADM deliverable structure.

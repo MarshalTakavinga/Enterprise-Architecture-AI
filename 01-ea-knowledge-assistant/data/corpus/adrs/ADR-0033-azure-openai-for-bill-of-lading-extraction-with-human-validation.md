@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-02, AP-03, AP-06, AP-16, STD-AI-013, STD-DAT-004, STD-DAT-005, STD-OBS-010, STD-SEC-009, APP-130, APP-060, APP-022]
 ---
 
-# ADR-0033 — Azure OpenAI for Bill of Lading Extraction with Human Validation
+# ADR-0033: Azure OpenAI for Bill of Lading Extraction with Human Validation
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -45,15 +45,15 @@ A template-based OCR trial in 2023 was abandoned (<70% accuracy on unseen layout
 
 ## 4. Considered Options
 
-- **Option A — Azure AI Document Intelligence (layout + prebuilt models) with Azure OpenAI (GPT-4o class) for field normalisation**, deployed in-region, with mandatory human validation of customs-relevant fields.
-- **Option B — Specialist SaaS document-capture vendor** with its own hosted models (US-hosted processing).
-- **Option C — Custom-trained extraction models only** (Document Intelligence custom models per layout family), no LLM.
+- **Option A: Azure AI Document Intelligence (layout + prebuilt models) with Azure OpenAI (GPT-4o class) for field normalisation**, deployed in-region, with mandatory human validation of customs-relevant fields.
+- **Option B: Specialist SaaS document-capture vendor** with its own hosted models (US-hosted processing).
+- **Option C: Custom-trained extraction models only** (Document Intelligence custom models per layout family), no LLM.
 
 ### 4.1 Comparison
 
 Accuracy figures come from a 1,200-document blind test set (Aug-Sep 2025).
 
-| Criterion | A — DocIntel + Azure OpenAI | B — SaaS vendor | C — Custom models only |
+| Criterion | A: DocIntel + Azure OpenAI | B: SaaS vendor | C: Custom models only |
 |---|---|---|---|
 | Customs-critical field accuracy | 96.8% | 95.1% | 91.4% (drops on unseen layouts) |
 | Data residency | In-region (East US 2, West Europe, UAE North) | US processing; TIA and SCCs needed | In-region |
@@ -64,7 +64,7 @@ Accuracy figures come from a 1,200-document blind test set (Aug-Sep 2025).
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Azure AI Document Intelligence plus in-region Azure OpenAI, delivered as DocIntel (APP-130), with human validation.**
+**Chosen option A: Azure AI Document Intelligence plus in-region Azure OpenAI, delivered as DocIntel (APP-130), with human validation.**
 
 Conditions from ARB-2025-041:
 
@@ -117,7 +117,7 @@ Conditions from ARB-2025-041:
 
 ## 8. Links
 
-- APP-130 DocIntel — Bill of Lading Extraction (AIU-004)
+- APP-130 DocIntel: Bill of Lading Extraction (AIU-004)
 - STD-AI-013 AI & Generative AI Usage Standard
 - APP-060 Customs Filing Gateway
 - ARB log entry ARB-2025-041

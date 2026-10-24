@@ -1,4 +1,4 @@
-# ADR-P001 — Retrieval-augmented generation, not fine-tuning
+# ADR-P001: Retrieval-augmented generation, not fine-tuning
 
 **Status:** Accepted · **Date:** 2026-09-28 · **Decider:** Marshal Takavinga
 

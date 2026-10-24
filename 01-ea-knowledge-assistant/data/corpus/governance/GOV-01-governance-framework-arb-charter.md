@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-CATALOG, PRE-01, GOV-02, GOV-03, STD-TLC-014, G-01, G-02, H-01]
 ---
 
-# GOV-01 — Architecture Governance Framework & ARB Charter
+# GOV-01: Architecture Governance Framework & ARB Charter
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -32,11 +32,11 @@ Harbourline uses the TOGAF ADM as its reference process, tailored as follows.
 | ADM phase | Harbourline tailoring | Key deliverables |
 |---|---|---|
 | Preliminary | Performed once per strategy cycle; refreshed when principles change | GOV-01, AP-CATALOG, PRE-01 |
-| A — Vision | Triggered by an approved Request for Architecture Work; must complete within 8 weeks | PRE-02, A-01, A-02, A-03 |
-| B-D — Business, Data/Application, Technology | Run as one combined phase with a single ADD and ARS; domain architects contribute sections | A-04, ADD-01, ARS-01 |
-| E-F — Opportunities & Migration Planning | Merged; output is one roadmap with transition architectures and work packages | F-01 |
-| G — Implementation Governance | Architecture Contract signed with each delivery team; compliance assessments at each release gate | G-01, G-02 |
-| H — Change Management | Change requests raised as CR-YYYY-NNN and assessed for impact | H-01, H-02 |
+| A: Vision | Triggered by an approved Request for Architecture Work; must complete within 8 weeks | PRE-02, A-01, A-02, A-03 |
+| B-D: Business, Data/Application, Technology | Run as one combined phase with a single ADD and ARS; domain architects contribute sections | A-04, ADD-01, ARS-01 |
+| E-F: Opportunities & Migration Planning | Merged; output is one roadmap with transition architectures and work packages | F-01 |
+| G: Implementation Governance | Architecture Contract signed with each delivery team; compliance assessments at each release gate | G-01, G-02 |
+| H: Change Management | Change requests raised as CR-YYYY-NNN and assessed for impact | H-01, H-02 |
 | Requirements Management | Continuous; requirements held in ARS with REQ-HSP-NNN style IDs | ARS-01 |
 
 Small initiatives (under USD 500k, no Restricted data, no new technology) skip Phases A-F and enter directly at Phase G via a Tier 2 or Tier 3 review.
@@ -114,10 +114,10 @@ Late or incomplete packets are deferred to the following week.
 
 ## 8. Decision Types
 
-- **Approved** — proceed as submitted.
-- **Approved with Conditions** — proceed; named conditions with owners and due dates must be closed, tracked by the ARB Secretary.
-- **Changes Requested** — resubmit after addressing findings; no build beyond prototype. Example: ARB-2026-031 (APP-055).
-- **Rejected** — the proposal must not proceed in its current form; a new submission requires a materially different approach.
+- **Approved**: proceed as submitted.
+- **Approved with Conditions**: proceed; named conditions with owners and due dates must be closed, tracked by the ARB Secretary.
+- **Changes Requested**: resubmit after addressing findings; no build beyond prototype. Example: ARB-2026-031 (APP-055).
+- **Rejected**: the proposal must not proceed in its current form; a new submission requires a materially different approach.
 
 ## 9. Exception (Dispensation) Process
 
@@ -164,9 +164,9 @@ Draft → In Review → Approved/Accepted → Superseded. Every document carries
 | Approve principles | A | R | C | C | I | C |
 | Publish standards | I | A | R | C | I | C |
 | Tier 1 review | I | A | R | R | C | C |
-| Tier 2 review | – | A | R | I | C | – |
+| Tier 2 review | n/a | A | R | I | C | n/a |
 | Approve exceptions | I | A | R | R | C | C |
-| Maintain GOV-02 & ARB log | – | A | I | R | I | – |
+| Maintain GOV-02 & ARB log | n/a | A | I | R | I | n/a |
 | Escalation decisions | A/R | R | C | I | I | C |
 
 ## 13. Document History

@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-02, AP-06, AP-10, AP-12, STD-DAT-005, STD-DAT-004, STD-CLD-007, STD-IAM-008, STD-RES-015, ADR-0019, ADR-0030, RA-02, H-01, APP-050, APP-022]
 ---
 
-# ADR-0041 — Serve EU Customer Data for Harbourline Connect from West Europe
+# ADR-0041: Serve EU Customer Data for Harbourline Connect from West Europe
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -46,13 +46,13 @@ EU users see 95-110 ms latency to East US 2 (15-25 ms to West Europe); EU p95 pa
 
 ## 4. Considered Options
 
-- **Option A — Status quo with TIA and SCCs**: keep a single US deployment and document transfers.
-- **Option B — Regional deployment stamps (US, EU, CA)**, each a full copy of the portal stack with its own data stores; global routing via Azure Front Door based on the account's home region.
-- **Option C — Global single deployment with data partitioned by region** (EU data in West Europe databases, compute in US).
+- **Option A: Status quo with TIA and SCCs**: keep a single US deployment and document transfers.
+- **Option B: Regional deployment stamps (US, EU, CA)**, each a full copy of the portal stack with its own data stores; global routing via Azure Front Door based on the account's home region.
+- **Option C: Global single deployment with data partitioned by region** (EU data in West Europe databases, compute in US).
 
 ### 4.1 Comparison
 
-| Criterion | A — Status quo + TIA | B — Regional stamps | C — Central compute, regional data |
+| Criterion | A: Status quo + TIA | B: Regional stamps | C: Central compute, regional data |
 |---|---|---|---|
 | EU data at rest in EU | No | Yes | Yes |
 | EU data processed in EU | No | Yes | No (compute in US) |
@@ -64,7 +64,7 @@ EU users see 95-110 ms latency to East US 2 (15-25 ms to West Europe); EU p95 pa
 
 ## 5. Decision Outcome
 
-**Chosen option: B — Regional deployment stamps for US, EU and CA.** The EU stamp runs in **Azure West Europe** with DR in North Europe; the US stamp stays in East US 2 (DR Central US); the CA stamp runs in Canada Central (DR Canada East).
+**Chosen option B: Regional deployment stamps for US, EU and CA.** The EU stamp runs in **Azure West Europe** with DR in North Europe; the US stamp stays in East US 2 (DR Central US); the CA stamp runs in Canada Central (DR Canada East).
 
 Design rules:
 

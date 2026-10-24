@@ -13,7 +13,7 @@ classification: Internal
 related: [GOV-01, STD-CLD-007, STD-DB-006, STD-TLC-014, STD-DAT-005, STD-NET-011, ADR-0021, ADR-0036, G-02]
 ---
 
-# GOV-02 — Architecture Exceptions Register
+# GOV-02: Architecture Exceptions Register
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -33,20 +33,20 @@ This register records every architecture exception (dispensation) requested unde
 
 | ID | System | Standard deviated from | Status | Expiry | Remediation owner | Decision |
 |---|---|---|---|---|---|---|
-| EXC-2025-003 | Nordhaven TMS (APP-021) | STD-CLD-007 §4 (Azure primary hosting) | Approved — renewed once | 2026-12-31 | Grace Liu | ARB-2025-003; renewal ARB-2025-088 |
+| EXC-2025-003 | Nordhaven TMS (APP-021) | STD-CLD-007 §4 (Azure primary hosting) | Approved: renewed once | 2026-12-31 | Grace Liu | ARB-2025-003; renewal ARB-2025-088 |
 | EXC-2026-001 | FreightMaster TMS (APP-020) | STD-TLC-014 (Oracle 12c and Java 8 = Retire); STD-DB-006 (Oracle = Contain) | Approved with Conditions | 2027-03-31 | Grace Liu | ARB-2026-012 |
 | EXC-2026-002 | Terminal Gate Automation servers (APP-031) | STD-TLC-014 (Windows Server 2012 R2 = Retire, overdue) | Approved with Conditions | 2026-11-30 | Tomasz Nowak | ARB-2026-008 |
-| EXC-2026-004 | Customer Notification Service (APP-055) | STD-DAT-005 (EU personal data processed outside EU without approved TIA) | **Requested — not approved** | n/a | Julia Brandt | Pending; linked to ARB-2026-031 |
+| EXC-2026-004 | Customer Notification Service (APP-055) | STD-DAT-005 (EU personal data processed outside EU without approved TIA) | **Requested: not approved** | n/a | Julia Brandt | Pending; linked to ARB-2026-031 |
 | EXC-2024-007 | Halifax site WAN (HFX-T1 and Halifax office) | STD-NET-011 (SD-WAN at all sites) | Closed 2025-03 | 2025-03-31 (was) | Tomasz Nowak | ARB-2024-061 |
 
 ## 4. Active Exceptions
 
-### 4.1 EXC-2025-003 — Nordhaven TMS hosted on AWS eu-central-1
+### 4.1 EXC-2025-003: Nordhaven TMS hosted on AWS eu-central-1
 
 | Field | Detail |
 |---|---|
 | System | APP-021 Nordhaven TMS (Java 11, MongoDB Atlas) |
-| Standard and clause | STD-CLD-007 §4 — Azure is the primary cloud; AWS permitted only for approved cases. Also relies on STD-DB-006 MongoDB Atlas = Trial (Nordhaven only). |
+| Standard and clause | STD-CLD-007 §4. Azure is the primary cloud; AWS permitted only for approved cases. Also relies on STD-DB-006 MongoDB Atlas = Trial (Nordhaven only). |
 | Requested by | Kenji Watanabe on behalf of the HSP programme |
 | Original approval | ARB-2025-003, 2025-01-09, valid to 2025-12-31 |
 | Renewal | ARB-2025-088, 2025-11-20, valid to 2026-12-31 (renewal limit reached) |
@@ -65,7 +65,7 @@ This register records every architecture exception (dispensation) requested unde
 
 **Current position.** The migration target falls after the renewed expiry of 2026-12-31 and the exception cannot be renewed again. The ARB Chair escalated the gap to the CIO on 2026-09-03 under GOV-01 §10. The options before the CIO are to accelerate the cutover or to accept a time-bound CIO dispensation. Decision pending.
 
-### 4.2 EXC-2026-001 — FreightMaster on Oracle 12c extended support
+### 4.2 EXC-2026-001: FreightMaster on Oracle 12c extended support
 
 | Field | Detail |
 |---|---|
@@ -86,11 +86,11 @@ This register records every architecture exception (dispensation) requested unde
 
 **Remediation plan.** Transactional use of FreightMaster ends as remaining lanes move to HSP. Historical records move to a read-only archive on PostgreSQL Flexible Server before 2027-03-31, removing Oracle 12c. Full application retirement is in Q3 2027 per F-01.
 
-### 4.3 EXC-2026-002 — Windows Server 2012 R2 on terminal gate servers
+### 4.3 EXC-2026-002: Windows Server 2012 R2 on terminal gate servers
 
 | Field | Detail |
 |---|---|
-| System | APP-031 Terminal Gate Automation — 14 OCR gate servers (BAL-T1: 5, HFX-T1: 3, RTM-T2: 4, JEA-T4: 2) |
+| System | APP-031 Terminal Gate Automation: 14 OCR gate servers (BAL-T1: 5, HFX-T1: 3, RTM-T2: 4, JEA-T4: 2) |
 | Standard and clause | STD-TLC-014 radar: Windows Server 2012 R2 = Retire (overdue) |
 | Requested by | Tomasz Nowak, Lead Network & OT Architect |
 | Approval | ARB-2026-008, 2026-02-26, Approved with Conditions, valid to 2026-11-30 |
@@ -108,14 +108,14 @@ This register records every architecture exception (dispensation) requested unde
 
 **Remediation plan.** Upgrade to Windows Server 2022 terminal by terminal: HFX-T1 (complete 2026-07), JEA-T4 (2026-09), RTM-T2 (2026-10), BAL-T1 (2026-11). Owner: Tomasz Nowak.
 
-### 4.4 EXC-2026-004 — CNS use of Twilio US region for EU phone numbers
+### 4.4 EXC-2026-004: CNS use of Twilio US region for EU phone numbers
 
 | Field | Detail |
 |---|---|
 | System | APP-055 Customer Notification Service |
-| Standard and clause | STD-DAT-005 — EU personal data processed in West Europe/North Europe only; cross-border transfer requires DPO-approved TIA and SCCs |
+| Standard and clause | STD-DAT-005: EU personal data processed in West Europe/North Europe only; cross-border transfer requires DPO-approved TIA and SCCs |
 | Requested by | Julia Brandt, Solution Architect |
-| Status | **Requested — not approved.** Registered 2026-08-21 following ARB-2026-031 |
+| Status | **Requested: not approved.** Registered 2026-08-21 following ARB-2026-031 |
 
 **Justification (as submitted).** Twilio's SMS service would process EU customer phone numbers in its US region. The team argues that an EU-region option adds cost and latency.
 
@@ -127,12 +127,12 @@ This register records every architecture exception (dispensation) requested unde
 
 ## 5. Closed Exceptions
 
-### 5.1 EXC-2024-007 — MPLS retained at Halifax until SD-WAN cutover
+### 5.1 EXC-2024-007: MPLS retained at Halifax until SD-WAN cutover
 
 | Field | Detail |
 |---|---|
 | System | Halifax office and HFX-T1 terminal WAN |
-| Standard and clause | STD-NET-011 (then v1.x) — Fortinet Secure SD-WAN at all sites |
+| Standard and clause | STD-NET-011 (then v1.x): Fortinet Secure SD-WAN at all sites |
 | Approval | ARB-2024-061, 2024-09-26, valid to 2025-03-31 |
 | Remediation owner | Tomasz Nowak |
 

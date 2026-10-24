@@ -121,11 +121,11 @@ class Retriever:
         """Absolute answerability signal in [0, 1].
 
         Ranks alone can't say "nothing here is relevant"; this can. It combines
-          (a) corpus coverage — share of the query's informative (idf-weighted) terms that exist
+          (a) corpus coverage: share of the query's informative (idf-weighted) terms that exist
               anywhere in the corpus ('COBOL', 'blockchain' don't);
-          (b) passage coverage — the best share of those terms found together in ONE of the top
+          (b) passage coverage: the best share of those terms found together in ONE of the top
               passages (an out-of-corpus question's words are scattered: 'travel' here, 'expense'
-              there — a real answer's are co-located);
+              there; a real answer's are co-located);
           (c) the best dense similarity.
         The threshold is tuned on the eval dev split only (see eval/README.md).
         """

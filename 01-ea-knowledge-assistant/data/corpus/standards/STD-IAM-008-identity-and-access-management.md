@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-12, AP-13, AP-15, STD-API-002, STD-DAT-004, STD-SEC-009, STD-CLD-007, STD-OBS-010, STD-NET-011, RA-02, RA-03, GOV-01, GOV-02]
 ---
 
-# STD-IAM-008 — Identity & Access Management Standard
+# STD-IAM-008: Identity & Access Management Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -28,7 +28,7 @@ This standard defines how people, customers and workloads are identified, authen
 - All workload identities: applications, pipelines, automation and integration services.
 - All applications, cloud platforms (Azure, AWS), SaaS and on-premises systems.
 
-OT identities inside terminal control zones (Purdue levels 0–2) are governed by STD-NET-011 and RA-03; access *into* those zones from IT is in scope of §7.4.
+OT identities inside terminal control zones (Purdue levels 0-2) are governed by STD-NET-011 and RA-03; access *into* those zones from IT is in scope of §7.4.
 
 ## 3. Related Principles and Normative References
 
@@ -91,7 +91,7 @@ Normative terms follow RFC 2119.
 
 ### 7.1 Just-in-time access
 
-1. All privileged roles — Entra ID directory roles, Azure subscription Owner/Contributor, AWS administrator roles, database administrator roles for Restricted systems — MUST be granted through **Entra Privileged Identity Management (PIM)** as eligible, not permanent, assignments.
+1. All privileged roles (Entra ID directory roles, Azure subscription Owner/Contributor, AWS administrator roles, database administrator roles for Restricted systems) MUST be granted through **Entra Privileged Identity Management (PIM)** as eligible, not permanent, assignments.
 2. Activation is **just-in-time** with a **maximum duration of 8 hours**, requires justification and a ticket reference (ServiceNow, APP-110), and requires approval for Global Administrator and roles over Restricted data.
 3. Standing (permanent) privileged assignments are prohibited except for break-glass accounts.
 

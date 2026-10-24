@@ -1,6 +1,6 @@
 ---
 doc_id: F-01
-title: Architecture Roadmap & Migration Plan — Horizon 2028
+title: Architecture Roadmap & Migration Plan, Horizon 2028
 doc_type: togaf_deliverable
 togaf_phase: F
 version: "2.2"
@@ -13,7 +13,7 @@ classification: Internal
 related: [A-01, A-02, ADD-01, ARS-01, G-01, GOV-02, AP-04, AP-06, AP-10, STD-INT-001, STD-DAT-005, STD-CLD-007, STD-RES-015, STD-TLC-014, ADR-0015, ADR-0021, ADR-0027, ADR-0041]
 ---
 
-# F-01 — Architecture Roadmap & Migration Plan — Horizon 2028
+# F-01: Architecture Roadmap & Migration Plan, Horizon 2028
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -36,15 +36,15 @@ Terminal peak seasons (October to December for the US and EU retail trades) are 
 
 ## 3. Transition Architectures
 
-### 3.1 TA1 — US Lanes on HSP (achieved November 2025)
+### 3.1 TA1: US Lanes on HSP (achieved November 2025)
 
 HSP core services, the US regional stamp in East US 2 (DR Central US) and the outbox/CDC publication path went live on 2025-11-17 for Harbourline Inc. US ocean and air lanes. Harbourline Connect US consumes `shipment.milestone.recorded.v1` and `shipment.status.changed.v1` into its read model (ADR-0030). FreightMaster still serves Canada, Gulf and US road lanes; the Rotterdam instance and Nordhaven TMS are unchanged. Measured milestone latency for US lanes in July 2026: 2 min 40 s p95 (REQ-HSP-014 target < 5 min).
 
-### 3.2 TA2 — EU Lanes and Nordhaven Migrated (target Q2 2027)
+### 3.2 TA2: EU Lanes and Nordhaven Migrated (target Q2 2027)
 
 The EU stamp in West Europe (DR North Europe) carries all Harbourline Europe and Nordhaven lanes. The FreightMaster Rotterdam instance and Nordhaven TMS (APP-021) are read-only. Canada lanes run on the HSP CA data cell. MuleSoft is gone; all cross-domain integration uses the Event Backbone or the API Gateway. Customs Filing Gateway (APP-060) subscribes to HSP events for US, Canadian and EU filings. Gulf lanes are migrated to the UAE North data cell. FreightMaster no longer accepts bookings.
 
-### 3.3 TA3 — Target Architecture (Q4 2027)
+### 3.3 TA3: Target Architecture (Q4 2027)
 
 HSP is the only TMS. FreightMaster is formally retired (Q3 2027), Oracle 12c is gone, the Baltimore data centre is exited (2027-06-30), AWS eu-central-1 hosts no shipment workloads, and Sterling B2B carries only long-tail carrier EDI. Historical shipment data is available from Tidewater (APP-080) under RA-04.
 
@@ -52,7 +52,7 @@ HSP is the only TMS. FreightMaster is formally retired (Q3 2027), Oracle 12c is 
 
 | WP | Name | Scope | Depends on | Start | End | Cost estimate (USD M) | Status (Aug 2026) |
 |---|---|---|---|---|---|---|---|
-| WP-01 | HSP Core Platform | Domain services, 12-status model, landing zone stamps, outbox/CDC, customer reference to Salesforce | — | 2025-01 | 2025-11 | 14.2 | Complete |
+| WP-01 | HSP Core Platform | Domain services, 12-status model, landing zone stamps, outbox/CDC, customer reference to Salesforce | n/a | 2025-01 | 2025-11 | 14.2 | Complete |
 | WP-02 | US Lanes Migration | Cutover of US ocean/air lanes; then US road lanes | WP-01 | 2025-05 | 2026-10 | 9.8 | Road lanes in progress |
 | WP-03 | Integration Modernisation & MuleSoft Exit | Replace ~140 remaining flows with INT-P1/INT-P3; SAP charge events | WP-01 | 2025-03 | 2026-12 | 7.5 | 61 flows remaining |
 | WP-04 | Customer Visibility | Connect read models per stamp incl. UAE stamp (CR-2026-014); milestone SLOs; CNS event feeds | WP-01, WP-03 | 2025-06 | 2027-06 | 6.1 | In progress |
@@ -102,13 +102,13 @@ Each wave follows the same pattern: dual-run for up to 90 days with HSP as the s
 - 2026-11-30: last production flow switched off; runtimes kept idle for rollback for 30 days.
 - 2026-12-31: subscription terminated; CloudHub and on-prem runtimes deleted; CMDB records in ServiceNow (APP-110) closed.
 
-### 7.2 FreightMaster TMS (APP-020) — both instances
+### 7.2 FreightMaster TMS (APP-020): both instances
 
 - 2027-03-01: booking freeze on all remaining lanes.
 - 2027-03-31: last open shipments migrated; application set to read-only; Oracle 12c instances shut down after final export.
 - 2027-04 to 2027-05: closed shipment history loaded to Tidewater bronze/silver layers, with EU personal data to the West Europe workspace (STD-DAT-005); reconciliation signed off by Lena Vogel and the Customs Brokerage BU.
 - By 2027-06-30: Baltimore servers wiped and disposed; Rotterdam host decommissioned.
-- Q3 2027: formal retirement — licences, support contracts and CMDB entries closed; retirement recorded at ARB.
+- Q3 2027: formal retirement, licences, support contracts and CMDB entries closed; retirement recorded at ARB.
 
 ### 7.3 Baltimore Data Centre
 

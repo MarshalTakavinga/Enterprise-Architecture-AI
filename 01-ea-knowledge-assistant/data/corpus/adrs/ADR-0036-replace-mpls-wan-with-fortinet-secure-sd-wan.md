@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-04, AP-12, AP-13, AP-14, STD-NET-011, STD-TLC-014, STD-RES-015, ADR-0027, RA-03, GOV-02]
 ---
 
-# ADR-0036 — Replace MPLS WAN with Fortinet Secure SD-WAN
+# ADR-0036: Replace MPLS WAN with Fortinet Secure SD-WAN
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -51,13 +51,13 @@ The major MPLS contracts expire between June 2024 and March 2025.
 
 ## 4. Considered Options
 
-- **Option A — Renew MPLS** with bandwidth uplift and a cloud-delivered security overlay for internet traffic.
-- **Option B — Fortinet Secure SD-WAN (FortiGate)** at every site with FortiManager/FortiAnalyzer, dual broadband/DIA, and LTE/5G backup at terminals.
-- **Option C — Cisco Catalyst SD-WAN** with separate branch firewalls.
+- **Option A: Renew MPLS** with bandwidth uplift and a cloud-delivered security overlay for internet traffic.
+- **Option B: Fortinet Secure SD-WAN (FortiGate)** at every site with FortiManager/FortiAnalyzer, dual broadband/DIA, and LTE/5G backup at terminals.
+- **Option C: Cisco Catalyst SD-WAN** with separate branch firewalls.
 
 ### 4.1 Comparison
 
-| Criterion | A — Renew MPLS | B — Fortinet SD-WAN | C — Cisco SD-WAN + firewalls |
+| Criterion | A: Renew MPLS | B: Fortinet SD-WAN | C: Cisco SD-WAN + firewalls |
 |---|---|---|---|
 | 5-year TCO (est.) | USD 24.5M | USD 13.8M | USD 17.9M |
 | Local breakout with inspection | Via overlay; extra licence | Native NGFW with SSL inspection | Requires separate firewall |
@@ -69,7 +69,7 @@ The major MPLS contracts expire between June 2024 and March 2025.
 
 ## 5. Decision Outcome
 
-**Chosen option: B — Replace MPLS with Fortinet Secure SD-WAN at all ~60 sites.**
+**Chosen option B: Replace MPLS with Fortinet Secure SD-WAN at all ~60 sites.**
 
 Design summary (details in STD-NET-011 and RA-03):
 

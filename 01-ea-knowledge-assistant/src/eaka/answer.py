@@ -1,11 +1,11 @@
 """Answer synthesis with forced citations, a not-found path, and a groundedness check.
 
 Providers:
-  extractive   — no LLM: returns the most relevant sentences verbatim, with citations. Grounded
+  extractive: no LLM; returns the most relevant sentences verbatim, with citations. Grounded
                  by construction; the default and the offline/CI mode.
-  anthropic    — Claude via the Anthropic API.
-  azure_openai — in-region Azure OpenAI deployment (the choice when data residency applies).
-  openai       — OpenAI API.
+  anthropic: Claude via the Anthropic API.
+  azure_openai: in-region Azure OpenAI deployment (the choice when data residency applies).
+  openai: OpenAI API.
 """
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def build_context(results: list[ScoredChunk]) -> str:
     parts = []
     for n, r in enumerate(results, 1):
         c = r.chunk
-        parts.append(f"[{n}] {c.doc_id} — {c.doc_title} — {c.section_ref}\n{c.text}")
+        parts.append(f"[{n}] {c.doc_id} · {c.doc_title} · {c.section_ref}\n{c.text}")
     return "\n\n---\n\n".join(parts)
 
 

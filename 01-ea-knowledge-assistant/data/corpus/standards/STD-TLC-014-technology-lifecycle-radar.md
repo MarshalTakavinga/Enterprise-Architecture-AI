@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-03, AP-10, AP-11, STD-INT-001, STD-API-002, STD-DB-006, STD-CLD-007, STD-CTR-012, STD-AI-013, STD-NET-011, ADR-0015, ADR-0024, ADR-0036, GOV-01, GOV-02]
 ---
 
-# STD-TLC-014 — Technology Lifecycle & Radar Standard
+# STD-TLC-014: Technology Lifecycle & Radar Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -74,12 +74,12 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted a
 | Azure OpenAI Service | AI | Adopt | Approved regions only | STD-AI-013 |
 | Azure Databricks + Unity Catalog | Data platform | Adopt | Tidewater | RA-04 |
 | Fortinet Secure SD-WAN (FortiGate) | Network | Adopt | All sites | STD-NET-011, ADR-0036 |
-| .NET 8 | Runtime | Adopt | LTS until Nov 2026; .NET 10 evaluation under way | — |
-| Java 21 | Runtime | Adopt | LTS | — |
-| Python 3.11+ | Runtime | Adopt | 3.11, 3.12 | — |
-| React 18 | Front-end | Adopt | Harbourline Connect and internal UIs | — |
-| Windows Server 2022 | Operating system | Adopt | Where Windows is required | — |
-| Ubuntu 22.04 LTS / 24.04 LTS | Operating system | Adopt | Linux VMs and edge servers | — |
+| .NET 8 | Runtime | Adopt | LTS until Nov 2026; .NET 10 evaluation under way | n/a |
+| Java 21 | Runtime | Adopt | LTS | n/a |
+| Python 3.11+ | Runtime | Adopt | 3.11, 3.12 | n/a |
+| React 18 | Front-end | Adopt | Harbourline Connect and internal UIs | n/a |
+| Windows Server 2022 | Operating system | Adopt | Where Windows is required | n/a |
+| Ubuntu 22.04 LTS / 24.04 LTS | Operating system | Adopt | Linux VMs and edge servers | n/a |
 | GraphQL | API | Trial | Portal BFF only; decision by 2026-09-30 | STD-API-002 |
 | pgvector (PostgreSQL extension) | Database / AI | Trial | AI retrieval use cases only | STD-DB-006, STD-AI-013 |
 | AWS Bedrock | AI | Trial | Nordhaven only | STD-AI-013 |
@@ -89,16 +89,16 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted a
 | MuleSoft Anypoint | Integration | Contain | No new flows since 2025-06-30; sunset 2026-12-31 | ADR-0015 |
 | IBM Sterling B2B Integrator | Integration | Contain | Target: partner APIs | STD-INT-001 |
 | SOAP web services | API | Contain | No new SOAP interfaces | STD-API-002 |
-| .NET Framework 4.8 | Runtime | Contain | Migrate to .NET 8 on next major change | — |
-| Java 11 | Runtime | Contain | Nordhaven TMS until migration | — |
-| Windows Server 2016 | Operating system | Contain | Plan upgrade before vendor end of support (2027-01) | — |
-| React 16/17 | Front-end | Contain | Upgrade on next release | — |
+| .NET Framework 4.8 | Runtime | Contain | Migrate to .NET 8 on next major change | n/a |
+| Java 11 | Runtime | Contain | Nordhaven TMS until migration | n/a |
+| Windows Server 2016 | Operating system | Contain | Plan upgrade before vendor end of support (2027-01) | n/a |
+| React 16/17 | Front-end | Contain | Upgrade on next release | n/a |
 | Oracle Database 12c | Database | Retire | 2027-03-31 (EXC-2026-001) | STD-DB-006 |
 | Windows Server 2012 R2 | Operating system | Retire | Overdue; 14 gate servers under EXC-2026-002 until 2026-11-30 | STD-NET-011 |
-| Java 8 | Runtime | Retire | 2026-06-30 | — |
-| CentOS 7 | Operating system | Retire | 2025-12-31 | — |
-| Node.js 18 | Runtime | Retire | 2025-06-30 | — |
-| Python 3.9 and earlier | Runtime | Retire | 2025-12-31 | — |
+| Java 8 | Runtime | Retire | 2026-06-30 | n/a |
+| CentOS 7 | Operating system | Retire | 2025-12-31 | n/a |
+| Node.js 18 | Runtime | Retire | 2025-06-30 | n/a |
+| Python 3.9 and earlier | Runtime | Retire | 2025-12-31 | n/a |
 | MPLS WAN circuits | Network | Retire | Completed 2025 | ADR-0036 |
 
 ## 6. Lifecycle Process

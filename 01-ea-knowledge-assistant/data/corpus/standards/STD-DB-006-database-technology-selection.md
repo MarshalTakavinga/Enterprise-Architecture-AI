@@ -13,13 +13,13 @@ classification: Internal
 related: [AP-03, AP-07, AP-10, AP-11, STD-DAT-004, STD-DAT-005, STD-CLD-007, STD-SEC-009, STD-RES-015, STD-TLC-014, ADR-0012, ADR-0024, RA-02, GOV-01, GOV-02]
 ---
 
-# STD-DB-006 — Database Technology Selection Standard
+# STD-DB-006: Database Technology Selection Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
 ## 1. Purpose
 
-This standard tells solution teams which database technologies they MAY use, which is the default, and — in particular — **when a NoSQL database such as Azure Cosmos DB is allowed and when it is not**. It reduces the number of database engines Harbourline has to operate, secure and license, supports exit from the Baltimore data centre by 30 June 2027, and retires the Oracle estate that underpins FreightMaster TMS (APP-020).
+This standard tells solution teams which database technologies they MAY use, which is the default, and (in particular) **when a NoSQL database such as Azure Cosmos DB is allowed and when it is not**. It reduces the number of database engines Harbourline has to operate, secure and license, supports exit from the Baltimore data centre by 30 June 2027, and retires the Oracle estate that underpins FreightMaster TMS (APP-020).
 
 ## 2. Scope
 
@@ -29,9 +29,9 @@ This standard tells solution teams which database technologies they MAY use, whi
 
 ## 3. Related Principles and Normative References
 
-- **AP-11 Managed Services over Self-Managed Infrastructure** — PaaS databases are the default.
-- **AP-10 Cloud-Smart and Portable** — favour open-source-compatible engines.
-- **AP-07 One System of Record per Data Domain** — a database belongs to exactly one domain.
+- **AP-11 Managed Services over Self-Managed Infrastructure**: PaaS databases are the default.
+- **AP-10 Cloud-Smart and Portable**: favour open-source-compatible engines.
+- **AP-07 One System of Record per Data Domain**: a database belongs to exactly one domain.
 - **ADR-0024** PostgreSQL Flexible Server as Default Relational Database; **ADR-0012** Azure Cosmos DB for Container Telemetry Storage.
 - **STD-DAT-004** (classification & encryption), **STD-DAT-005** (residency), **STD-SEC-009** (keys), **STD-RES-015** (RTO/RPO), **STD-TLC-014** (radar).
 
@@ -43,14 +43,14 @@ Normative terms follow RFC 2119.
 
 | Technology | Radar status | Permitted use |
 |---|---|---|
-| **Azure Database for PostgreSQL – Flexible Server** | **Adopt (default)** | All new transactional/relational workloads |
+| **Azure Database for PostgreSQL: Flexible Server** | **Adopt (default)** | All new transactional/relational workloads |
 | Azure SQL Database / Azure SQL Managed Instance | Adopt | Vendor packages that require SQL Server; existing .NET applications already on SQL Server |
-| **Azure Cosmos DB (NoSQL API)** | **Adopt — specific workloads only** | Only for the workload profiles in §5.2, with a reviewed access-pattern and partition-key design |
-| Azure Cache for Redis | Adopt — cache only | Caching, session state, rate-limit counters; **never a system of record** |
+| **Azure Cosmos DB (NoSQL API)** | **Adopt: specific workloads only** | Only for the workload profiles in §5.2, with a reviewed access-pattern and partition-key design |
+| Azure Cache for Redis | Adopt: cache only | Caching, session state, rate-limit counters; **never a system of record** |
 | pgvector extension on PostgreSQL Flexible Server | Trial | Approved for AI retrieval (vector search) use cases only |
-| MongoDB Atlas | Trial — Nordhaven only | Nordhaven TMS (APP-021) until migration into HSP; no new Harbourline use |
+| MongoDB Atlas | Trial: Nordhaven only | Nordhaven TMS (APP-021) until migration into HSP; no new Harbourline use |
 | Oracle Database | Contain | Existing systems only; no new Oracle databases |
-| Oracle Database 12c | Retire — **2027-03-31** | FreightMaster TMS only, under an approved exception recorded in GOV-02 |
+| Oracle Database 12c | Retire: **2027-03-31** | FreightMaster TMS only, under an approved exception recorded in GOV-02 |
 | Self-managed MongoDB, Cassandra or any database engine installed on VMs | **Prohibited** | None |
 
 ### 4.2 General rules
@@ -66,7 +66,7 @@ Normative terms follow RFC 2119.
 
 ### 5.1 Principle
 
-Relational is the default because most Harbourline domains — shipments, bookings, customs, billing — have rich relationships, need ad hoc querying and benefit from transactional integrity. Cosmos DB is permitted where its scale and access model are a genuine fit, not as a way to avoid schema design.
+Relational is the default because most Harbourline domains (shipments, bookings, customs, billing) have rich relationships, need ad hoc querying and benefit from transactional integrity. Cosmos DB is permitted where its scale and access model are a genuine fit, not as a way to avoid schema design.
 
 ### 5.2 Permitted workload profiles
 

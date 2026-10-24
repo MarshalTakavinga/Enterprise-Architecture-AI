@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-08, AP-10, AP-11, STD-INT-001, STD-EVT-003, STD-TLC-014, ADR-0015, ADR-0021, ADR-0038, RA-01, APP-120, APP-122]
 ---
 
-# ADR-0007 — Adopt Confluent Cloud as the Enterprise Event Backbone
+# ADR-0007: Adopt Confluent Cloud as the Enterprise Event Backbone
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -37,36 +37,36 @@ Projected load for the first three years: 6,000 events/s average, 25,000 events/
 
 ## 3. Decision Drivers
 
-1. **Schema governance** — a central registry with enforced compatibility rules so that producers cannot silently break consumers.
-2. **Ecosystem** — managed connectors (CDC, Blob Storage, Salesforce, Databricks) to avoid hand-built adapters.
-3. **Multi-cloud portability** — native replication between Azure and AWS for Nordhaven, consistent with AP-10.
-4. **Managed operation** — no self-managed brokers, consistent with AP-11; the integration team has 9 engineers and no Kafka operations experience.
-5. **Replay and retention** — consumers must be able to rebuild read models from history.
-6. **Cost** — three-year total cost of ownership within the USD 2.1M envelope set by the CIO.
+1. **Schema governance**: a central registry with enforced compatibility rules so that producers cannot silently break consumers.
+2. **Ecosystem**: managed connectors (CDC, Blob Storage, Salesforce, Databricks) to avoid hand-built adapters.
+3. **Multi-cloud portability**: native replication between Azure and AWS for Nordhaven, consistent with AP-10.
+4. **Managed operation**: no self-managed brokers, consistent with AP-11; the integration team has 9 engineers and no Kafka operations experience.
+5. **Replay and retention**: consumers must be able to rebuild read models from history.
+6. **Cost**: three-year total cost of ownership within the USD 2.1M envelope set by the CIO.
 
 ## 4. Considered Options
 
-- **Option A — Confluent Cloud (Dedicated cluster) on Azure East US 2**, with Schema Registry, managed connectors and cluster linking.
-- **Option B — Azure Event Hubs Premium with the Kafka protocol endpoint**, plus Azure Schema Registry.
-- **Option C — Extend MuleSoft Anypoint** with Anypoint MQ and additional vCores.
+- **Option A: Confluent Cloud (Dedicated cluster) on Azure East US 2**, with Schema Registry, managed connectors and cluster linking.
+- **Option B: Azure Event Hubs Premium with the Kafka protocol endpoint**, plus Azure Schema Registry.
+- **Option C: Extend MuleSoft Anypoint** with Anypoint MQ and additional vCores.
 
 ### 4.1 Scoring
 
 Weights agreed by the ARB before scoring; scores 1 (poor) to 5 (strong).
 
-| Driver (weight) | A — Confluent Cloud | B — Event Hubs (Kafka API) | C — Extend MuleSoft |
+| Driver (weight) | A: Confluent Cloud | B: Event Hubs (Kafka API) | C: Extend MuleSoft |
 |---|---|---|---|
-| Schema governance (20%) | 5 — Schema Registry, BACKWARD/FULL modes, broker-side validation | 3 — Azure Schema Registry, weaker client tooling | 2 — no log-level schema enforcement |
-| Ecosystem / connectors (20%) | 5 — 80+ managed connectors incl. Debezium CDC | 3 — Kafka Connect must be self-hosted | 3 — rich adapters, but point-to-point style |
-| Multi-cloud portability (20%) | 5 — cluster linking to AWS | 2 — Azure only; AWS bridge needed | 3 — runtimes on both clouds, not a log |
+| Schema governance (20%) | 5: Schema Registry, BACKWARD/FULL modes, broker-side validation | 3: Azure Schema Registry, weaker client tooling | 2: no log-level schema enforcement |
+| Ecosystem / connectors (20%) | 5: 80+ managed connectors incl. Debezium CDC | 3: Kafka Connect must be self-hosted | 3: rich adapters, but point-to-point style |
+| Multi-cloud portability (20%) | 5: cluster linking to AWS | 2: Azure only; AWS bridge needed | 3: runtimes on both clouds, not a log |
 | Managed operation (15%) | 4 | 5 | 3 |
-| Replay / retention (15%) | 5 — tiered storage, compaction | 3 — 90-day max, partial compaction support | 1 — queue semantics only |
-| 3-year cost (10%) | 3 — est. USD 1.85M | 4 — est. USD 1.2M + ~USD 0.3M Connect hosting | 2 — est. USD 2.4M incl. vCore uplift |
+| Replay / retention (15%) | 5: tiered storage, compaction | 3: 90-day max, partial compaction support | 1: queue semantics only |
+| 3-year cost (10%) | 3: est. USD 1.85M | 4: est. USD 1.2M + ~USD 0.3M Connect hosting | 2: est. USD 2.4M incl. vCore uplift |
 | **Weighted total** | **4.65** | **3.20** | **2.40** |
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Confluent Cloud on Azure**, branded internally as the **Harbourline Event Backbone** (APP-120).
+**Chosen option A: Confluent Cloud on Azure**, branded internally as the **Harbourline Event Backbone** (APP-120).
 
 Event Hubs scored well on simplicity and price, but lacks managed Kafka Connect, strong replay and native AWS replication. Extending MuleSoft would have deepened a platform whose licence renewal is already under question and would not give a replayable log.
 

@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-09, AP-10, AP-11, AP-12, AP-14, STD-API-002, STD-INT-001, STD-IAM-008, STD-RES-015, ADR-0015, ADR-0041, RA-01, RA-02, APP-121]
 ---
 
-# ADR-0019 — Azure API Management as the Single API Gateway
+# ADR-0019: Azure API Management as the Single API Gateway
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -48,13 +48,13 @@ The ARB needs one gateway through which all synchronous APIs are published, as t
 
 ## 4. Considered Options
 
-- **Option A — Azure API Management Premium, multi-region** (East US 2 primary, West Europe secondary, additional units per region).
-- **Option B — Kong Enterprise** self-hosted on AKS with Kong Konnect control plane.
-- **Option C — AWS API Gateway** as enterprise standard, extending Nordhaven's usage.
+- **Option A: Azure API Management Premium, multi-region** (East US 2 primary, West Europe secondary, additional units per region).
+- **Option B: Kong Enterprise** self-hosted on AKS with Kong Konnect control plane.
+- **Option C: AWS API Gateway** as enterprise standard, extending Nordhaven's usage.
 
 ### 4.1 Comparison
 
-| Criterion | A — APIM Premium | B — Kong Enterprise | C — AWS API Gateway |
+| Criterion | A: APIM Premium | B: Kong Enterprise | C: AWS API Gateway |
 |---|---|---|---|
 | Entra ID / External ID integration | Native policies | Plugin; OIDC config per route | Via Cognito federation or Lambda authorisers |
 | Multi-region + VNet back ends | Built-in (Premium) | Self-built across AKS clusters | Per-region; Azure back ends need cross-cloud connectivity |
@@ -66,7 +66,7 @@ The ARB needs one gateway through which all synchronous APIs are published, as t
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Azure API Management Premium, multi-region**, designated the **Harbourline API Gateway** (APP-121).
+**Chosen option A: Azure API Management Premium, multi-region**, designated the **Harbourline API Gateway** (APP-121).
 
 Kong offered the lowest latency and good portability, but running it ourselves conflicts with AP-11 and would need at least two additional platform engineers. AWS API Gateway would place the enforcement point on the secondary cloud while nearly all back ends are on Azure, adding cross-cloud latency and egress cost.
 

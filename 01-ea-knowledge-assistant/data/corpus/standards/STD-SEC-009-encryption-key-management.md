@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-02, AP-05, AP-12, AP-15, STD-DAT-004, STD-DAT-005, STD-IAM-008, STD-EVT-003, STD-CLD-007, STD-NET-011, STD-OBS-010, GOV-01, GOV-02]
 ---
 
-# STD-SEC-009 — Encryption & Key Management Standard
+# STD-SEC-009: Encryption & Key Management Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

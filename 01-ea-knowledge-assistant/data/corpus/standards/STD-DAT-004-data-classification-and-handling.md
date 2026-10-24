@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-02, AP-05, AP-06, AP-12, STD-DAT-005, STD-SEC-009, STD-IAM-008, STD-EVT-003, STD-OBS-010, RA-04, GOV-01, GOV-02]
 ---
 
-# STD-DAT-004 — Data Classification & Handling Standard
+# STD-DAT-004: Data Classification & Handling Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -88,14 +88,14 @@ Where a data set combines categories, the highest classification applies. Aggreg
 | Control | Public | Internal | Confidential | Restricted |
 |---|---|---|---|---|
 | Encryption in transit (TLS 1.2+) | SHOULD | MUST | MUST | MUST |
-| Encryption at rest | — | MUST (platform keys) | MUST (platform keys) | MUST, **customer-managed keys** in Key Vault (HSM-backed) |
+| Encryption at rest | n/a | MUST (platform keys) | MUST (platform keys) | MUST, **customer-managed keys** in Key Vault (HSM-backed) |
 | Access model | Open | Entra ID authenticated | Role-based, owner-approved | Role-based **and** privileged access via Entra PIM |
-| Access recertification | — | — | Annual | **Quarterly** |
+| Access recertification | n/a | n/a | Annual | **Quarterly** |
 | Use in non-production | Allowed | Allowed | Allowed if access-controlled | **Prohibited unless masked** |
 | External sharing | Allowed | NDA required | Data Owner approval + contract | Data Owner + DPO/CISO approval + TIA where cross-border |
 | Logging of content | Allowed | Allowed | Avoid | **Prohibited** |
 
-### 6.2 Restricted data — additional requirements
+### 6.2 Restricted data: additional requirements
 
 1. Restricted data MUST be encrypted at rest with **customer-managed keys** held in Azure Key Vault Premium or Managed HSM per STD-SEC-009.
 2. Administrative and bulk data access to systems holding Restricted data MUST be via **Entra Privileged Identity Management (PIM)**, just-in-time, as defined in STD-IAM-008.
@@ -140,4 +140,4 @@ Where a data set combines categories, the highest classification applies. Aggreg
 |---|---|---|---|
 | 2.0 | 2023-03-01 | Lena Vogel | Moved from three to four levels; introduced Restricted |
 | 2.1 | 2023-11-15 | Lena Vogel | Added control matrix; clarified pseudonymised data remains personal data |
-| 3.0 | 2024-09-01 | Lena Vogel | Defined Restricted categories R1–R5 incl. OT configuration (NIS2) and crew passport data; customer-managed keys and PIM mandatory; masking rule for non-production; extended to Nordhaven; ARB-2024-041 |
+| 3.0 | 2024-09-01 | Lena Vogel | Defined Restricted categories R1-R5 incl. OT configuration (NIS2) and crew passport data; customer-managed keys and PIM mandatory; masking rule for non-production; extended to Nordhaven; ARB-2024-041 |

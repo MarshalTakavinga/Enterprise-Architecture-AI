@@ -1,6 +1,6 @@
 ---
 doc_id: A-02
-title: Statement of Architecture Work — Shipment Platform Consolidation
+title: Statement of Architecture Work, Shipment Platform Consolidation
 doc_type: togaf_deliverable
 togaf_phase: A
 version: "1.0"
@@ -13,7 +13,7 @@ classification: Internal
 related: [PRE-02, A-01, A-03, A-04, GOV-01, ADD-01, ARS-01, F-01, G-01, AP-03, AP-07, AP-08]
 ---
 
-# A-02 — Statement of Architecture Work — Shipment Platform Consolidation
+# A-02: Statement of Architecture Work, Shipment Platform Consolidation
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -23,7 +23,7 @@ This Statement of Architecture Work (SoAW) is the agreement between the Enterpri
 
 ## 2. Background
 
-Harbourline operates three transport management systems — FreightMaster TMS (APP-020), Nordhaven TMS (APP-021) and the FreightMaster Rotterdam instance (a 2019 fork of APP-020 used by Harbourline Europe) — linked by MuleSoft flows and database links. PRE-02, raised by Elena Marsh on 2024-10-07, asked the EA Office to define a single target shipment platform able to support the Horizon 2028 goals approved by the Board in November 2024. A-01 describes the vision, KPIs and transition architectures at summary level. This SoAW commits the resources to take that vision through Phases B to F and to govern delivery through Phases G and H.
+Harbourline operates three transport management systems (FreightMaster TMS (APP-020), Nordhaven TMS (APP-021) and the FreightMaster Rotterdam instance (a 2019 fork of APP-020 used by Harbourline Europe)) linked by MuleSoft flows and database links. PRE-02, raised by Elena Marsh on 2024-10-07, asked the EA Office to define a single target shipment platform able to support the Horizon 2028 goals approved by the Board in November 2024. A-01 describes the vision, KPIs and transition architectures at summary level. This SoAW commits the resources to take that vision through Phases B to F and to govern delivery through Phases G and H.
 
 ## 3. Scope of the Architecture Work
 
@@ -100,8 +100,8 @@ RACI for deliverables:
 | ADD-01 | Architecture Definition Document | B-D | 2025-03-28 |
 | ARS-01 | Architecture Requirements Specification | B-D | 2025-03-28 |
 | F-01 | Architecture Roadmap & Migration Plan | E-F | 2025-05-09 |
-| G-01 | Architecture Contract — HSP Delivery Programme | G | 2025-05-30 |
-| — | ADRs for key decisions | B-D | As raised |
+| G-01 | Architecture Contract: HSP Delivery Programme | G | 2025-05-30 |
+| n/a | ADRs for key decisions | B-D | As raised |
 
 ## 7. Work Plan by Phase
 
@@ -114,7 +114,7 @@ RACI for deliverables:
 | D | 2025-02-17 | 2025-03-28 | Hosting, integration, resilience | ADD-01 / ARS-01 approval |
 | E/F | 2025-03-31 | 2025-05-09 | Work packages WP-01..WP-10, transition architectures, costed plan | F-01 approval |
 | G | 2025-05-12 | 2027-12-31 | Contract, compliance reviews at each release | Per release |
-| H | Continuous | — | Change requests, periodic vision refresh | Quarterly |
+| H | Continuous | n/a | Change requests, periodic vision refresh | Quarterly |
 
 Effort estimate: 1,850 architect-days across FY2025, of which 60% internal and 40% from the delivery partner's architects.
 

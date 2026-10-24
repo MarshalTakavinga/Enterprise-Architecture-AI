@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-02, AP-06, AP-10, STD-DAT-004, STD-CLD-007, STD-EVT-003, RA-02, RA-04, GOV-01, GOV-02]
 ---
 
-# STD-DAT-005 — Data Residency & Cross-Border Transfer Standard
+# STD-DAT-005: Data Residency & Cross-Border Transfer Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -32,7 +32,7 @@ Non-personal operational data (e.g. container telemetry with no personal data, v
 ## 3. Related Principles and Normative References
 
 - **AP-06 Data Residency Follows Jurisdiction**; **AP-02 Compliance by Design**; **AP-10 Cloud-Smart and Portable**.
-- **STD-DAT-004** (classification — pseudonymised data remains personal data); **STD-CLD-007** (approved regions); **STD-EVT-003** §4 (EU topics on the West Europe cluster).
+- **STD-DAT-004** (classification: pseudonymised data remains personal data); **STD-CLD-007** (approved regions); **STD-EVT-003** §4 (EU topics on the West Europe cluster).
 - **RA-02** Cloud-Native Application on the Azure Landing Zone (regional stamp model).
 - **RA-04** Tidewater Enterprise Data Platform (West Europe workspace).
 
@@ -46,7 +46,7 @@ Normative terms follow RFC 2119.
 |---|---|---|---|
 | EU data subjects (all entities) | Azure **West Europe** | Azure **North Europe** | Always |
 | Canadian customers | Azure **Canada Central** | Azure **Canada East** | Where contractually required; otherwise US rules MAY apply |
-| UAE data subjects — Harbourline Gulf FZE | Azure **UAE North** | As approved by ARB | Always |
+| UAE data subjects: Harbourline Gulf FZE | Azure **UAE North** | As approved by ARB | Always |
 | US data subjects | Azure **East US 2** | Azure **Central US** | Default |
 | UK data subjects | Azure **West Europe** | Azure **North Europe** | Treated as EU for storage |
 
@@ -76,7 +76,7 @@ A transfer occurs whenever personal data subject to a residency rule is stored i
 2. Transfers of EU personal data to countries without an adequacy decision MUST be covered by **Standard Contractual Clauses (SCCs)** or another valid transfer mechanism, recorded in the Record of Processing Activities.
 3. Transfers of Restricted data (STD-DAT-004 §5.4) additionally require Tier 1 ARB review.
 4. Subprocessors MUST be configured to use in-region processing where the provider offers it (e.g. EU data centre selection for SMS or email providers). If only out-of-region processing is available, the TIA MUST document supplementary measures (encryption, minimisation, pseudonymisation).
-5. Data minimisation applies: a transfer SHOULD include only fields strictly necessary — for an SMS notification, the phone number and message text, not the customer profile.
+5. Data minimisation applies: a transfer SHOULD include only fields strictly necessary (for an SMS notification, the phone number and message text, not the customer profile).
 
 ### 5.3 TIA process
 

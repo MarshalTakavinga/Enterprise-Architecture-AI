@@ -1,6 +1,6 @@
 ---
 doc_id: ARS-01
-title: Architecture Requirements Specification — Shipment Platform
+title: Architecture Requirements Specification, Shipment Platform
 doc_type: togaf_deliverable
 togaf_phase: Requirements
 version: "1.2"
@@ -13,7 +13,7 @@ classification: Internal
 related: [A-01, A-02, ADD-01, F-01, G-01, AP-01, AP-04, AP-06, AP-07, AP-08, AP-09, AP-14, STD-INT-001, STD-API-002, STD-EVT-003, STD-DAT-004, STD-DAT-005, STD-DB-006, STD-CLD-007, STD-IAM-008, STD-SEC-009, STD-OBS-010, STD-CTR-012, STD-RES-015, ADR-0030, ADR-0038, ADR-0041]
 ---
 
-# ARS-01 — Architecture Requirements Specification — Shipment Platform
+# ARS-01: Architecture Requirements Specification, Shipment Platform
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-05, AP-07, AP-11, AP-14, STD-DB-006, STD-DAT-004, STD-RES-015, ADR-0024, RA-04, APP-090, APP-080]
 ---
 
-# ADR-0012 — Use Azure Cosmos DB for Container Telemetry Storage
+# ADR-0012: Use Azure Cosmos DB for Container Telemetry Storage
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -50,13 +50,13 @@ Telemetry is classified Internal under STD-DAT-004; it contains no personal data
 
 ## 4. Considered Options
 
-- **Option A — Azure Cosmos DB for NoSQL**, container partitioned on `/containerId`, TTL for expiry, analytical store / change feed to ADLS.
-- **Option B — Azure Database for PostgreSQL Flexible Server** with time-based partitioning.
-- **Option C — Azure Data Explorer (ADX)** as the single store for operational and analytical access.
+- **Option A: Azure Cosmos DB for NoSQL**, container partitioned on `/containerId`, TTL for expiry, analytical store / change feed to ADLS.
+- **Option B: Azure Database for PostgreSQL Flexible Server** with time-based partitioning.
+- **Option C: Azure Data Explorer (ADX)** as the single store for operational and analytical access.
 
 ### 4.1 Comparison
 
-| Criterion | A — Cosmos DB NoSQL | B — PostgreSQL Flexible Server | C — Azure Data Explorer |
+| Criterion | A: Cosmos DB NoSQL | B: PostgreSQL Flexible Server | C: Azure Data Explorer |
 |---|---|---|---|
 | Sustained writes at 2,500/s burst | Yes; autoscale RU/s | Marginal; load test on 16 vCore peaked at ~1,900 inserts/s with indexes before WAL and vacuum pressure | Yes, via batched ingestion |
 | Point read p99 | ~8 ms measured | ~12 ms, degrading as partitions grow | 200-800 ms (ingestion latency and query engine not designed for point reads) |
@@ -67,7 +67,7 @@ Telemetry is classified Internal under STD-DAT-004; it contains no personal data
 
 ## 5. Decision Outcome
 
-**Chosen option: A — Azure Cosmos DB for NoSQL.**
+**Chosen option A: Azure Cosmos DB for NoSQL.**
 
 Design parameters approved by the ARB:
 

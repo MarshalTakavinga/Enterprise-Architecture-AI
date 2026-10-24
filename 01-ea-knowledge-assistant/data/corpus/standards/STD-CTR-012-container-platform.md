@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-10, AP-11, AP-12, AP-14, AP-15, STD-CLD-007, STD-IAM-008, STD-SEC-009, STD-OBS-010, STD-RES-015, STD-TLC-014, RA-02, GOV-01, GOV-02]
 ---
 
-# STD-CTR-012 — Container Platform Standard
+# STD-CTR-012: Container Platform Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

@@ -33,7 +33,7 @@ class InMemoryStore:
         return (self.dir / "meta.json").exists()
 
     def meta(self) -> dict:
-        return json.loads((self.dir / "meta.json").read_text())
+        return json.loads((self.dir / "meta.json").read_text(encoding="utf-8"))
 
     def load(self) -> None:
         self.chunks = [Chunk(**json.loads(l)) for l in (self.dir / "chunks.jsonl").read_text(encoding="utf-8").splitlines() if l]
@@ -51,7 +51,7 @@ class InMemoryStore:
 
 class PgVectorStore:
     """PostgreSQL + pgvector. Chosen over a dedicated vector DB for operational simplicity
-    (one managed database for documents, chunks, vectors and the audit log) — see ADR-P002."""
+    (one managed database for documents, chunks, vectors and the audit log): see ADR-P002."""
 
     def __init__(self, dsn: str, index_dir: Path):
         import psycopg

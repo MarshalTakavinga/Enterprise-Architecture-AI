@@ -1,4 +1,4 @@
-# EA Knowledge Assistant — RAG over the Architecture Repository
+# EA Knowledge Assistant: RAG over the Architecture Repository
 
 > Project 1 of the [Enterprise Architecture + AI Portfolio](../README.md) · Tier: Beginner · Status: **built, tested and evaluated** (offline configuration)
 
@@ -88,7 +88,7 @@ Retrieval is identical in both configurations: **Recall@5 100% · Hit@1 86.2% ·
 | Claim support (factual sentences supported by the passage they cite) | n/a (answers are quotes) | **89.7%** |
 | Fully grounded answers (≥ 90% of sentences cited and supported) | 100% (by construction) | 67.9% |
 | Answers carrying a citation or a "not found" | 100% | 100% |
-| Latency p50 / p95 | 196 ms / 575 ms | 3.3 s / 5.3 s |
+| Latency p50 / p95 | 158 ms / 494 ms | 3.3 s / 5.3 s |
 
 ![Evaluation run with Claude Haiku 4.5: retrieval and end-to-end results in PowerShell](docs/images/llm-eval-results.png)
 
@@ -129,7 +129,7 @@ documentation backlog. The controls and limitations are set out in
 │                        retrieval · answer · engine · querylog · api · cli
 ├── app/                 Streamlit UI
 ├── data/corpus/         48-document synthetic architecture repository (+ data/README.md)
-├── data/WORLD_BIBLE.md  shared facts about the fictional enterprise (reusable by Projects 2–10)
+├── data/WORLD_BIBLE.md  shared facts about the fictional enterprise (reusable by Projects 2-10)
 ├── eval/                queries.yaml (50 labelled questions), run_eval.py, results/
 ├── tests/               ingestion, retrieval/answers, API, pgvector integration
 ├── docs/                architecture.md, governance-and-limitations.md, adr/ (ADR-P001…P005), images/

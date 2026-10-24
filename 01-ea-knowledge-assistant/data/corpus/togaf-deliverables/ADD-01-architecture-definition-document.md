@@ -1,6 +1,6 @@
 ---
 doc_id: ADD-01
-title: Architecture Definition Document — Shipment Platform
+title: Architecture Definition Document, Shipment Platform
 doc_type: togaf_deliverable
 togaf_phase: B-D
 version: "1.4"
@@ -13,7 +13,7 @@ classification: Internal
 related: [A-01, A-02, A-04, ARS-01, F-01, G-01, AP-01, AP-04, AP-06, AP-07, AP-08, AP-10, STD-INT-001, STD-EVT-003, STD-DAT-005, STD-DB-006, STD-CLD-007, STD-RES-015, ADR-0007, ADR-0015, ADR-0021, ADR-0024, ADR-0027, ADR-0030, ADR-0038, ADR-0041, RA-01, RA-02, RA-03, RA-04]
 ---
 
-# ADD-01 — Architecture Definition Document — Shipment Platform
+# ADD-01: Architecture Definition Document, Shipment Platform
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -128,12 +128,12 @@ Gap types: **New** (target element with no baseline equivalent), **Eliminated** 
 
 | # | Baseline element | Target element | Gap type | Resolving work package |
 |---|---|---|---|---|
-| G-01 | — | HSP core services on AKS, PostgreSQL | New | WP-01 |
+| G-01 | n/a | HSP core services on AKS, PostgreSQL | New | WP-01 |
 | G-02 | FreightMaster NA (US lanes) | HSP US stamp (East US 2) | Changed | WP-02 |
 | G-03 | MuleSoft flows for shipment status | Event Backbone topics via outbox/CDC | Changed | WP-03 |
-| G-04 | MuleSoft ESB (APP-122) | — | Eliminated | WP-03 |
+| G-04 | MuleSoft ESB (APP-122) | n/a | Eliminated | WP-03 |
 | G-05 | Nightly batch to Connect | Event-carried state read model (ADR-0030) | Changed | WP-04 |
-| G-06 | — | Harmonised 12-status shipment model | New | WP-01 |
+| G-06 | n/a | Harmonised 12-status shipment model | New | WP-01 |
 | G-07 | DB link FreightMaster → Customs Filing Gateway | Event subscription by APP-060 | Changed | WP-05 |
 | G-08 | Nordhaven TMS (APP-021) on AWS | HSP EU stamp (West Europe) | Eliminated / Changed | WP-06 |
 | G-09 | FreightMaster Rotterdam instance | HSP EU stamp (West Europe) | Eliminated | WP-06 |

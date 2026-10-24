@@ -13,13 +13,13 @@ classification: Internal
 related: [AP-07, AP-08, AP-09, AP-03, STD-API-002, STD-EVT-003, STD-TLC-014, ADR-0007, ADR-0015, ADR-0030, ADR-0038, RA-01, GOV-01, GOV-02]
 ---
 
-# STD-INT-001 — Integration Patterns Standard
+# STD-INT-001: Integration Patterns Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
 ## 1. Purpose
 
-This standard defines the integration patterns that Harbourline Logistics Group ("Harbourline") solutions MAY use to exchange data between applications, domains and external partners, and the patterns that are prohibited. It exists so that the Horizon 2028 target state — one Harbourline Shipment Platform (HSP, APP-022), real-time customer visibility and the retirement of MuleSoft Anypoint (APP-122) — is not undermined by new tactical point-to-point integrations.
+This standard defines the integration patterns that Harbourline Logistics Group ("Harbourline") solutions MAY use to exchange data between applications, domains and external partners, and the patterns that are prohibited. It exists so that the Horizon 2028 target state (one Harbourline Shipment Platform (HSP, APP-022), real-time customer visibility and the retirement of MuleSoft Anypoint (APP-122)) is not undermined by new tactical point-to-point integrations.
 
 Solution architects MUST select one of the approved patterns in §4 for every integration flow and record the selection in the solution design submitted to the Architecture Review Board (ARB).
 
@@ -55,16 +55,16 @@ The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT" and "MAY" are to be int
 
 ## 4. Approved Patterns
 
-### 4.1 INT-P1 — Domain Event Publication
+### 4.1 INT-P1: Domain Event Publication
 
-A domain publishes business events — immutable statements of fact such as "milestone recorded" or "customs declaration accepted" — to the Harbourline Event Backbone (APP-120).
+A domain publishes business events (immutable statements of fact such as "milestone recorded" or "customs declaration accepted") to the Harbourline Event Backbone (APP-120).
 
 1. INT-P1 is **mandatory** for all cross-domain asynchronous integration. A consuming domain MUST NOT poll a producing domain's API to detect change where an event exists or can reasonably be published.
 2. Where the event must be consistent with a database write, the producer MUST use the **transactional outbox** pattern: the event is written to an outbox table in the same transaction as the business change and relayed to the Event Backbone by a managed change-data-capture connector (see ADR-0038).
 3. Dual writes (committing to the database and separately calling the Kafka producer in application code) MUST NOT be used for events that downstream systems treat as authoritative.
 4. Events MUST follow the naming, schema and payload rules of STD-EVT-003, e.g. `shipment.milestone.recorded.v1`, `customs.declaration.accepted.v1`.
 
-### 4.2 INT-P2 — Event-Carried State Transfer
+### 4.2 INT-P2: Event-Carried State Transfer
 
 Events carry the full state that consumers need, so each consumer maintains a local read model and does not call back to the producer.
 
@@ -73,7 +73,7 @@ Events carry the full state that consumers need, so each consumer maintains a lo
 3. Consumers MUST treat the local read model as a derived copy; the producer remains the system of record (AP-07).
 4. Consumers MUST be able to rebuild the read model from the compacted topic without requesting a bulk extract from the producer.
 
-### 4.3 INT-P3 — Synchronous Request/Response via API Gateway
+### 4.3 INT-P3: Synchronous Request/Response via API Gateway
 
 Used for queries and commands that need an immediate answer, such as a rate quote, a booking submission or a customs status lookup initiated by a user.
 
@@ -81,15 +81,15 @@ Used for queries and commands that need an immediate answer, such as a rate quot
 2. A synchronous call chain MUST NOT exceed **3 hops** (caller → service A → service B → service C is the maximum). Designs needing deeper chains MUST be restructured using INT-P2 read models.
 3. Callers MUST apply timeouts (default 5 seconds for user-facing calls) and circuit breakers, and MUST NOT retry non-idempotent commands without an idempotency key.
 
-### 4.4 INT-P4 — Managed File Transfer / EDI
+### 4.4 INT-P4: Managed File Transfer / EDI
 
-Used for external partners — carriers, customs brokers and port community systems — that exchange EDIFACT (e.g. IFTMIN, IFTSTA, COPARN) or ANSI X12 (e.g. 204, 214, 315) messages.
+Used for external partners (carriers, customs brokers and port community systems) that exchange EDIFACT (e.g. IFTMIN, IFTSTA, COPARN) or ANSI X12 (e.g. 204, 214, 315) messages.
 
 1. INT-P4 flows MUST run through the B2B gateway, IBM Sterling B2B Integrator (APP-123). Sterling is rated **Contain** in STD-TLC-014: existing partners may continue; onboarding a new EDI partner requires Tier 2 review.
 2. The target state for partner integration is partner APIs under INT-P3. New partners that can consume REST APIs SHOULD be onboarded via the API Gateway instead of EDI.
 3. Inbound EDI messages that represent business facts (for example carrier status IFTSTA/315) SHOULD be translated and republished as domain events under INT-P1 so internal consumers do not parse EDI.
 
-### 4.5 INT-P5 — Batch Data Ingestion
+### 4.5 INT-P5: Batch Data Ingestion
 
 1. INT-P5 is permitted **only** for loading data into the Tidewater Data Platform (APP-080) for analytics and reporting, via connectors or scheduled batch jobs as described in RA-04.
 2. INT-P5 MUST NOT be used for operational integration between applications. A nightly file dropped from one operational system and loaded into another is a prohibited pattern under §5.

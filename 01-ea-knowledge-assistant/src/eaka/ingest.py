@@ -63,7 +63,7 @@ def load_corpus(corpus_dir: Path) -> list[Document]:
 
 
 def _section_ref(heading: str) -> tuple[str, str]:
-    """'4.1 INT-P1 — Domain Event Publication' -> ('4.1', '§4.1 INT-P1 — Domain Event Publication')."""
+    """'4.1 INT-P1: Domain Event Publication' -> ('4.1', '§4.1 INT-P1: Domain Event Publication')."""
     m = NUMBERED.match(heading.strip())
     if m:
         return m.group(1), f"§{m.group(1)} {m.group(2).strip()}"

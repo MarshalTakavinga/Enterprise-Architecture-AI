@@ -45,7 +45,7 @@ def main(argv: list[str] | None = None) -> int:
     if ans.citations:
         print("\nSources:")
         for c in ans.citations:
-            print(f"  [{c.n}] {c.doc_id} {c.section_ref} — {c.title}")
+            print(f"  [{c.n}] {c.doc_id} {c.section_ref} · {c.title}")
     print(f"\n({ans.provider}, {ans.latency_ms} ms, grounded={ans.grounded})")
     return 0
 
@@ -100,7 +100,7 @@ def check() -> int:
         return 1
     print(f"\nReply ({ms} ms): {out.strip()[:200]}")
     ok = "harbour-green" in out.lower()
-    print("OK — the LLM answered from the source and cited it." if ok and "[1]" in out
+    print("OK: the LLM answered from the source and cited it." if ok and "[1]" in out
           else "WARNING: call succeeded but the reply didn't quote/cite the test source as expected.")
     return 0
 

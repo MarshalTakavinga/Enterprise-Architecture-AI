@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-06, AP-10, AP-11, AP-12, AP-14, AP-15, STD-CLD-007, STD-CTR-012, STD-DB-006, STD-IAM-008, STD-SEC-009, STD-OBS-010, STD-RES-015, STD-DAT-005, ADR-0019, ADR-0024, ADR-0041, RA-01]
 ---
 
-# RA-02 — Cloud-Native Application on the Azure Landing Zone
+# RA-02: Cloud-Native Application on the Azure Landing Zone
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -32,7 +32,7 @@ Out of scope: SaaS products (Salesforce, Manhattan Active WM), Tier 0 terminal s
 | Reference | Application in this RA |
 |---|---|
 | AP-10 Cloud-Smart and Portable | Azure primary; Kubernetes, PostgreSQL, OpenTelemetry and Terraform keep workloads portable. |
-| AP-11 Managed Services over Self-Managed | AKS, PostgreSQL Flexible Server, Key Vault, Front Door — no self-managed clusters or databases. |
+| AP-11 Managed Services over Self-Managed | AKS, PostgreSQL Flexible Server, Key Vault, Front Door; no self-managed clusters or databases. |
 | AP-12 Zero Trust Access | Private endpoints, managed identity, Entra ID authentication on every hop. |
 | AP-06 Data Residency Follows Jurisdiction | Regional deployment stamps pinned to approved regions. |
 | AP-14 / AP-15 | OpenTelemetry mandatory; all infrastructure in Terraform, all workloads via GitOps. |
@@ -66,7 +66,7 @@ flowchart TB
     AFD -->|Private Link| AGC[App Gateway for Containers]
     AFD -->|API traffic| APIM[Harbourline API Gateway<br/>APIM Premium, internal VNet]
     APIM --> AGC
-    subgraph Stamp["Regional stamp (e.g. West Europe) — spoke VNet in hlg-online"]
+    subgraph Stamp["Regional stamp (e.g. West Europe): spoke VNet in hlg-online"]
         AGC --> AKS[AKS private cluster<br/>3 zones]
         AKS -->|private endpoint| PG[(PostgreSQL Flexible Server<br/>zone-redundant HA)]
         AKS -->|private endpoint| KV[Key Vault]
@@ -102,7 +102,7 @@ flowchart TB
 | Cost transparency | 100% resources tagged | Mandatory tags enforced by policy |
 | Recovery testing | Annual DR test for Tier 1 | Failover runbook exercised per stamp |
 
-## 7. Worked Example at Harbourline — Harbourline Connect Stamps
+## 7. Worked Example at Harbourline: Harbourline Connect Stamps
 
 Harbourline Connect (APP-050) runs three stamps built from this RA: US (East US 2, DR Central US), EU (West Europe, DR North Europe) and Canada (Canada Central, DR Canada East). Each stamp contains its own AKS cluster, PostgreSQL read-model database and Redis cache. Front Door routes an authenticated user to the stamp matching their account's home region, satisfying STD-DAT-005 and ADR-0041. A fourth UAE North stamp is proposed under CR-2026-014 (H-01) and would be instantiated from the same Terraform module with region `uaenorth`.
 
@@ -121,10 +121,10 @@ The React front end and .NET 8 BFF deploy to each stamp via Flux from a single G
 
 ## 9. Related ADRs
 
-- ADR-0019 — Azure API Management as the Single API Gateway
-- ADR-0024 — PostgreSQL Flexible Server as Default Relational Database
-- ADR-0030 — Event-Carried State Transfer for Shipment Status to Harbourline Connect
-- ADR-0041 — Serve EU Customer Data for Harbourline Connect from West Europe
+- ADR-0019: Azure API Management as the Single API Gateway
+- ADR-0024: PostgreSQL Flexible Server as Default Relational Database
+- ADR-0030: Event-Carried State Transfer for Shipment Status to Harbourline Connect
+- ADR-0041: Serve EU Customer Data for Harbourline Connect from West Europe
 
 ## 10. Document History
 

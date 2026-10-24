@@ -30,7 +30,7 @@ K = 5
 
 
 def load_queries() -> list[dict]:
-    qs = yaml.safe_load((ROOT / "eval" / "queries.yaml").read_text())["queries"]
+    qs = yaml.safe_load((ROOT / "eval" / "queries.yaml").read_text(encoding="utf-8"))["queries"]
     for q in qs:
         q.setdefault("expect", "answer")
     return qs
@@ -180,8 +180,8 @@ def main() -> int:
     }
     res_dir = ROOT / "eval" / "results"
     res_dir.mkdir(parents=True, exist_ok=True)
-    (res_dir / f"{tag}.json").write_text(json.dumps(out, indent=2))
-    (res_dir / f"{tag}.md").write_text(render_md(out))
+    (res_dir / f"{tag}.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    (res_dir / f"{tag}.md").write_text(render_md(out), encoding="utf-8")
     print(render_md(out))
     return 0
 
@@ -199,7 +199,7 @@ def pct(x):
 def render_md(o: dict) -> str:
     r, e = o["retrieval_test"], o["end_to_end_test"]
     lines = [
-        f"# Evaluation results — `{o['tag']}`",
+        f"# Evaluation results: `{o['tag']}`",
         "",
         f"Run {o['run_at']} · index `{o['index']['corpus_fingerprint']}` · {o['index']['documents']} documents / "
         f"{o['index']['chunks']} chunks · embedder `{o['index']['embedder']}` · answers `{o['llm_provider']}`",

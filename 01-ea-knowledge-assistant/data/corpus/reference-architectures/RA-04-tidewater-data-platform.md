@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-05, AP-06, AP-07, AP-08, AP-16, STD-DAT-004, STD-DAT-005, STD-DB-006, STD-EVT-003, STD-INT-001, STD-AI-013, STD-SEC-009, ADR-0007, ADR-0012, ADR-0021, RA-01]
 ---
 
-# RA-04 — Tidewater Enterprise Data Platform
+# RA-04: Tidewater Enterprise Data Platform
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -58,11 +58,11 @@ flowchart LR
         SF[Salesforce<br/>batch]
         CTS[CTS Cosmos DB<br/>archive]
     end
-    subgraph EU["tw-eu — West Europe"]
+    subgraph EU["tw-eu, West Europe"]
         EB2[Bronze EU] --> ES[Silver EU] --> EG[Gold EU<br/>personal data products]
         EG -->|anonymised aggregates only| AGG
     end
-    subgraph US["tw-us — East US 2"]
+    subgraph US["tw-us, East US 2"]
         B[Bronze] --> S[Silver<br/>conformed, cleansed] --> G[Gold<br/>domain data products]
         AGG[Aggregates from EU] --> G
     end
@@ -82,7 +82,7 @@ flowchart LR
 1. **Land (bronze).** Kafka sink connectors write Event Backbone topics to bronze Delta tables with the original payload, schema ID, topic, partition and offset. Batch sources land via Data Factory on a nightly schedule (SAP finance at 02:00 ET). Bronze is append-only and retained for 13 months.
 2. **Route by residency.** Topics carrying EU data-subject personal data (for example Harbourline Europe customer contacts) are landed only in `tw-eu`. The routing table is maintained by Lena Vogel and reviewed by the DPO, Marieke de Vries, each quarter.
 3. **Conform (silver).** Structured-streaming and DLT pipelines deduplicate by event ID, apply schema evolution, standardise reference data (UN/LOCODE, ISO country, carrier SCAC), and apply classification tags from STD-DAT-004.
-4. **Publish (gold).** Domain teams build data products — for example `shipment_performance_daily` — with a published contract: owner, freshness SLO, quality expectations, and classification.
+4. **Publish (gold).** Domain teams build data products (for example `shipment_performance_daily`) with a published contract: owner, freshness SLO, quality expectations, and classification.
 5. **Aggregate across regions.** EU gold products export only anonymised aggregates (k-anonymity ≥ 10, no direct or indirect identifiers) to `tw-us` for group reporting. Pseudonymised data does not qualify and stays in West Europe.
 6. **Consume.** Analysts use Databricks SQL or Power BI; data scientists use governed notebooks. Access is granted to Entra ID groups through Unity Catalog; Restricted columns are masked unless the user holds an active PIM elevation.
 7. **Retire.** Data products follow the retention attached to their classification; deletion requests for personal data are propagated from the source system via tombstone events.
@@ -91,15 +91,15 @@ flowchart LR
 
 | Characteristic | Target |
 |---|---|
-| Freshness — streaming products | ≤ 15 min from event to silver |
-| Freshness — batch products | Available by 06:00 local time of the owning region |
+| Freshness: streaming products | ≤ 15 min from event to silver |
+| Freshness: batch products | Available by 06:00 local time of the owning region |
 | Availability | 99.9% for SQL warehouses (Tier 2) |
 | RTO / RPO | 8 h / 1 h (STD-RES-015 Tier 2); ADLS GRS within jurisdiction pairs |
 | Scale | ~40M telemetry events/day from CTS plus ~6M business events/day |
 | Security | Private endpoints, no public workspace access, CMK for Restricted |
 | Cost control | Serverless warehouses auto-stop at 10 min; cluster policies per team |
 
-## 7. Worked Example at Harbourline — On-Time Performance Data Product
+## 7. Worked Example at Harbourline: On-Time Performance Data Product
 
 The Ocean & Air Forwarding unit needed a single on-time performance measure across FreightMaster, Nordhaven TMS and HSP. The HSP milestone topic `shipment.milestone.recorded.v1` streams into bronze; FreightMaster data arrives by nightly batch until its retirement; Nordhaven TMS milestones replicate from AWS via cluster linking (ADR-0021) and land in `tw-eu` because they include EU consignee contacts.
 
@@ -117,9 +117,9 @@ Silver pipelines map all three sources to a common milestone model. The gold pro
 
 ## 9. Related ADRs
 
-- ADR-0007 — Adopt Confluent Cloud as the Enterprise Event Backbone
-- ADR-0012 — Use Azure Cosmos DB for Container Telemetry Storage
-- ADR-0021 — Temporarily Retain Nordhaven TMS on AWS
+- ADR-0007: Adopt Confluent Cloud as the Enterprise Event Backbone
+- ADR-0012: Use Azure Cosmos DB for Container Telemetry Storage
+- ADR-0021: Temporarily Retain Nordhaven TMS on AWS
 
 ## 10. Document History
 

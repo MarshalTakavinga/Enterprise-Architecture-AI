@@ -1,6 +1,6 @@
 ---
 doc_id: A-01
-title: Architecture Vision — Horizon 2028 Shipment Platform
+title: Architecture Vision, Horizon 2028 Shipment Platform
 doc_type: togaf_deliverable
 togaf_phase: A
 version: "1.1"
@@ -13,7 +13,7 @@ classification: Internal
 related: [PRE-01, PRE-02, A-02, A-03, A-04, ADD-01, ARS-01, F-01, GOV-01, AP-01, AP-02, AP-04, AP-06, AP-07, AP-08, AP-10, STD-INT-001, STD-DAT-005, STD-RES-015, ADR-0007, ADR-0015, ADR-0021, ADR-0024, ADR-0027]
 ---
 
-# A-01 — Architecture Vision — Horizon 2028 Shipment Platform
+# A-01: Architecture Vision, Horizon 2028 Shipment Platform
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -25,9 +25,9 @@ This Architecture Vision sets out, at summary level, why Harbourline is replacin
 
 Harbourline runs its core freight business on three transport management systems that were never designed to work together:
 
-- **FreightMaster TMS (APP-020)** — built in-house from 2009, Oracle 12c and Java 8, hosted in the Baltimore data centre, used by Harbourline Inc., Harbourline Canada and Harbourline Gulf.
-- **Nordhaven TMS (APP-021)** — inherited with the March 2024 acquisition of Nordhaven Freight GmbH, running on AWS eu-central-1 with MongoDB Atlas and Java 11.
-- **FreightMaster Rotterdam instance** — a 2019 fork of APP-020 with its own Oracle 12c schema in the Rotterdam server room, used by Harbourline Europe B.V. and coupled to the Baltimore instance for cross-region shipments.
+- **FreightMaster TMS (APP-020)**: built in-house from 2009, Oracle 12c and Java 8, hosted in the Baltimore data centre, used by Harbourline Inc., Harbourline Canada and Harbourline Gulf.
+- **Nordhaven TMS (APP-021)**: inherited with the March 2024 acquisition of Nordhaven Freight GmbH, running on AWS eu-central-1 with MongoDB Atlas and Java 11.
+- **FreightMaster Rotterdam instance**: a 2019 fork of APP-020 with its own Oracle 12c schema in the Rotterdam server room, used by Harbourline Europe B.V. and coupled to the Baltimore instance for cross-region shipments.
 
 The three systems, SAP, Salesforce and the customs gateway are held together by 310 MuleSoft flows (APP-122) and a number of direct database links.
 
@@ -66,7 +66,7 @@ The full map is in A-03. The concerns that shape this Vision are:
 
 ## 5. Vision Statement
 
-> By the end of 2027, every Harbourline shipment — ocean, air or road, in any region — is booked, executed, tracked and billed on one cloud-native platform, and every customer can see what is happening to their freight within minutes of it happening, with their data held where their law requires.
+> By the end of 2027, every Harbourline shipment (ocean, air or road, in any region) is booked, executed, tracked and billed on one cloud-native platform, and every customer can see what is happening to their freight within minutes of it happening, with their data held where their law requires.
 
 ## 6. Value Propositions and KPIs
 

@@ -13,7 +13,7 @@ classification: Internal
 related: [AP-CATALOG, GOV-01, PRE-02, A-01, A-04, F-01]
 ---
 
-# PRE-01 — Business Principles, Goals and Drivers
+# PRE-01: Business Principles, Goals and Drivers
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -23,7 +23,7 @@ This deliverable records the business context that shapes Harbourline's architec
 
 ## 2. Business Context
 
-Harbourline Logistics Group is headquartered in Baltimore, Maryland, employs about 9,400 people and generates roughly USD 4.2B in annual revenue across about 60 sites in 11 countries. It operates four business lines — Ocean & Air Forwarding, Port & Terminal Services, Contract Logistics & Warehousing, and Customs Brokerage — plus Harbourline Digital, which builds customer-facing products. It runs four container terminals: BAL-T1 (Baltimore), HFX-T1 (Halifax), RTM-T2 (Rotterdam Maasvlakte) and JEA-T4 (Jebel Ali).
+Harbourline Logistics Group is headquartered in Baltimore, Maryland, employs about 9,400 people and generates roughly USD 4.2B in annual revenue across about 60 sites in 11 countries. It operates four business lines (Ocean & Air Forwarding, Port & Terminal Services, Contract Logistics & Warehousing, and Customs Brokerage) plus Harbourline Digital, which builds customer-facing products. It runs four container terminals: BAL-T1 (Baltimore), HFX-T1 (Halifax), RTM-T2 (Rotterdam Maasvlakte) and JEA-T4 (Jebel Ali).
 
 The March 2024 acquisition of Nordhaven Freight GmbH in Hamburg added European road and ocean forwarding volume but also a third transport management system, hosted on AWS.
 

@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-16, AP-02, AP-05, AP-06, STD-DAT-004, STD-DAT-005, STD-DB-006, STD-SEC-009, STD-IAM-008, STD-OBS-010, STD-CLD-007, STD-TLC-014, GOV-01, GOV-02]
 ---
 
-# STD-AI-013 — AI & Generative AI Usage Standard
+# STD-AI-013: AI & Generative AI Usage Standard
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 

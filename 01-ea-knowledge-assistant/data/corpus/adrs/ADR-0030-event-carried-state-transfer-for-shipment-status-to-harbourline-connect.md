@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-01, AP-07, AP-08, AP-09, AP-14, STD-INT-001, STD-EVT-003, STD-API-002, STD-OBS-010, ADR-0007, ADR-0038, ADR-0041, RA-01, APP-022, APP-050, APP-120]
 ---
 
-# ADR-0030 — Event-Carried State Transfer for Shipment Status to Harbourline Connect
+# ADR-0030: Event-Carried State Transfer for Shipment Status to Harbourline Connect
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -46,13 +46,13 @@ HSP will publish `shipment.milestone.recorded.v1` (each milestone: booked, gated
 
 ## 4. Considered Options
 
-- **Option A — Synchronous query** of the HSP shipment API through the API Gateway on each page view (INT-P3), with a short cache.
-- **Option B — Event-Carried State Transfer** (INT-P2): portal consumes HSP events and maintains its own read model.
-- **Option C — Thin notification + callback**: HSP emits "shipment changed" notifications with IDs only; portal calls the API to fetch state.
+- **Option A: Synchronous query** of the HSP shipment API through the API Gateway on each page view (INT-P3), with a short cache.
+- **Option B: Event-Carried State Transfer** (INT-P2): portal consumes HSP events and maintains its own read model.
+- **Option C: Thin notification + callback**: HSP emits "shipment changed" notifications with IDs only; portal calls the API to fetch state.
 
 ### 4.1 Comparison
 
-| Criterion | A — Sync query | B — ECST read model | C — Notify + fetch |
+| Criterion | A: Sync query | B: ECST read model | C: Notify + fetch |
 |---|---|---|---|
 | p95 latency, milestone → visible | Depends on cache TTL (60 s TTL ≈ 1 min) | ~15-40 s measured in PoC | ~20-60 s |
 | Portal availability if HSP down | Degraded / stale cache only | Unaffected (serves last known state) | Degraded for changed shipments |
@@ -63,7 +63,7 @@ HSP will publish `shipment.milestone.recorded.v1` (each milestone: booked, gated
 
 ## 5. Decision Outcome
 
-**Chosen option: B — Event-Carried State Transfer.** Harbourline Connect maintains a local shipment-status read model fed by `shipment.milestone.recorded.v1` and `shipment.status.changed.v1`. This applies **INT-P2** of STD-INT-001.
+**Chosen option B: Event-Carried State Transfer.** Harbourline Connect maintains a local shipment-status read model fed by `shipment.milestone.recorded.v1` and `shipment.status.changed.v1`. This applies **INT-P2** of STD-INT-001.
 
 Rules:
 

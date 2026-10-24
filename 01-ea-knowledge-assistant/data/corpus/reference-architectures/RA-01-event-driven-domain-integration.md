@@ -12,7 +12,7 @@ classification: Internal
 related: [AP-07, AP-08, AP-09, AP-14, STD-INT-001, STD-API-002, STD-EVT-003, STD-DAT-004, STD-OBS-010, ADR-0007, ADR-0015, ADR-0019, ADR-0030, ADR-0038, RA-02, RA-04]
 ---
 
-# RA-01 — Event-Driven Domain Integration
+# RA-01: Event-Driven Domain Integration
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -54,7 +54,7 @@ It does not apply to partner EDI exchanges (INT-P4, handled by APP-123), batch l
 | Dead-letter handling | `<topic>.dlq` topics + DLQ replay tool | Owned by consuming team |
 | Consumer read model | PostgreSQL or Azure Cache for Redis (cache only) | Idempotent upsert keyed by entity ID + version |
 | Large payload store | Azure Blob Storage (claim-check) | For payloads > 1 MB, e.g. documents |
-| Synchronous access | Harbourline API Gateway — Azure API Management (APP-121) | ADR-0019 |
+| Synchronous access | Harbourline API Gateway: Azure API Management (APP-121) | ADR-0019 |
 | Cross-cloud link | Confluent cluster linking + private link | For Nordhaven TMS on AWS (ADR-0021) |
 | Telemetry | OpenTelemetry SDK → Azure Monitor / Grafana | Trace ID in Kafka headers |
 
@@ -81,7 +81,7 @@ flowchart LR
 ## 5. Flow Description
 
 1. The domain service handles a command (for example "record milestone") and, in one PostgreSQL transaction, updates its business tables and inserts an outbox row containing the event type, aggregate ID, aggregate version, and Avro-serialisable payload.
-2. The transaction commits. If it rolls back, no event exists — the change and the event are atomic.
+2. The transaction commits. If it rolls back, no event exists. The change and the event are atomic.
 3. The Debezium connector reads the committed outbox row from the write-ahead log and publishes it to the topic named in the row, e.g. `shipment.milestone.recorded.v1`, keyed by aggregate ID so ordering holds per entity.
 4. The serializer registers or validates the schema against Schema Registry. An incompatible schema fails the publish and raises an alert to the producing team.
 5. The connector propagates `traceparent` from the outbox row into Kafka headers.
@@ -101,7 +101,7 @@ flowchart LR
 | Security | TLS 1.2+, service principals per consumer with topic-level ACLs | STD-SEC-009, STD-IAM-008 |
 | Observability | Consumer lag, DLQ depth, and connector status on the integration Grafana board | STD-OBS-010 |
 
-## 7. Worked Example at Harbourline — Shipment Milestones
+## 7. Worked Example at Harbourline: Shipment Milestones
 
 HSP (APP-022) records roughly 1.9 million milestone events per day across US lanes after Transition Architecture 1. The milestone service writes each milestone and an outbox row in one transaction. The Debezium connector publishes to `shipment.milestone.recorded.v1`; status transitions produce `shipment.status.changed.v1`.
 
@@ -125,13 +125,13 @@ Measured p95 from HSP commit to portal read model in August 2026 was 11 seconds.
 
 ## 9. Related ADRs
 
-- ADR-0007 — Adopt Confluent Cloud as the Enterprise Event Backbone
-- ADR-0015 — Sunset MuleSoft ESB and Freeze New Flows
-- ADR-0019 — Azure API Management as the Single API Gateway
-- ADR-0021 — Temporarily Retain Nordhaven TMS on AWS
-- ADR-0030 — Event-Carried State Transfer for Shipment Status to Harbourline Connect
-- ADR-0038 — Transactional Outbox for Publishing Domain Events from HSP
-- ADR-0041 — Serve EU Customer Data for Harbourline Connect from West Europe
+- ADR-0007: Adopt Confluent Cloud as the Enterprise Event Backbone
+- ADR-0015: Sunset MuleSoft ESB and Freeze New Flows
+- ADR-0019: Azure API Management as the Single API Gateway
+- ADR-0021: Temporarily Retain Nordhaven TMS on AWS
+- ADR-0030: Event-Carried State Transfer for Shipment Status to Harbourline Connect
+- ADR-0038: Transactional Outbox for Publishing Domain Events from HSP
+- ADR-0041: Serve EU Customer Data for Harbourline Connect from West Europe
 
 ## 10. Document History
 

@@ -30,7 +30,7 @@ class Chunk:
     doc_id: str
     doc_title: str
     doc_type: str
-    section_ref: str       # e.g. "§4.1 INT-P1 — Domain Event Publication"
+    section_ref: str       # e.g. "§4.1 INT-P1: Domain Event Publication"
     text: str              # section text as written (what gets quoted / cited)
     ordinal: int = 0
     heading_path: str = "" # e.g. "5 Topic Design › 5.1 Naming" (context for retrieval)
@@ -38,7 +38,7 @@ class Chunk:
     @property
     def embed_text(self) -> str:
         """Text used for indexing: a contextual header makes short sections retrievable."""
-        return f"{self.doc_id} {self.doc_title} ({self.doc_type}) — {self.heading_path or self.section_ref}\n{self.text}"
+        return f"{self.doc_id} {self.doc_title} ({self.doc_type}) · {self.heading_path or self.section_ref}\n{self.text}"
 
     @property
     def citation(self) -> str:

@@ -1,6 +1,6 @@
 ---
 doc_id: H-01
-title: Change Request CR-2026-014 — Add UAE Deployment Stamp for Harbourline Connect
+title: Change Request CR-2026-014, Add UAE Deployment Stamp for Harbourline Connect
 doc_type: togaf_deliverable
 togaf_phase: H
 version: "1.1"
@@ -13,7 +13,7 @@ classification: Internal
 related: [H-02, ARS-01, F-01, ADD-01, AP-01, AP-06, STD-DAT-005, STD-CLD-007, STD-RES-015, ADR-0041, RA-02]
 ---
 
-# H-01 — Change Request CR-2026-014 — Add UAE Deployment Stamp for Harbourline Connect
+# H-01: Change Request CR-2026-014, Add UAE Deployment Stamp for Harbourline Connect
 
 > Synthetic document for a portfolio project. Harbourline Logistics Group is a fictional company.
 
@@ -27,7 +27,7 @@ related: [H-02, ARS-01, F-01, ADD-01, AP-01, AP-06, STD-DAT-005, STD-CLD-007, ST
 | Date raised | 2026-06-11 |
 | Business sponsor | Michael Torres, VP Port & Terminal Services (JEA-T4 customers) |
 | Affected application(s) | Harbourline Connect (APP-050); HSP (APP-022); Customer Notification Service (APP-055) |
-| Change category | Architecture change — new deployment region for an existing Tier 1 system |
+| Change category | Architecture change: new deployment region for an existing Tier 1 system |
 | Requested review tier | Tier 1 (new region, personal data residency, cost > USD 500k) |
 | Assessment | H-02 Requirements Impact Assessment |
 | Status | Approved with Conditions (ARB-2026-024, 2026-07-16) |
