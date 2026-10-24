@@ -14,6 +14,14 @@ _SRC_ROOT = Path(__file__).resolve().parents[2]
 PROJECT_ROOT = _SRC_ROOT if (_SRC_ROOT / "data" / "corpus").exists() else Path.cwd()
 
 
+try:  # a local .env file works the same as in docker compose (real environment variables win)
+    from dotenv import load_dotenv
+
+    load_dotenv(PROJECT_ROOT / ".env", override=False)
+except ImportError:  # pragma: no cover
+    pass
+
+
 def _env(name: str, default: str) -> str:
     return os.environ.get(name, default)
 

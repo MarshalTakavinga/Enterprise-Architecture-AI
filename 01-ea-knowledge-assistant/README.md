@@ -55,7 +55,8 @@ docker compose up --build     # UI http://localhost:8501 · API docs http://loca
 ```
 
 To use an LLM, set `EAKA_LLM_PROVIDER` to `azure_openai`, `anthropic` or `openai` and supply the
-matching key in `.env`. For an organisation with EU and UAE data-residency rules, the recommended
+matching key in `.env` (each provider has a ready block in `.env.example`), then run `eaka check` to
+confirm the key, model and a test call before starting the UI. For an organisation with EU and UAE data-residency rules, the recommended
 choice is **Azure OpenAI deployed in the data's own region**. The reasoning is in
 [ADR-P003](docs/adr/ADR-P003-llm-and-embedding-provider.md).
 
@@ -72,24 +73,45 @@ between domains?"* The assistant returns:
 Each is cited by clause. For *"What is our standard for modernising mainframe COBOL applications?"* the
 assistant refuses and logs the question as a documentation gap (see the screenshot above).
 
-## Evaluation (test split, offline configuration)
+## Evaluation (held-out test split: 29 answerable + 7 out-of-corpus questions)
 
-| Measure | Result |
-|---|---|
-| Retrieval Recall@5 / Hit@1 / MRR@10 (hybrid, dev-tuned) | **100% / 86.2% / 0.910** |
-| Hybrid vs. single retrievers (MRR@10) | BM25 0.880 · dense 0.898 · **hybrid 0.910** |
-| Answerable questions wrongly refused | **0 of 29** |
-| Out-of-corpus questions correctly refused | **6 of 7** (the miss uses only in-corpus vocabulary, so the LLM's `NOT_FOUND` rule is the second gate) |
-| Answers carrying a citation | **100%** |
-| Answer contains the key fact (extractive mode) | 72.4%. Quoting whole sentences is the limit here; LLM synthesis is expected to close this gap. |
-| Latency p50 / p95 (in-process) | 31 ms / 39 ms |
+Retrieval is identical in both configurations: **Recall@5 100% · Hit@1 86.2% · MRR@10 0.910**
+(hybrid, dev-tuned). Hybrid beats either retriever alone on MRR@10: BM25 0.880 · dense 0.898 ·
+**hybrid 0.910**.
 
-Method, metric definitions, the full report and the commands for the LLM runs are in
-[`eval/README.md`](eval/README.md) and [`eval/results/offline_baseline.md`](eval/results/offline_baseline.md).
+| Measure | Offline (extractive, no LLM) | With an LLM (Claude Haiku 4.5) |
+|---|---|---|
+| Out-of-corpus questions correctly refused | 6 of 7 | **7 of 7** |
+| Answerable questions wrongly refused | **0 of 29** | 1 of 29 (q18) |
+| Answer contains the key fact | 72.4% | **93.1%** |
+| Answer cites a relevant document | 96.6% | 89.7% |
+| Claim support (factual sentences supported by the passage they cite) | n/a (answers are quotes) | **89.7%** |
+| Fully grounded answers (≥ 90% of sentences cited and supported) | 100% (by construction) | 67.9% |
+| Answers carrying a citation or a "not found" | 100% | 100% |
+| Latency p50 / p95 | 196 ms / 575 ms | 3.3 s / 5.3 s |
 
-**Still to measure:** LLM-mode groundedness and key-fact accuracy, and neural embeddings. No API key
-was available when these results were produced, and the evaluation reports those numbers as pending
-rather than estimating them.
+![Evaluation run with Claude Haiku 4.5: retrieval and end-to-end results in PowerShell](docs/images/llm-eval-results.png)
+
+The LLM closes the key-fact gap and catches the out-of-corpus question that only uses in-corpus
+vocabulary, which is what the second (`NOT_FOUND`) gate is for. The full reports are
+[`eval/results/claude.md`](eval/results/claude.md) and
+[`eval/results/offline_baseline.md`](eval/results/offline_baseline.md); method and metric
+definitions are in [`eval/README.md`](eval/README.md).
+
+**Known weak spots, stated rather than tuned away:**
+
+- **q18** ("How is the Tidewater data platform organised into layers?") is wrongly refused. The
+  medallion-layer passage in RA-04 doesn't reach the model because the offline LSA embedder confuses
+  RA-04's similarly titled sections. Neural embeddings are the expected fix and haven't been measured
+  yet.
+- **q25** ("Why did we move off MPLS?") is counted as a miss, but the answer is correct and every
+  sentence is supported. It names Fortinet rather than the rubric's keyword "SD-WAN". The rubric was
+  left unchanged after seeing results, so 93.1% is slightly conservative.
+- **Fully grounded 67.9% vs. claim support 89.7%:** most of the gap is short uncited framing lines
+  (headings, one-line summaries) rather than unsupported facts.
+- **An earlier run reported 37% groundedness.** Most of that was a bug in the checker, not the model:
+  it counted headings as claims and mis-parsed multi-citation brackets like `[7, §4.1]`. The checker
+  and retrieval fusion were fixed and covered by regression tests before these numbers were produced.
 
 ## Governance: what this system does not do
 

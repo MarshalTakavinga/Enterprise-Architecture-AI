@@ -23,7 +23,9 @@ primary one actually contains the expected answer keyword.
 | Answerable answered | Share of answerable questions the gate did *not* wrongly refuse. |
 | Out-of-corpus refused | Share of out-of-corpus questions answered with "not found" instead of a guess. |
 | Answer contains key fact | The answer text includes the labelled key fact (for example "West Europe" or "2025-06-30"). |
-| Groundedness | Share of answers whose every claim sentence cites a valid source and shares at least 50% of its content words with that source (`eaka.answer.check_groundedness`). |
+| Answer passage reached the model | The key fact appears in a retrieved passage from an expected document — separates retrieval misses from generation misses. |
+| Claim support | Share of factual sentences (headings and labels excluded) that cite a valid source and share at least 50% of their content words with it (`eaka.answer.check_groundedness`). |
+| Fully grounded answers | Share of answers where at least 90% of factual sentences are cited and supported. |
 | Latency p50/p95 | End to end, measured in-process. |
 
 ## Results so far
@@ -42,9 +44,25 @@ hybrid retrieval with extractive answers and no API keys. On the test split:
 - **Groundedness is 100% in extractive mode, but only because it holds by construction** (the answer
   is quoted text). It is not evidence about LLM behaviour.
 
-## Still to measure
+## LLM results
 
-Run the evaluation with an LLM to get the numbers that matter most for generated answers:
+[`results/claude.md`](results/claude.md) uses the same retrieval with Claude Haiku 4.5 writing the
+answers. On the test split:
+
+- **Out-of-corpus refusal rises to 7 of 7.** The LLM's `NOT_FOUND` rule catches the SAP question the
+  retrieval gate let through.
+- **The key fact appears in 93.1% of answers** (72.4% offline). One of the two misses (q25) is correct
+  but phrased without the rubric keyword; the rubric was not changed after seeing results.
+- **Claim support is 89.7%; 67.9% of answers are fully grounded.** The gap is mostly short uncited
+  framing lines rather than unsupported facts.
+- **One answerable question (q18) is wrongly refused** because its passage never reaches the model, a
+  retrieval limitation of the offline LSA embedder.
+
+An earlier LLM run showed 37% groundedness. That number was mostly a checker bug (headings counted as
+claims, `[7, §4.1]` citations mis-parsed), found by reading the failing answers rather than trusting
+the metric. It was fixed with regression tests before the run above.
+
+## Re-running
 
 ```bash
 EAKA_LLM_PROVIDER=anthropic ANTHROPIC_API_KEY=... python eval/run_eval.py --tag claude
@@ -53,7 +71,7 @@ EAKA_LLM_PROVIDER=azure_openai AZURE_OPENAI_API_KEY=... AZURE_OPENAI_ENDPOINT=..
 
 If you also switch the embedder (for example `EAKA_EMBEDDER=azure_openai`), the relevance scale
 changes. In that case read the dev-tuned threshold and weight off the new report and set
-`EAKA_MIN_RELEVANCE` and `EAKA_LEXICAL_WEIGHT` to match.
+`EAKA_MIN_RELEVANCE` and `EAKA_LEXICAL_WEIGHT` to match. Neural embeddings have not been measured yet.
 
 ## Honest limitations
 

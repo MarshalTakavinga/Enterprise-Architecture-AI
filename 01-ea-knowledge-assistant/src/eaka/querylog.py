@@ -41,9 +41,10 @@ class QueryLog:
             "provider": ans.provider,
             "latency_ms": ans.latency_ms,
             "index_version": index_version,
+            "error": ans.error,
         }
         self._append(self.audit, rec)
-        if not ans.found:
+        if not ans.found and not ans.error:
             self._append(self.gaps, {k: rec[k] for k in ("query_id", "ts", "question", "retrieved")})
         return qid
 

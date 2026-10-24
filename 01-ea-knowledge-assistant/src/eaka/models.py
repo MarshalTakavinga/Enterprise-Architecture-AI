@@ -79,6 +79,7 @@ class Answer:
     latency_ms: int = 0
     retrieved: list[str] = field(default_factory=list)  # chunk_ids, in rank order
     query_id: str = ""
+    error: str = ""                    # set when the LLM call failed
 
     def to_dict(self) -> dict:
         return asdict(self)

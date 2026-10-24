@@ -11,7 +11,7 @@ from .embeddings import load_embedder, make_embedder
 from .ingest import build_chunks, corpus_fingerprint, load_corpus
 from .models import Answer
 from .querylog import QueryLog
-from .retrieval import Retriever
+from .retrieval import MAX_EXTRA, Retriever
 from .store import make_store
 
 
@@ -65,7 +65,7 @@ class KnowledgeAssistant:
         t0 = time.perf_counter()
         provider = provider or self.s.llm_provider
         question = question.strip()[:2000]
-        results = self.retriever.search(question, k=self.s.top_k)
+        results = self.retriever.search(question, k=self.s.top_k, max_extra=MAX_EXTRA)
         ans = Answer(question=question, answer="", found=False, provider=provider,
                      retrieved=[r.chunk.chunk_id for r in results])
 
@@ -73,8 +73,16 @@ class KnowledgeAssistant:
         if relevance < self.s.min_relevance:
             ans.answer = NOT_FOUND_MESSAGE          # gate: don't even ask the LLM
         else:
-            text = generate(provider, question, results, self.s.llm_model, self.s.max_answer_tokens).strip()
-            if text == NOT_FOUND or text.startswith(NOT_FOUND):
+            try:
+                text = generate(provider, question, results, self.s.llm_model, self.s.max_answer_tokens).strip()
+            except Exception as e:  # noqa: BLE001 - surface provider errors instead of crashing the UI/API
+                text = ""
+                ans.error = f"{type(e).__name__}: {e}"[:500]
+                ans.answer = (f"The {provider} LLM call failed, so no answer was generated. "
+                              f"Run `eaka check` to diagnose. ({ans.error})")
+            if ans.error:
+                pass
+            elif text == NOT_FOUND or text.startswith(NOT_FOUND):
                 ans.answer = NOT_FOUND_MESSAGE
             else:
                 ans.found = True

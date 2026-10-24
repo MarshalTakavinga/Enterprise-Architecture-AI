@@ -5,3 +5,5 @@ eval/results/ci.*
 __pycache__/
 *.egg-info/
 .pytest_cache/
+.venv*/
+venv/

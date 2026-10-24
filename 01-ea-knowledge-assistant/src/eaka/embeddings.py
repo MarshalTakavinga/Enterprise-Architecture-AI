@@ -72,14 +72,11 @@ class OpenAIEmbedder:
     """OpenAI or Azure OpenAI embeddings (set EAKA_EMBEDDER=azure_openai for in-region processing)."""
 
     def __init__(self, model: str, azure: bool = False):
-        from openai import AzureOpenAI, OpenAI
+        from .answer import openai_client
 
         self.name = ("azure_openai:" if azure else "openai:") + model
-        self.model = model
-        self.client = (
-            AzureOpenAI(api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-10-21"))
-            if azure else OpenAI()
-        )
+        self.model = model        # on Azure: the embedding *deployment* name
+        self.client = openai_client(azure)
         self.dim = 0
 
     def fit(self, texts: list[str]) -> None:  # hosted models are pre-trained

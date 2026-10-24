@@ -1,0 +1,3117 @@
+{
+  "tag": "claude",
+  "run_at": "2026-10-24 01:48 UTC",
+  "index": {
+    "corpus_fingerprint": "0da24c934d96e8fc",
+    "embedder": "lsa",
+    "dim": 256,
+    "documents": 48,
+    "chunks": 552,
+    "built_at": "2026-10-24T01:45:11Z"
+  },
+  "llm_provider": "anthropic",
+  "k": 5,
+  "queries": {
+    "dev": 14,
+    "test": 36,
+    "test_answerable": 29,
+    "test_out_of_corpus": 7
+  },
+  "label_sanity_problems": [],
+  "not_found_threshold_from_dev": 0.51,
+  "lexical_weight_from_dev": 0.5,
+  "dev_mrr_by_lexical_weight": {
+    "0.5": 0.9393939393939394,
+    "1.0": 0.8787878787878789,
+    "1.5": 0.8787878787878789,
+    "2.0": 0.8939393939393938,
+    "3.0": 0.8939393939393938
+  },
+  "dev_relevance_scores": [
+    [
+      0.276,
+      "not_found"
+    ],
+    [
+      0.345,
+      "not_found"
+    ],
+    [
+      0.394,
+      "not_found"
+    ],
+    [
+      0.626,
+      "answer"
+    ],
+    [
+      0.646,
+      "answer"
+    ],
+    [
+      0.746,
+      "answer"
+    ],
+    [
+      0.766,
+      "answer"
+    ],
+    [
+      0.797,
+      "answer"
+    ],
+    [
+      0.818,
+      "answer"
+    ],
+    [
+      0.836,
+      "answer"
+    ],
+    [
+      0.837,
+      "answer"
+    ],
+    [
+      0.877,
+      "answer"
+    ],
+    [
+      0.882,
+      "answer"
+    ],
+    [
+      0.907,
+      "answer"
+    ]
+  ],
+  "retrieval_test": {
+    "bm25_only": {
+      "n": 29,
+      "hit@1": 0.7931034482758621,
+      "recall@5": 1.0,
+      "precision@5": 0.593103448275862,
+      "mrr@10": 0.8804597701149425
+    },
+    "dense_only": {
+      "n": 29,
+      "hit@1": 0.8620689655172413,
+      "recall@5": 0.9310344827586207,
+      "precision@5": 0.5793103448275861,
+      "mrr@10": 0.8977011494252874
+    },
+    "hybrid_rrf (1:1)": {
+      "n": 29,
+      "hit@1": 0.7931034482758621,
+      "recall@5": 1.0,
+      "precision@5": 0.6206896551724137,
+      "mrr@10": 0.8793103448275862
+    },
+    "hybrid_rrf (dev-tuned 0.5:1)": {
+      "n": 29,
+      "hit@1": 0.8620689655172413,
+      "recall@5": 1.0,
+      "precision@5": 0.6206896551724137,
+      "mrr@10": 0.9103448275862068
+    }
+  },
+  "end_to_end_test": {
+    "answer_in_context": 0.896551724137931,
+    "answerable_answered": 0.9655172413793104,
+    "out_of_corpus_refused": 1.0,
+    "answer_contains_key_fact": 0.9310344827586207,
+    "answer_cites_relevant_doc": 0.896551724137931,
+    "groundedness_rate": 0.6785714285714286,
+    "claim_support_rate": 0.897196261682243,
+    "every_answer_cited": true,
+    "latency_ms_p50": 3289.8558000451885,
+    "latency_ms_p95": 5301.261899992824
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "AP-CATALOG",
+        "STD-INT-001",
+        "RA-01",
+        "ADR-0015",
+        "RA-01"
+      ],
+      "retrieved": [
+        "AP-CATALOG#13",
+        "STD-INT-001#4.1",
+        "RA-01#1",
+        "ADR-0015#5",
+        "RA-01#2",
+        "STD-INT-001#5"
+      ],
+      "answer": "# Approved Pattern for Asynchronous Integration Between Domains\n\n**Mandatory pattern: INT-P1 Domain Event Publication** [2]\n\nDomains publish immutable business events (e.g. \"shipment.milestone.recorded.v1\") to the Harbourline Event Backbone; consuming domains subscribe [1][2].\n\n## Key Requirements\n\n- **Transactional outbox (CDC):** When an event must be consistent with a database write, the producer MUST write the event to an outbox table in the same transaction, then relay via change-data-capture connector (ADR-0038) [2]\n- **No dual writes:** MUST NOT commit to database and separately call Kafka in application code for authoritative events [2]\n- **No polling:** Polling another domain's API to detect change is non-conforming [1]; MUST NOT be used where an event exists or can reasonably be published [2]\n- **Local read models:** If a consumer needs a current view of another domain's state, build it via INT-P2 [1]\n- **Event naming & schema:** Follow STD-EVT-003 rules (Avro, Schema Registry, naming convention, 7-day retention, 1 MB limit) [5]\n\n## MuleSoft Transition\n\nNo new MuleSoft flows after **2025-06-30**; all must migrate to INT-P1 (or INT-P3 for synchronous fa\u00e7ades) by **2026-12-31** [1][4].\n\nApply **RA-01 \u2014 Event-Driven Domain Integration** as your implementation blueprint [3].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "**Mandatory pattern: INT-P1 Domain Event Publication** [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "Domains publish immutable business events (e.g. \"shipment.milestone.recorded.v1\") to the Harbourline Event Backbone; consuming domains subscribe [1][2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              2
+            ]
+          },
+          {
+            "sentence": "- **Transactional outbox (CDC):** When an event must be consistent with a database write, the producer MUST write the event to an outbox table in the same transaction, then relay via change-data-capture connector (ADR-0038) [2]",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- **No dual writes:** MUST NOT commit to database and separately call Kafka in application code for authoritative events [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- **No polling:** Polling another domain's API to detect change is non-conforming [1]; MUST NOT be used where an event exists or can reasonably be published [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              2
+            ]
+          },
+          {
+            "sentence": "- **Local read models:** If a consumer needs a current view of another domain's state, build it via INT-P2 [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **Event naming & schema:** Follow STD-EVT-003 rules (Avro, Schema Registry, naming convention, 7-day retention, 1 MB limit) [5]",
+            "supported": true,
+            "overlap": 0.81,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "No new MuleSoft flows after **2025-06-30**; all must migrate to INT-P1 (or INT-P3 for synchronous fa\u00e7ades) by **2026-12-31** [1][4].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              4
+            ]
+          },
+          {
+            "sentence": "Apply **RA-01 \u2014 Event-Driven Domain Integration** as your implementation blueprint [3].",
+            "supported": true,
+            "overlap": 0.78,
+            "cites": [
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q03",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "ADR-0015",
+        "ADR-0015",
+        "STD-INT-001"
+      ],
+      "retrieved": [
+        "ADR-0015#5",
+        "ADR-0015#2",
+        "ADR-0015#7",
+        "STD-INT-001#5",
+        "AP-CATALOG#13",
+        "ADD-01#5.1"
+      ],
+      "answer": "No, building new MuleSoft flows is not permitted after the stated deadline.\n\n**Current rule:**\nSTD-INT-001 \u00a75.3 states: \"New MuleSoft Anypoint flows after **2025-06-30** MUST NOT be used\" [4]. This prohibition is codified in the standard and binding [3].\n\n**What applies now (before 2025-06-30):**\nBetween now and 2025-06-30, new flows *require* Tier 2 review and a named migration target [1]. This means new flows are only allowed with governance approval and a documented plan to move them to a strategic platform.\n\n**After 2025-06-30:**\nNo new flows are permitted. All remaining MuleSoft flows must migrate to replacement patterns\u2014primarily INT-P1/INT-P2 (Event Backbone) for asynchronous integration or INT-P3 (Azure API Management gateway) for synchronous access\u2014by the sunset date of 2026-12-31 [1].\n\nIf your team needs new integration capability, use the strategic platforms: Confluent Cloud (event-driven) or Azure API Management (synchronous APIs) [1][3].",
+      "groundedness_detail": {
+        "supported_rate": 0.5,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "No, building new MuleSoft flows is not permitted after the stated deadline.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "STD-INT-001 \u00a75.3 states: \"New MuleSoft Anypoint flows after **2025-06-30** MUST NOT be used\" [4].",
+            "supported": true,
+            "overlap": 0.93,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "This prohibition is codified in the standard and binding [3].",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "Between now and 2025-06-30, new flows *require* Tier 2 review and a named migration target [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "This means new flows are only allowed with governance approval and a documented plan to move them to a strategic platform.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "No new flows are permitted.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "All remaining MuleSoft flows must migrate to replacement patterns\u2014primarily INT-P1/INT-P2 (Event Backbone) for asynchronous integration or INT-P3 (Azure API Management gateway) for synchronous access\u2014by the sunset date of 2026-12-31 [1].",
+            "supported": true,
+            "overlap": 0.76,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "If your team needs new integration capability, use the strategic platforms: Confluent Cloud (event-driven) or Azure API Management (synchronous APIs) [1][3].",
+            "supported": false,
+            "overlap": 0.41,
+            "cites": [
+              1,
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q04",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "STD-EVT-003",
+        "STD-DAT-004",
+        "STD-EVT-003"
+      ],
+      "retrieved": [
+        "STD-EVT-003#2",
+        "STD-EVT-003#8",
+        "STD-DAT-004#7",
+        "RA-04#4",
+        "STD-EVT-003#4",
+        "RA-04#5",
+        "STD-EVT-003#5.1"
+      ],
+      "answer": "Kafka topics MUST follow this naming pattern [7]:\n\n```\n<domain>.<entity>.<event>.v<major>\n```\n\n**Rules:**\n- All lower case; words within segments separated by hyphens [7]\n- `<event>` is a past-tense verb for fact events [7]\n- Environment and region MUST NOT be encoded in topic names; they are separated by cluster [7]\n\n**Examples:** [7]\n- `shipment.milestone.recorded.v1` (fact event)\n- `shipment.status.changed.v1` (state/compacted)\n- `customs.declaration.accepted.v1` (fact event)\n- `terminal.gate-transaction.completed.v1` (fact event)\n- `container.reefer-alarm.raised.v1` (fact event)\n\n**Additional requirements:**\n- Topics MUST declare classification metadata [3]\n- Retention policy depends on topic type: fact events default to 7 days, state topics to indefinite compaction [2]",
+      "groundedness_detail": {
+        "supported_rate": 0.556,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- All lower case; words within segments separated by hyphens [7]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- `<event>` is a past-tense verb for fact events [7]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Environment and region MUST NOT be encoded in topic names; they are separated by cluster [7]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- `shipment.milestone.recorded.v1` (fact event)",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- `customs.declaration.accepted.v1` (fact event)",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- `terminal.gate-transaction.completed.v1` (fact event)",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- `container.reefer-alarm.raised.v1` (fact event)",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- Topics MUST declare classification metadata [3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- Retention policy depends on topic type: fact events default to 7 days, state topics to indefinite compaction [2]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              2
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q06",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "STD-API-002"
+      ],
+      "retrieved": [
+        "STD-API-002#5",
+        "AP-CATALOG#14",
+        "STD-INT-001#4.4",
+        "STD-API-002#11",
+        "STD-API-002#4.1",
+        "ADD-01#5.2"
+      ],
+      "answer": "# REST API Versioning & Deprecation Notice\n\n**Versioning approach:** [1]\n- Use **URI major versioning** (`/v1/`, `/v2/`)\n- Minor backward-compatible changes (optional fields, new endpoints) keep the same major version\n- Breaking changes (field removal/rename, type changes, validation tightening) require a new major version\n- No more than two major versions live simultaneously [1]\n\n**Deprecation notice period:** [1]\n- Minimum **6 months** after deprecation notice before removal [1]\n- Internal/standard consumers: 6 months [1]\n- External customers/partners: **12 months where contractual terms permit** [1]\n\n**How to communicate deprecation:** [1]\n- Developer portal announcement\n- `Deprecation` and `Sunset` HTTP response headers\n- Direct communication to registered consumers",
+      "groundedness_detail": {
+        "supported_rate": 0.5,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- Use **URI major versioning** (`/v1/`, `/v2/`)",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- Minor backward-compatible changes (optional fields, new endpoints) keep the same major version",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- Breaking changes (field removal/rename, type changes, validation tightening) require a new major version",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- No more than two major versions live simultaneously [1]",
+            "supported": true,
+            "overlap": 0.83,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "**Deprecation notice period:** [1]",
+            "supported": true,
+            "overlap": 0.67,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Minimum **6 months** after deprecation notice before removal [1]",
+            "supported": true,
+            "overlap": 0.71,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Internal/standard consumers: 6 months [1]",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- External customers/partners: **12 months where contractual terms permit** [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "**How to communicate deprecation:** [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Developer portal announcement",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- `Deprecation` and `Sunset` HTTP response headers",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- Direct communication to registered consumers",
+            "supported": false,
+            "reason": "no citation"
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q07",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0007",
+        "STD-EVT-003",
+        "ADR-0007"
+      ],
+      "retrieved": [
+        "ADR-0007#5",
+        "STD-EVT-003#4",
+        "ADR-0007#4",
+        "RA-04#9",
+        "ADR-0007#7",
+        "ADR-0021#8"
+      ],
+      "answer": "Confluent Cloud was chosen over Azure Event Hubs because it scored significantly higher on enterprise integration needs [3]:\n\n**Key scoring advantages:**\n- **Schema governance** [3]: Confluent Schema Registry with BACKWARD/FULL modes and broker-side validation (5/5) vs. Event Hubs' weaker client tooling (3/5) [3]\n- **Managed connectors** [3]: 80+ managed connectors including Debezium CDC (5/5) vs. Event Hubs requiring self-hosted Kafka Connect (3/5) [3]\n- **Multi-cloud portability** [3]: Cluster linking to AWS (5/5) vs. Event Hubs locked to Azure (2/5) [3]\n- **Replay capability** [3]: Tiered storage and compaction (5/5) vs. Event Hubs' 90-day max limit (3/5) [3]\n\nEvent Hubs scored better on managed operations and cost, but lacked the replayable log and managed Kafka Connect that cross-domain streaming requires [1].\n\n**Weighted total:** Confluent Cloud 4.65 vs. Event Hubs 3.20 [3].\n\nEvent Hubs MAY now be used only as an ingestion buffer within a single solution, not as a cross-domain backbone [2].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- **Schema governance** [3]: Confluent Schema Registry with BACKWARD/FULL modes and broker-side validation (5/5) vs. Event Hubs' weaker client tooling (3/5) [3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3,
+              3
+            ]
+          },
+          {
+            "sentence": "- **Managed connectors** [3]: 80+ managed connectors including Debezium CDC (5/5) vs. Event Hubs requiring self-hosted Kafka Connect (3/5) [3]",
+            "supported": true,
+            "overlap": 0.85,
+            "cites": [
+              3,
+              3
+            ]
+          },
+          {
+            "sentence": "- **Multi-cloud portability** [3]: Cluster linking to AWS (5/5) vs. Event Hubs locked to Azure (2/5) [3]",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              3,
+              3
+            ]
+          },
+          {
+            "sentence": "- **Replay capability** [3]: Tiered storage and compaction (5/5) vs. Event Hubs' 90-day max limit (3/5) [3]",
+            "supported": true,
+            "overlap": 0.82,
+            "cites": [
+              3,
+              3
+            ]
+          },
+          {
+            "sentence": "Event Hubs scored better on managed operations and cost, but lacked the replayable log and managed Kafka Connect that cross-domain streaming requires [1].",
+            "supported": true,
+            "overlap": 0.67,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "**Weighted total:** Confluent Cloud 4.65 vs. Event Hubs 3.20 [3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "Event Hubs MAY now be used only as an ingestion buffer within a single solution, not as a cross-domain backbone [2].",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              2
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q08",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "ADR-0030",
+        "ADR-0030",
+        "RA-01"
+      ],
+      "retrieved": [
+        "ADR-0030#2",
+        "ADR-0030#3",
+        "ADR-0030#4",
+        "RA-01#7",
+        "ADD-01#3.1",
+        "ADR-0041#2"
+      ],
+      "answer": "# Shipment Status Updates to Customer Portal\n\nThe customer portal (Harbourline Connect, APP-050) receives shipment status updates via **Event-Carried State Transfer** [1][4]:\n\n**Flow:**\n- Harbourline Shipment Platform (HSP, APP-022) publishes two event types to the Event Backbone when milestones occur: `shipment.milestone.recorded.v1` (events: booked, gated-in, loaded, departed, arrived, discharged, customs released, delivered) and `shipment.status.changed.v1` (aggregate status) [1][4]\n- Portal consumes these events and maintains its own read model of shipment status [4]\n- Portal queries hit the read model, not HSP [4]\n\n**Performance:**\n- Measured p95 latency from HSP commit to portal read model visibility: ~11 seconds (August 2026) [4]\n- Achieves the target of milestone events visible to customers in under 5 minutes for 95% of shipments (REQ-HSP-014) [1]\n\n**Deployment:**\n- US deployment in East US 2 cluster [4]\n- EU deployment in West Europe cluster (ADR-0041) so EU customer data stays in-region [4]\n\nThis approach decouples portal availability from HSP (portal serves last-known state even if HSP is down) while keeping HSP as the single system of record [2][4].",
+      "groundedness_detail": {
+        "supported_rate": 0.875,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- Harbourline Shipment Platform (HSP, APP-022) publishes two event types to the Event Backbone when milestones occur: `shipment.milestone.recorded.v1` (events: booked, gated-in, loaded, departed, arrived, discharged, customs released, delivered) and `shipment.status.changed.v1` (aggregate status) [1][4]",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              1,
+              4
+            ]
+          },
+          {
+            "sentence": "- Portal consumes these events and maintains its own read model of shipment status [4]",
+            "supported": true,
+            "overlap": 0.8,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "- Portal queries hit the read model, not HSP [4]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "- Measured p95 latency from HSP commit to portal read model visibility: ~11 seconds (August 2026) [4]",
+            "supported": true,
+            "overlap": 0.83,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "- Achieves the target of milestone events visible to customers in under 5 minutes for 95% of shipments (REQ-HSP-014) [1]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- US deployment in East US 2 cluster [4]",
+            "supported": true,
+            "overlap": 0.67,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "- EU deployment in West Europe cluster (ADR-0041) so EU customer data stays in-region [4]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "This approach decouples portal availability from HSP (portal serves last-known state even if HSP is down) while keeping HSP as the single system of record [2][4].",
+            "supported": false,
+            "overlap": 0.47,
+            "cites": [
+              2,
+              4
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q10",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0019",
+        "STD-API-002"
+      ],
+      "retrieved": [
+        "ADR-0019#5",
+        "STD-API-002#1",
+        "STD-API-002#7",
+        "ADR-0019#2",
+        "ADR-0019#8",
+        "STD-INT-001#4.3",
+        "GOV-03#6",
+        "STD-CTR-012#4"
+      ],
+      "answer": "## API Gateway Standard\n\n**Product:** Azure API Management Premium (multi-region), designated the Harbourline API Gateway (APP-121) [1].\n\n**Why selected:**\n\nKong offered lower latency and better portability, but running it internally conflicts with AP-11 and would require at least two additional platform engineers [1]. AWS API Gateway would place the enforcement point on the secondary cloud while nearly all back ends are on Azure, adding cross-cloud latency and egress cost [1].\n\n**Rules:**\n\n- **All** synchronous APIs (internal and external) MUST be published through the Harbourline API Gateway; direct endpoint exposure is prohibited [1].\n- APIM runs in internal VNet mode; external traffic enters via Azure Front Door with WAF [1].\n- Default rate limit: 1,000 requests/min per client, overridable per product with ARB-registered justification [1][3].\n- Configuration managed as code (Terraform + APIOps); portal changes prohibited in production [1].\n- Nordhaven's AWS API Gateway may continue for Nordhaven-internal APIs until TMS migration; any API consumed outside Nordhaven MUST use APIM [1].\n- MuleSoft API Manager is not to be used for new APIs [1].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "**Product:** Azure API Management Premium (multi-region), designated the Harbourline API Gateway (APP-121) [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Kong offered lower latency and better portability, but running it internally conflicts with AP-11 and would require at least two additional platform engineers [1].",
+            "supported": true,
+            "overlap": 0.82,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "AWS API Gateway would place the enforcement point on the secondary cloud while nearly all back ends are on Azure, adding cross-cloud latency and egress cost [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **All** synchronous APIs (internal and external) MUST be published through the Harbourline API Gateway; direct endpoint exposure is prohibited [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- APIM runs in internal VNet mode; external traffic enters via Azure Front Door with WAF [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Default rate limit: 1,000 requests/min per client, overridable per product with ARB-registered justification [1][3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              3
+            ]
+          },
+          {
+            "sentence": "- Configuration managed as code (Terraform + APIOps); portal changes prohibited in production [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Nordhaven's AWS API Gateway may continue for Nordhaven-internal APIs until TMS migration; any API consumed outside Nordhaven MUST use APIM [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- MuleSoft API Manager is not to be used for new APIs [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q11",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DB-006",
+        "STD-DB-006",
+        "STD-DB-006",
+        "ADR-0024",
+        "STD-TLC-014"
+      ],
+      "retrieved": [
+        "STD-DB-006#1",
+        "STD-DB-006#5.4",
+        "STD-DB-006#5.1",
+        "STD-DAT-004#6.1",
+        "ADR-0024#5",
+        "STD-TLC-014#5"
+      ],
+      "answer": "Yes, you may use a NoSQL database for a new service, **but only under specific conditions** [1].\n\n**When NoSQL (Cosmos DB) IS allowed:**\n- Your workload genuinely needs its scale and access model [3]\n- You have a single-partition access pattern with schema flexibility as a secondary benefit [2]\n- You can state your partition key and access patterns up front [2]\n\n**When NoSQL IS NOT allowed** [2]:\n- Data is the system of record for a core relational domain (shipments, bookings, customs declarations, invoices, customer accounts) [2]\n- The workload needs multi-entity transactions, joins, or ad hoc reporting queries across partitions [2]\n- Your only reason is \"schema flexibility\" without a single-partition access pattern [2]\n- You cannot state the partition key and access patterns upfront [2]\n- The motivation is developer familiarity with a document model [2]\n\n**Default:** Relational (PostgreSQL Flexible Server) is the standard because most Harbourline domains have rich relationships, need ad hoc querying, and benefit from transactional integrity [3][5].\n\nCosmos DB is **Adopt** status but requires Tier 2 data-architect review [6]. MongoDB, Cassandra, and Gremlin APIs are **not approved** for new use [2].",
+      "groundedness_detail": {
+        "supported_rate": 0.917,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Yes, you may use a NoSQL database for a new service, **but only under specific conditions** [1].",
+            "supported": false,
+            "overlap": 0.33,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Your workload genuinely needs its scale and access model [3]",
+            "supported": true,
+            "overlap": 0.83,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- You have a single-partition access pattern with schema flexibility as a secondary benefit [2]",
+            "supported": true,
+            "overlap": 0.7,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- You can state your partition key and access patterns up front [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- Data is the system of record for a core relational domain (shipments, bookings, customs declarations, invoices, customer accounts) [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- The workload needs multi-entity transactions, joins, or ad hoc reporting queries across partitions [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- Your only reason is \"schema flexibility\" without a single-partition access pattern [2]",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- You cannot state the partition key and access patterns upfront [2]",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- The motivation is developer familiarity with a document model [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "**Default:** Relational (PostgreSQL Flexible Server) is the standard because most Harbourline domains have rich relationships, need ad hoc querying, and benefit from transactional integrity [3][5].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "Cosmos DB is **Adopt** status but requires Tier 2 data-architect review [6].",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "MongoDB, Cassandra, and Gremlin APIs are **not approved** for new use [2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q13",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0024"
+      ],
+      "retrieved": [
+        "ADR-0024#5",
+        "ADR-0024#8",
+        "ADR-0024#2",
+        "ADR-0012#8",
+        "STD-DB-006#3",
+        "RA-02#9"
+      ],
+      "answer": "The default relational database for new applications is **Azure Database for PostgreSQL Flexible Server** [1].\n\n**Key points:**\n\n- This applies to new applications and re-platformed in-house applications [1].\n- Standard configuration: PostgreSQL 16, zone-redundant HA, private endpoint only, Entra ID authentication with managed identities, customer-managed keys for Restricted data, geo-redundant backup for Tier 1 [1].\n- Azure SQL Database remains an option only for vendor packages that require SQL Server; it is not the default for in-house builds [1].\n- Oracle Database moves to Contain status: no new Oracle databases allowed; existing ones may continue until application retirement [1].\n\nEach HSP microservice owns its own database (or schema-isolated database on a shared server for services under 50 GB), never shared across domains [1].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "The default relational database for new applications is **Azure Database for PostgreSQL Flexible Server** [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- This applies to new applications and re-platformed in-house applications [1].",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Standard configuration: PostgreSQL 16, zone-redundant HA, private endpoint only, Entra ID authentication with managed identities, customer-managed keys for Restricted data, geo-redundant backup for Tier 1 [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Azure SQL Database remains an option only for vendor packages that require SQL Server; it is not the default for in-house builds [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Oracle Database moves to Contain status: no new Oracle databases allowed; existing ones may continue until application retirement [1].",
+            "supported": true,
+            "overlap": 0.85,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Each HSP microservice owns its own database (or schema-isolated database on a shared server for services under 50 GB), never shared across domains [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q14",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DAT-005",
+        "ADR-0041",
+        "AP-CATALOG",
+        "ADR-0041"
+      ],
+      "retrieved": [
+        "STD-DAT-005#4.2",
+        "ADR-0041#2",
+        "AP-CATALOG#11",
+        "ADR-0041#6",
+        "STD-DAT-005#1",
+        "STD-DAT-005#5.1"
+      ],
+      "answer": "Personal data about EU customers MUST be stored and processed only in West Europe (primary) or North Europe (DR) [1]. This requirement applies to all forms of the data: backups, read replicas, search indexes, caches and log workspaces holding personal data [1].\n\nThis residency requirement is mandated by:\n- STD-DAT-005 \u00a74.2 (the data residency standard) [1]\n- AP-06 (the enterprise architecture principle that data residency follows jurisdiction) [3]\n- GDPR, customer contracts, and Harbourline Europe's NIS2 status [3]\n\nFor Harbourline Connect specifically, ADR-0041 confirms that EU customer personal data (user profiles, notification preferences, shipment-status read models including consignee contact names) must be served from a West Europe deployment stamp [2][4].\n\nGlobal services such as identity and API gateway control plane MAY process minimal identifiers for routing and authentication, but MUST NOT persist profile data outside the home region [1].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Personal data about EU customers MUST be stored and processed only in West Europe (primary) or North Europe (DR) [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "This requirement applies to all forms of the data: backups, read replicas, search indexes, caches and log workspaces holding personal data [1].",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- STD-DAT-005 \u00a74.2 (the data residency standard) [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- AP-06 (the enterprise architecture principle that data residency follows jurisdiction) [3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- GDPR, customer contracts, and Harbourline Europe's NIS2 status [3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "For Harbourline Connect specifically, ADR-0041 confirms that EU customer personal data (user profiles, notification preferences, shipment-status read models including consignee contact names) must be served from a West Europe deployment stamp [2][4].",
+            "supported": true,
+            "overlap": 0.93,
+            "cites": [
+              2,
+              4
+            ]
+          },
+          {
+            "sentence": "Global services such as identity and API gateway control plane MAY process minimal identifiers for routing and authentication, but MUST NOT persist profile data outside the home region [1].",
+            "supported": true,
+            "overlap": 0.95,
+            "cites": [
+              1
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q16",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DAT-004",
+        "STD-DAT-004",
+        "STD-DAT-004"
+      ],
+      "retrieved": [
+        "STD-DAT-004#5.4",
+        "STD-DAT-004#4",
+        "STD-DAT-004#5.2",
+        "STD-DAT-004#7",
+        "STD-DAT-004#5.3",
+        "STD-INT-001#6",
+        "STD-AI-013#5.1",
+        "STD-SEC-009#6.1"
+      ],
+      "answer": "# Data Classification Levels and Restricted Data\n\n## Classification Levels\n\nHarbourline uses four data classification levels [1][3][5]:\n\n- **Public** \u2013 approved for release outside Harbourline [3]\n- **Internal** \u2013 business information not for public release; limited harm if disclosed [3]\n- **Confidential** \u2013 disclosure causes material commercial, contractual or individual harm [5]\n- **Restricted** \u2013 the highest classification [1]\n\n## What Makes Data Restricted\n\nData MUST be classified Restricted if it falls into any of these categories [1]:\n\n- **R1:** Personal data of EU, UK, Canadian or UAE data subjects **in bulk** (1,000+ individuals or full master extracts) [1]\n- **R2:** Payment card data (PAN, card verification data) [1]\n- **R3:** Customs declarations containing personal data (e.g. importer identity numbers) [1]\n- **R4:** Security-sensitive OT/terminal configuration (PLC logic, OT diagrams, firewall rules, gate automation) [1]\n- **R5:** Crew passport and identity document data [1]\n\n**Key principle:** Where data sets combine categories, the highest classification applies. A single consignee contact is Confidential, but an export of all consignee contacts is Restricted [1].",
+      "groundedness_detail": {
+        "supported_rate": 0.909,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- **Public** \u2013 approved for release outside Harbourline [3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- **Internal** \u2013 business information not for public release; limited harm if disclosed [3]",
+            "supported": true,
+            "overlap": 0.88,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- **Confidential** \u2013 disclosure causes material commercial, contractual or individual harm [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "- **Restricted** \u2013 the highest classification [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **R1:** Personal data of EU, UK, Canadian or UAE data subjects **in bulk** (1,000+ individuals or full master extracts) [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **R2:** Payment card data (PAN, card verification data) [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **R3:** Customs declarations containing personal data (e.g. importer identity numbers) [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **R4:** Security-sensitive OT/terminal configuration (PLC logic, OT diagrams, firewall rules, gate automation) [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- **R5:** Crew passport and identity document data [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "**Key principle:** Where data sets combine categories, the highest classification applies.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "A single consignee contact is Confidential, but an export of all consignee contacts is Restricted [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q17",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0024",
+        "ADR-0012",
+        "ADR-0012",
+        "ADR-0012"
+      ],
+      "retrieved": [
+        "ADR-0012#8",
+        "ADR-0024#8",
+        "ADR-0012#7",
+        "ADR-0012#6",
+        "RA-04#9",
+        "ADR-0012#4",
+        "STD-DB-006#3"
+      ],
+      "answer": "Container telemetry is stored in Cosmos DB instead of PostgreSQL because:\n\n**Performance & Scale**\n- Cosmos DB sustains 2,500/s write bursts with autoscale; PostgreSQL Flexible Server load-tested to only ~1,900 inserts/s before WAL/vacuum pressure [6]\n- Point read p99 is ~8 ms (Cosmos DB) vs. ~12 ms degrading over time (PostgreSQL) [6]\n\n**Operational Efficiency**\n- Cosmos DB has native TTL to remove manual purge jobs; PostgreSQL requires partition-drop jobs to operate [6]\n- Burst ingestion is absorbed without intervention [4]\n\n**Architecture Fit**\n- Container Tracking Service is the system of record for telemetry; PostgreSQL holds only derived copies, complying with AP-07 [3]\n- Clear separation: Cosmos DB for operational access, Tidewater/ADX for analytics [4]\n\n**Cost**\n- Estimated ~USD 14,800/month at 2027 volume vs. ~USD 9,500 plus 0.5 FTE DBA for PostgreSQL [6]\n\nADR-0012 is the reference case under STD-DB-006 for \"Cosmos DB for high-volume telemetry with key-based access\" [3]. PostgreSQL remains the default relational database (ADR-0024) for transactional workloads [2].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- Cosmos DB sustains 2,500/s write bursts with autoscale; PostgreSQL Flexible Server load-tested to only ~1,900 inserts/s before WAL/vacuum pressure [6]",
+            "supported": true,
+            "overlap": 0.89,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "- Point read p99 is ~8 ms (Cosmos DB) vs. ~12 ms degrading over time (PostgreSQL) [6]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "- Cosmos DB has native TTL to remove manual purge jobs; PostgreSQL requires partition-drop jobs to operate [6]",
+            "supported": true,
+            "overlap": 0.64,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "- Burst ingestion is absorbed without intervention [4]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "- Container Tracking Service is the system of record for telemetry; PostgreSQL holds only derived copies, complying with AP-07 [3]",
+            "supported": true,
+            "overlap": 0.77,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- Clear separation: Cosmos DB for operational access, Tidewater/ADX for analytics [4]",
+            "supported": true,
+            "overlap": 0.88,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "- Estimated ~USD 14,800/month at 2027 volume vs. ~USD 9,500 plus 0.5 FTE DBA for PostgreSQL [6]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "ADR-0012 is the reference case under STD-DB-006 for \"Cosmos DB for high-volume telemetry with key-based access\" [3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "PostgreSQL remains the default relational database (ADR-0024) for transactional workloads [2].",
+            "supported": true,
+            "overlap": 0.8,
+            "cites": [
+              2
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q18",
+      "expect": "answer",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "RA-04#1",
+        "ADR-0012#8",
+        "STD-DAT-005#4.3",
+        "STD-INT-001#4.5",
+        "STD-INT-001#2.2",
+        "STD-DB-006#2",
+        "STD-INT-001#4.6"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office.",
+      "answer_in_context": false,
+      "keywords_ok": false,
+      "cites_relevant": false
+    },
+    {
+      "id": "q19",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "AP-CATALOG",
+        "STD-CLD-007"
+      ],
+      "retrieved": [
+        "STD-CTR-012#7",
+        "STD-IAM-008#4.3",
+        "RA-02#1",
+        "RA-02#8",
+        "AP-CATALOG#15",
+        "ADR-0021#3",
+        "STD-CLD-007#4.2"
+      ],
+      "answer": "Based on the sources, AWS hosting is acceptable only in these cases [7]:\n\n**Case (a): Nordhaven legacy workloads**\n- Location: **eu-central-1 only** [7]\n- Requires exception **EXC-2025-003** [7]\n- Current example: Nordhaven TMS (APP-021) under ADR-0021 [7]\n\n**Case (b): DR-only workloads**\n- Must be approved by the ARB [7]\n- Justified where cross-provider recovery is needed [7]\n\n**Case (c): Services with no Azure equivalent**\n- Approved by the ARB (Tier 1 only) [7]\n- Requires documented comparison showing Azure options are unavailable [7]\n\n**Key constraint:** All new workloads MUST be hosted on Azure unless one of these conditions applies [7]. The default principle is: \"Workloads are hosted in Azure by default, in AWS only where approved\" [5].\n\nAny AWS account MUST be created under the Harbourline AWS Organization with central guardrails; standalone accounts are prohibited [7].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- Location: **eu-central-1 only** [7]",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Requires exception **EXC-2025-003** [7]",
+            "supported": true,
+            "overlap": 0.83,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Current example: Nordhaven TMS (APP-021) under ADR-0021 [7]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Must be approved by the ARB [7]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Justified where cross-provider recovery is needed [7]",
+            "supported": true,
+            "overlap": 0.83,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Approved by the ARB (Tier 1 only) [7]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "- Requires documented comparison showing Azure options are unavailable [7]",
+            "supported": true,
+            "overlap": 0.57,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "**Key constraint:** All new workloads MUST be hosted on Azure unless one of these conditions applies [7].",
+            "supported": true,
+            "overlap": 0.64,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "The default principle is: \"Workloads are hosted in Azure by default, in AWS only where approved\" [5].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "Any AWS account MUST be created under the Harbourline AWS Organization with central guardrails; standalone accounts are prohibited [7].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q21",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-IAM-008",
+        "STD-IAM-008",
+        "AP-CATALOG"
+      ],
+      "retrieved": [
+        "STD-IAM-008#7.1",
+        "STD-IAM-008#7.3",
+        "STD-IAM-008#7.2",
+        "AP-CATALOG#17",
+        "STD-DAT-004#6.1",
+        "STD-SEC-009#6.4"
+      ],
+      "answer": "According to the standards, privileged admin access through PIM has a **maximum duration of 8 hours per activation** [1][4].\n\nSpecifically:\n- **Activation is just-in-time with an 8-hour maximum** [1]\n- Requires justification and a ServiceNow ticket reference [1]\n- Requires approval for Global Administrator and roles over Restricted data [1]\n\nAdditionally, **standing (permanent) privileged assignments are prohibited** except for break-glass accounts [1].\n\nFor ongoing eligibility, privileged role eligibility must be **recertified quarterly**, and access not confirmed within 14 days of the review deadline must be automatically removed [2].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "According to the standards, privileged admin access through PIM has a **maximum duration of 8 hours per activation** [1][4].",
+            "supported": true,
+            "overlap": 0.69,
+            "cites": [
+              1,
+              4
+            ]
+          },
+          {
+            "sentence": "- **Activation is just-in-time with an 8-hour maximum** [1]",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Requires justification and a ServiceNow ticket reference [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "- Requires approval for Global Administrator and roles over Restricted data [1]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Additionally, **standing (permanent) privileged assignments are prohibited** except for break-glass accounts [1].",
+            "supported": true,
+            "overlap": 0.91,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "For ongoing eligibility, privileged role eligibility must be **recertified quarterly**, and access not confirmed within 14 days of the review deadline must be automatically removed [2].",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              2
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q22",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-SEC-009",
+        "STD-SEC-009"
+      ],
+      "retrieved": [
+        "STD-DAT-004#6.1",
+        "STD-SEC-009#6.1",
+        "STD-SEC-009#5",
+        "STD-DAT-004#10",
+        "STD-API-002#6",
+        "STD-SEC-009#6.3",
+        "STD-SEC-009#4.1",
+        "STD-SEC-009#10"
+      ],
+      "answer": "**Minimum TLS version:**\nTLS 1.2 MUST be used as the minimum [7]. TLS 1.3 is preferred and MUST be enabled wherever the platform supports it [7].\n\n**Customer-managed keys required for:**\nRestricted data classification. Customer-managed keys (CMK) MUST be used for Restricted data at rest, held in Azure Key Vault Premium or Azure Key Vault Managed HSM [3]. This applies to primary stores, replicas, backups and DR copies [3].\n\nFor other classifications (Public, Internal, Confidential), platform-managed keys are acceptable [3].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "TLS 1.2 MUST be used as the minimum [7].",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "TLS 1.3 is preferred and MUST be enabled wherever the platform supports it [7].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "Customer-managed keys (CMK) MUST be used for Restricted data at rest, held in Azure Key Vault Premium or Azure Key Vault Managed HSM [3].",
+            "supported": true,
+            "overlap": 0.93,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "This applies to primary stores, replicas, backups and DR copies [3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "For other classifications (Public, Internal, Confidential), platform-managed keys are acceptable [3].",
+            "supported": true,
+            "overlap": 0.8,
+            "cites": [
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q23",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "RA-03",
+        "STD-NET-011",
+        "ADR-0036",
+        "AP-CATALOG"
+      ],
+      "retrieved": [
+        "RA-03#1",
+        "STD-NET-011#2",
+        "ADR-0027#2",
+        "STD-NET-011#1",
+        "ADR-0036#5",
+        "AP-CATALOG#18",
+        "ADR-0036#3"
+      ],
+      "answer": "**No.** OT networks at the container terminals cannot reach the internet directly.\n\nTerminal OT zones (Purdue levels 0\u20132) **MUST NOT have direct internet access** [6]. This is enforced by:\n\n- **AP-13** (Separate IT and OT) principle: \"OT zones at Purdue levels 0-2 have no direct internet access\" [6]\n- **STD-NET-011** standard: terminal FortiGates enforce the IT/OT boundary; \"no direct internet from OT levels 0\u20132\" [5]\n- **RA-03** design: OT data to the cloud flows one-way via a level 3.5 IT/OT DMZ broker [6]\n\nAll IT/OT data exchange must pass through controlled, inspected conduits in the DMZ [6]. Remote vendor access to OT also uses a jump host with session recording and time-bound approval [6].\n\nThis segmentation is required by the US Coast Guard maritime cybersecurity rule (33 CFR Part 101 Subpart F) and EU NIS2 [1][4].",
+      "groundedness_detail": {
+        "supported_rate": 0.857,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "**No.** OT networks at the container terminals cannot reach the internet directly.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- **AP-13** (Separate IT and OT) principle: \"OT zones at Purdue levels 0-2 have no direct internet access\" [6]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "- **STD-NET-011** standard: terminal FortiGates enforce the IT/OT boundary; \"no direct internet from OT levels 0\u20132\" [5]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "- **RA-03** design: OT data to the cloud flows one-way via a level 3.5 IT/OT DMZ broker [6]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "All IT/OT data exchange must pass through controlled, inspected conduits in the DMZ [6].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "Remote vendor access to OT also uses a jump host with session recording and time-bound approval [6].",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "This segmentation is required by the US Coast Guard maritime cybersecurity rule (33 CFR Part 101 Subpart F) and EU NIS2 [1][4].",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              1,
+              4
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q25",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0036",
+        "ADR-0036",
+        "ADR-0036"
+      ],
+      "retrieved": [
+        "ADR-0036#8",
+        "RA-03#9",
+        "ADR-0036#2",
+        "ADR-0027#8",
+        "ADR-0036#3",
+        "ADR-0036#6",
+        "GOV-02#5.1"
+      ],
+      "answer": "# Why We Moved Off MPLS for the WAN\n\nThe decision was driven by six key factors [5]:\n\n1. **Cost reduction** on WAN spend [5]\n2. **Direct, secured internet and cloud breakout at site** \u2014 previously 70%+ of traffic backhauled through Baltimore and Rotterdam hubs, adding 40\u2013120 ms latency to Microsoft 365 and Salesforce [3][5]\n3. **Resilience at terminals** \u2014 replacing single MPLS circuits with dual paths and cellular backup; two terminal outages in 2023 exceeded 6 hours [3][5]\n4. **Consolidated security** \u2014 replacing a mix of branch routers, ACLs, and three firewall vendors with a single policy model and central management [3][5]\n5. **IT/OT segmentation** capability at terminals [5]\n6. **Team skills** \u2014 7 of 11 network engineers already held Fortinet certifications [5]\n\n**Financial and operational outcome:** Target WAN savings of ~USD 2.1M/year once MPLS fully exits (FY2026), with latency improvements and elimination of carrier-level outages [6].\n\nThe major MPLS contracts were expiring June 2024\u2013March 2025 [3], making the transition window strategic.",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "1. **Cost reduction** on WAN spend [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "2. **Direct, secured internet and cloud breakout at site** \u2014 previously 70%+ of traffic backhauled through Baltimore and Rotterdam hubs, adding 40\u2013120 ms latency to Microsoft 365 and Salesforce [3][5]",
+            "supported": true,
+            "overlap": 0.89,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "3. **Resilience at terminals** \u2014 replacing single MPLS circuits with dual paths and cellular backup; two terminal outages in 2023 exceeded 6 hours [3][5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "4. **Consolidated security** \u2014 replacing a mix of branch routers, ACLs, and three firewall vendors with a single policy model and central management [3][5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "5. **IT/OT segmentation** capability at terminals [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "6. **Team skills** \u2014 7 of 11 network engineers already held Fortinet certifications [5]",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "**Financial and operational outcome:** Target WAN savings of ~USD 2.1M/year once MPLS fully exits (FY2026), with latency improvements and elimination of carrier-level outages [6].",
+            "supported": true,
+            "overlap": 0.71,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "The major MPLS contracts were expiring June 2024\u2013March 2025 [3], making the transition window strategic.",
+            "supported": true,
+            "overlap": 0.69,
+            "cites": [
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": false,
+      "cites_relevant": true
+    },
+    {
+      "id": "q26",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-CTR-012",
+        "STD-CTR-012",
+        "RA-02"
+      ],
+      "retrieved": [
+        "STD-CTR-012#7",
+        "STD-CTR-012#1",
+        "STD-CTR-012#6",
+        "RA-02#3",
+        "RA-02#5",
+        "ADR-0012#2",
+        "STD-CLD-007#9"
+      ],
+      "answer": "**Container image sources:**\nImages deployed to Harbourline clusters MUST be pulled only from the Harbourline Azure Container Registry `hlgacr`; admission policy MUST reject images from any other registry [3]. Public base images MUST be imported into `hlgacr` through the curated base-image pipeline; teams MUST NOT reference Docker Hub or other public registries at runtime [3].\n\n**Root execution:**\nContainers MUST run as a non-root user with a read-only root file system unless an exception is recorded [1]. Privileged containers MUST NOT be used in workload namespaces [1].\n\nIn practice, pods run as non-root from signed images pulled from `hlgacr` [5].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Images deployed to Harbourline clusters MUST be pulled only from the Harbourline Azure Container Registry `hlgacr`; admission policy MUST reject images from any other registry [3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "Public base images MUST be imported into `hlgacr` through the curated base-image pipeline; teams MUST NOT reference Docker Hub or other public registries at runtime [3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "Containers MUST run as a non-root user with a read-only root file system unless an exception is recorded [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Privileged containers MUST NOT be used in workload namespaces [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "In practice, pods run as non-root from signed images pulled from `hlgacr` [5].",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              5
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q27",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-OBS-010",
+        "STD-DAT-004",
+        "STD-OBS-010"
+      ],
+      "retrieved": [
+        "STD-OBS-010#7",
+        "STD-DAT-004#6.3",
+        "STD-OBS-010#1",
+        "STD-API-002#8",
+        "AP-CATALOG#7",
+        "ARS-01#4",
+        "STD-OBS-010#6",
+        "ADD-01#4.2"
+      ],
+      "answer": "**Application Log Retention:**\n\nApplication and platform logs are retained for **13 months** (90 days interactive, remainder in archive tier) in Log Analytics [7]. Retention MUST NOT be reduced below this value without an approved exception; longer retention required by legal hold is set by the Group DPO or legal counsel [7].\n\n**Personal Data in Logs:**\n\nApplication logs MUST NOT contain personal data [1][2]. This includes names, email addresses, phone numbers, passport numbers, and customer contact details [1]. Pseudonymised personal data remains classified as personal data and is also prohibited [2].\n\nAllowed: Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation [1].\n\nNote: Retention periods for personal data itself MUST be defined per data set by the Data Owner with the DPO and enforced technically [2]\u2014but this applies to data storage generally, not specifically to logs.",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Application and platform logs are retained for **13 months** (90 days interactive, remainder in archive tier) in Log Analytics [7].",
+            "supported": true,
+            "overlap": 0.91,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "Retention MUST NOT be reduced below this value without an approved exception; longer retention required by legal hold is set by the Group DPO or legal counsel [7].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              7
+            ]
+          },
+          {
+            "sentence": "Application logs MUST NOT contain personal data [1][2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              2
+            ]
+          },
+          {
+            "sentence": "This includes names, email addresses, phone numbers, passport numbers, and customer contact details [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Pseudonymised personal data remains classified as personal data and is also prohibited [2].",
+            "supported": true,
+            "overlap": 0.57,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "Allowed: Business identifiers that are not personal data (shipment ID, container number, booking reference) MAY be logged and SHOULD be used for correlation [1].",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Note: Retention periods for personal data itself MUST be defined per data set by the Data Owner with the DPO and enforced technically [2]\u2014but this applies to data storage generally, not specifically to logs.",
+            "supported": true,
+            "overlap": 0.63,
+            "cites": [
+              2
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q28",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0027",
+        "ADR-0027",
+        "RA-03",
+        "RA-03"
+      ],
+      "retrieved": [
+        "ADR-0027#3",
+        "ADR-0027#7",
+        "ADR-0027#8",
+        "RA-03#6",
+        "RA-03#9",
+        "RA-03#2"
+      ],
+      "answer": "# Terminal Operating System RTO and RPO\n\nFor terminal operating systems (Tier 0 workloads), the following apply:\n\n- **RTO: 15 minutes** [1][4][6]\n- **RPO: 0\u20135 minutes** [1][4][6]\n\nThese targets are mandated by STD-RES-015 Resilience & Disaster Recovery Standard [2][6] and must be validated through semi-annual disaster recovery drills including node-loss and WAN-loss scenarios [4][6].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "- **RTO: 15 minutes** [1][4][6]",
+            "supported": true,
+            "overlap": 0.5,
+            "cites": [
+              1,
+              4,
+              6
+            ]
+          },
+          {
+            "sentence": "- **RPO: 0\u20135 minutes** [1][4][6]",
+            "supported": true,
+            "overlap": 0.5,
+            "cites": [
+              1,
+              4,
+              6
+            ]
+          },
+          {
+            "sentence": "These targets are mandated by STD-RES-015 Resilience & Disaster Recovery Standard [2][6] and must be validated through semi-annual disaster recovery drills including node-loss and WAN-loss scenarios [4][6].",
+            "supported": true,
+            "overlap": 0.62,
+            "cites": [
+              2,
+              6,
+              4,
+              6
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q30",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "RA-03",
+        "ADR-0027",
+        "ADR-0027",
+        "AP-CATALOG"
+      ],
+      "retrieved": [
+        "RA-03#8",
+        "ADR-0027#5",
+        "STD-CLD-007#2",
+        "ADR-0027#2",
+        "AP-CATALOG#9",
+        "RA-03#1"
+      ],
+      "answer": "Navis N4 runs on-premises at each terminal instead of in the cloud for these reasons:\n\n**Operational continuity requirement:**\nTerminals must keep working for up to 72 hours after complete loss of WAN or cloud services [5]. A cloud-hosted N4 would break this principle (AP-04) [1].\n\n**Latency constraint:**\nEquipment dispatch requires round-trip latency under 50 ms between N4 and handheld/vehicle terminals [4]. While measured WAN latency ranges from 12\u201338 ms on good days, spikes exceed 200 ms, making cloud-dependent operation unreliable [4].\n\n**Historical failure:**\nA hardware failure at HFX-T1 in November 2023 stopped quay operations for 3 hours 40 minutes [4]. This motivated the shift from single servers to resilient edge hosting.\n\n**Chosen solution:**\nADR-0027 decided that N4 remains on-premises on a two-node edge cluster per terminal with synchronous replication and automatic failover (tested under 5 minutes) [2]. The cloud is used only for replication, DR copies and analytics [2].\n\n**Security requirement:**\nCrane and gate interfaces in OT zones must not have direct internet access [4], which precludes cloud-dependent operation.",
+      "groundedness_detail": {
+        "supported_rate": 0.889,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Terminals must keep working for up to 72 hours after complete loss of WAN or cloud services [5].",
+            "supported": true,
+            "overlap": 0.8,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "A cloud-hosted N4 would break this principle (AP-04) [1].",
+            "supported": true,
+            "overlap": 0.67,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "Equipment dispatch requires round-trip latency under 50 ms between N4 and handheld/vehicle terminals [4].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "While measured WAN latency ranges from 12\u201338 ms on good days, spikes exceed 200 ms, making cloud-dependent operation unreliable [4].",
+            "supported": true,
+            "overlap": 0.69,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "A hardware failure at HFX-T1 in November 2023 stopped quay operations for 3 hours 40 minutes [4].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "This motivated the shift from single servers to resilient edge hosting.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "ADR-0027 decided that N4 remains on-premises on a two-node edge cluster per terminal with synchronous replication and automatic failover (tested under 5 minutes) [2].",
+            "supported": true,
+            "overlap": 0.9,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "The cloud is used only for replication, DR copies and analytics [2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "Crane and gate interfaces in OT zones must not have direct internet access [4], which precludes cloud-dependent operation.",
+            "supported": true,
+            "overlap": 0.85,
+            "cites": [
+              4
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q31",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "STD-AI-013",
+        "STD-AI-013",
+        "STD-AI-013",
+        "AP-CATALOG"
+      ],
+      "retrieved": [
+        "STD-AI-013#2.1",
+        "STD-AI-013#5.2",
+        "STD-AI-013#1",
+        "STD-DAT-004#6.1",
+        "ADR-0033#8",
+        "AP-CATALOG#21"
+      ],
+      "answer": "Based on the sources:\n\n**Approved platform for internal data:**\nAzure OpenAI in approved regions is the approved LLM platform [6]. This is the only generative AI platform mentioned as approved for use with Harbourline data classified Internal or above [1][3].\n\n**What you cannot do:**\nInternal, Confidential and Restricted data MUST NOT be entered into public consumer AI tools, including uploads of files, screenshots, code or email text [2]. Only Public data MAY be used with such tools [2].\n\n**Requirements:**\n- Every AI use case must be registered in the AI Use Case Register with an `AIU-NNN` ID, risk tier and accountable owner [6]\n- High-impact decisions require human review before action [6]\n- Prompts and responses are logged for 90 days [6]\n\nIf you need to use a generative AI platform other than Azure OpenAI with internal data, that would require an ARB decision.",
+      "groundedness_detail": {
+        "supported_rate": 0.875,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Azure OpenAI in approved regions is the approved LLM platform [6].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "This is the only generative AI platform mentioned as approved for use with Harbourline data classified Internal or above [1][3].",
+            "supported": true,
+            "overlap": 0.82,
+            "cites": [
+              1,
+              3
+            ]
+          },
+          {
+            "sentence": "Internal, Confidential and Restricted data MUST NOT be entered into public consumer AI tools, including uploads of files, screenshots, code or email text [2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "Only Public data MAY be used with such tools [2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- Every AI use case must be registered in the AI Use Case Register with an `AIU-NNN` ID, risk tier and accountable owner [6]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "- High-impact decisions require human review before action [6]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "- Prompts and responses are logged for 90 days [6]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "If you need to use a generative AI platform other than Azure OpenAI with internal data, that would require an ARB decision.",
+            "supported": false,
+            "reason": "no citation"
+          }
+        ]
+      },
+      "answer_in_context": false,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q33",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "STD-DB-006",
+        "STD-DB-006",
+        "GOV-02",
+        "ADR-0024"
+      ],
+      "retrieved": [
+        "STD-DB-006#4.1",
+        "STD-DB-006#6.4",
+        "GOV-02#4.2",
+        "STD-DB-006#1",
+        "ADR-0024#5",
+        "ADR-0024#2"
+      ],
+      "answer": "No, Oracle Database is **not** allowed for new systems.\n\n**Status:**\n- Oracle Database has radar status **Contain** [1], meaning existing systems only [1]\n- STD-DB-006 \u00a76.4 states: \"No new Oracle databases MAY be created\" [2]\n- Existing Oracle databases MUST have a documented migration or retirement plan [2]\n\n**Exception:**\n- FreightMaster TMS (APP-020) holds an approved exception (EXC-2026-001 in GOV-02) to run Oracle 12c until **2027-03-31**, when it must be retired [3]\n- This exception was approved by ARB-2026-012 on 2026-03-19 under specific conditions (monthly migration reporting, no new integrations, decommissioning of MuleSoft flows by 2026-12-31) [3]\n\n**For new systems:**\nUse **Azure Database for PostgreSQL Flexible Server** (Adopt \u2014 default) for all new transactional/relational workloads [1][5].\n\nIf you need an exception to use Oracle for a new system, submit to the ARB; only the ARB grants exceptions [3].",
+      "groundedness_detail": {
+        "supported_rate": 0.875,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "No, Oracle Database is **not** allowed for new systems.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "- Oracle Database has radar status **Contain** [1], meaning existing systems only [1]",
+            "supported": true,
+            "overlap": 0.8,
+            "cites": [
+              1,
+              1
+            ]
+          },
+          {
+            "sentence": "- STD-DB-006 \u00a76.4 states: \"No new Oracle databases MAY be created\" [2]",
+            "supported": true,
+            "overlap": 0.89,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- Existing Oracle databases MUST have a documented migration or retirement plan [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- FreightMaster TMS (APP-020) holds an approved exception (EXC-2026-001 in GOV-02) to run Oracle 12c until **2027-03-31**, when it must be retired [3]",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "- This exception was approved by ARB-2026-012 on 2026-03-19 under specific conditions (monthly migration reporting, no new integrations, decommissioning of MuleSoft flows by 2026-12-31) [3]",
+            "supported": true,
+            "overlap": 0.94,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "Use **Azure Database for PostgreSQL Flexible Server** (Adopt \u2014 default) for all new transactional/relational workloads [1][5].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              5
+            ]
+          },
+          {
+            "sentence": "If you need an exception to use Oracle for a new system, submit to the ARB; only the ARB grants exceptions [3].",
+            "supported": true,
+            "overlap": 0.7,
+            "cites": [
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q34",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "GOV-02"
+      ],
+      "retrieved": [
+        "GOV-02#4.2",
+        "ADD-01#6.1",
+        "PRE-02#3",
+        "A-01#2",
+        "STD-TLC-014#8",
+        "PRE-01#3.2"
+      ],
+      "answer": "Java 8 must be retired by **2026-06-30** [1].\n\nThis date is specified in STD-TLC-014 radar as the retirement target [1]. However, an exception has been approved for FreightMaster (APP-020): the ARB granted extended use until 2027-03-31 under EXC-2026-001, with compensating controls including pinning Java 8 to the last vendor-supported build and prohibiting new library additions [1]. This exception is valid only to 2027-03-31, after which FreightMaster will be retired and Java 8 removed [1].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "Java 8 must be retired by **2026-06-30** [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "This date is specified in STD-TLC-014 radar as the retirement target [1].",
+            "supported": true,
+            "overlap": 0.67,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "However, an exception has been approved for FreightMaster (APP-020): the ARB granted extended use until 2027-03-31 under EXC-2026-001, with compensating controls including pinning Java 8 to the last vendor-supported build and prohibiting new library additions [1].",
+            "supported": true,
+            "overlap": 0.79,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "This exception is valid only to 2027-03-31, after which FreightMaster will be retired and Java 8 removed [1].",
+            "supported": true,
+            "overlap": 0.82,
+            "cites": [
+              1
+            ]
+          }
+        ]
+      },
+      "answer_in_context": false,
+      "keywords_ok": true,
+      "cites_relevant": false
+    },
+    {
+      "id": "q36",
+      "expect": "answer",
+      "found": true,
+      "grounded": false,
+      "citations": [
+        "STD-CLD-007",
+        "GOV-02"
+      ],
+      "retrieved": [
+        "ADR-0021#8",
+        "ADR-0021#1",
+        "ADR-0021#7",
+        "STD-CLD-007#10",
+        "GOV-02#4.1",
+        "RA-04#9"
+      ],
+      "answer": "# Status of Nordhaven TMS AWS Exception\n\n**Current Status:** Accepted and twice-renewed, but **pending CIO decision** due to a timing gap [5].\n\n**Exception Details:**\n- **Record:** EXC-2025-003, STD-CLD-007 \u00a74 deviation [4][5]\n- **Latest ARB approval:** ARB-2025-088 (2025-11-20), valid through 2026-12-31; renewal limit reached [5]\n- **Original justification:** Re-platforming ahead of HSP migration would duplicate effort; Nordhaven lanes migrate to HSP in Q2 2027 [5]\n\n**The Gap:**\nThe remediation plan targets Q2 2027 cutover, which falls **after the final exception expiry of 2026-12-31**. The ARB Chair escalated this to the CIO on 2026-09-03 under GOV-01 \u00a710 [5].\n\n**Options Before CIO:**\n1. Accelerate the cutover to meet the 2026-12-31 deadline, or [5]\n2. Accept a time-bound CIO dispensation [5]\n\n**Decision:** Pending [5].\n\nCompensating controls (Confluent cluster linking, Entra federation, CloudTrail/Sentinel forwarding, data residency in eu-central-1) remain in place [5].",
+      "groundedness_detail": {
+        "supported_rate": 0.889,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "**Current Status:** Accepted and twice-renewed, but **pending CIO decision** due to a timing gap [5].",
+            "supported": true,
+            "overlap": 0.62,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "- **Record:** EXC-2025-003, STD-CLD-007 \u00a74 deviation [4][5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              4,
+              5
+            ]
+          },
+          {
+            "sentence": "- **Latest ARB approval:** ARB-2025-088 (2025-11-20), valid through 2026-12-31; renewal limit reached [5]",
+            "supported": true,
+            "overlap": 0.86,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "- **Original justification:** Re-platforming ahead of HSP migration would duplicate effort; Nordhaven lanes migrate to HSP in Q2 2027 [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "The remediation plan targets Q2 2027 cutover, which falls **after the final exception expiry of 2026-12-31**.",
+            "supported": false,
+            "reason": "no citation"
+          },
+          {
+            "sentence": "The ARB Chair escalated this to the CIO on 2026-09-03 under GOV-01 \u00a710 [5].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "1. Accelerate the cutover to meet the 2026-12-31 deadline, or [5]",
+            "supported": true,
+            "overlap": 0.67,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "2. Accept a time-bound CIO dispensation [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "Compensating controls (Confluent cluster linking, Entra federation, CloudTrail/Sentinel forwarding, data residency in eu-central-1) remain in place [5].",
+            "supported": true,
+            "overlap": 0.94,
+            "cites": [
+              5
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q37",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "G-02",
+        "G-02",
+        "G-02",
+        "RA-01",
+        "GOV-02"
+      ],
+      "retrieved": [
+        "G-02#5",
+        "G-02#1",
+        "G-02#5.2",
+        "RA-01#7",
+        "GOV-02#4.4",
+        "H-01#1"
+      ],
+      "answer": "# ARB Decision on Customer Notification Service\n\nThe ARB decided **Changes Requested** (ARB-2026-031) on 2026-08-20 [1][2]. CNS may not proceed to build or production until conditions are met and the design is resubmitted [1].\n\n## Key Details\n\n**Review context:** Tier 1 \u2014 new system processing personal data with proposed cross-border transfer [2]\n\n**Main issue:** The initial design polled HSP every 30 seconds instead of subscribing to event topics as required by the target reference architecture [4]\n\n**Data residency concern:** Proposed use of Twilio's US region for EU customer phone numbers violates STD-DAT-005 [5]. Until approved, CNS MUST NOT send SMS to EU data subjects through US-region service [5]\n\n**Resubmission:** Scheduled for ARB meeting 2026-10-15 [3]. Expected outcomes if conditions C1 and C2 are met and DPO approves: Approved or Approved with Conditions [3]\n\n**Exception status:** Related exception request EXC-2026-004 remains **Requested \u2014 not approved** pending Transfer Impact Assessment submission to the DPO [5]",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "The ARB decided **Changes Requested** (ARB-2026-031) on 2026-08-20 [1][2].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              2
+            ]
+          },
+          {
+            "sentence": "CNS may not proceed to build or production until conditions are met and the design is resubmitted [1].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1
+            ]
+          },
+          {
+            "sentence": "**Review context:** Tier 1 \u2014 new system processing personal data with proposed cross-border transfer [2]",
+            "supported": true,
+            "overlap": 0.92,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "**Main issue:** The initial design polled HSP every 30 seconds instead of subscribing to event topics as required by the target reference architecture [4]",
+            "supported": true,
+            "overlap": 0.81,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "**Data residency concern:** Proposed use of Twilio's US region for EU customer phone numbers violates STD-DAT-005 [5].",
+            "supported": true,
+            "overlap": 0.8,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "Until approved, CNS MUST NOT send SMS to EU data subjects through US-region service [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "**Resubmission:** Scheduled for ARB meeting 2026-10-15 [3].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "Expected outcomes if conditions C1 and C2 are met and DPO approves: Approved or Approved with Conditions [3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3
+            ]
+          },
+          {
+            "sentence": "**Exception status:** Related exception request EXC-2026-004 remains **Requested \u2014 not approved** pending Transfer Impact Assessment submission to the DPO [5]",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              5
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q38",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "STD-DB-006",
+        "PRE-02",
+        "F-01",
+        "F-01",
+        "ADD-01"
+      ],
+      "retrieved": [
+        "STD-DB-006#1",
+        "PRE-02#6",
+        "F-01#2",
+        "F-01#3.3",
+        "PRE-02#4",
+        "ADD-01#2"
+      ],
+      "answer": "The Baltimore data centre exit is planned for **30 June 2027** [1][2][3][4].\n\nThis is a fixed constraint [2] and a Horizon 2028 goal [3][4]. The exit date drives several related deadlines:\n\n- FreightMaster TMS (APP-020) must be retired by Q3 2027, before the exit [3][4]\n- Oracle 12c extended support ends 31 March 2027 [2][3]\n- All shipment workloads must migrate to Azure landing zone by the exit date [6]",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "The Baltimore data centre exit is planned for **30 June 2027** [1][2][3][4].",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "sentence": "- FreightMaster TMS (APP-020) must be retired by Q3 2027, before the exit [3][4]",
+            "supported": true,
+            "overlap": 0.89,
+            "cites": [
+              3,
+              4
+            ]
+          },
+          {
+            "sentence": "- Oracle 12c extended support ends 31 March 2027 [2][3]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2,
+              3
+            ]
+          },
+          {
+            "sentence": "- All shipment workloads must migrate to Azure landing zone by the exit date [6]",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              6
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": true
+    },
+    {
+      "id": "q40",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "AP-CATALOG",
+        "PRE-02",
+        "ADR-0007",
+        "G-02",
+        "ADR-0030"
+      ],
+      "retrieved": [
+        "PRE-01#4",
+        "AP-CATALOG#6",
+        "PRE-02#10",
+        "ADR-0007#2",
+        "G-02#6",
+        "ADR-0030#2"
+      ],
+      "answer": "The target latency for shipment milestone events is **95% of milestone events reaching customers within 5 minutes** [2][3].\n\nThis target applies to the end-to-end latency from when a shipment-affecting change occurs until the customer receives visibility of that change [2]. More specifically:\n\n- It is a **design constraint, not a reporting metric** [2]\n- For the Customer Notification Service (APP-055), the end-to-end latency budget comprises the HSP milestone latency (< 5 min p95) plus the CNS delivery SLO [5]\n- The current baseline (before Harbourline Shipment Platform) is a median of 22 minutes and p95 above 90 minutes [4]\n\nThe requirement is formally designated **REQ-HSP-014** [2][5][6] and is a key success criterion for the Shipment Platform Consolidation programme [3].",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "The target latency for shipment milestone events is **95% of milestone events reaching customers within 5 minutes** [2][3].",
+            "supported": true,
+            "overlap": 0.89,
+            "cites": [
+              2,
+              3
+            ]
+          },
+          {
+            "sentence": "- It is a **design constraint, not a reporting metric** [2]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              2
+            ]
+          },
+          {
+            "sentence": "- For the Customer Notification Service (APP-055), the end-to-end latency budget comprises the HSP milestone latency (< 5 min p95) plus the CNS delivery SLO [5]",
+            "supported": true,
+            "overlap": 0.95,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "- The current baseline (before Harbourline Shipment Platform) is a median of 22 minutes and p95 above 90 minutes [4]",
+            "supported": true,
+            "overlap": 0.7,
+            "cites": [
+              4
+            ]
+          },
+          {
+            "sentence": "The requirement is formally designated **REQ-HSP-014** [2][5][6] and is a key success criterion for the Shipment Platform Consolidation programme [3].",
+            "supported": true,
+            "overlap": 0.64,
+            "cites": [
+              2,
+              5,
+              6,
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": true,
+      "cites_relevant": false
+    },
+    {
+      "id": "n02",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "ADR-0033#2",
+        "ADR-0033#8",
+        "A-04#6.7",
+        "ADR-0033#3",
+        "STD-AI-013#6",
+        "STD-AI-013#12"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    },
+    {
+      "id": "n04",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "F-01#1",
+        "F-01#7.4",
+        "F-01#8",
+        "ADR-0021#8",
+        "STD-SEC-009#2.2",
+        "A-02#6"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    },
+    {
+      "id": "n05",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "G-02#3",
+        "STD-OBS-010#2.2",
+        "STD-AI-013#2.1",
+        "STD-SEC-009#2.2",
+        "GOV-03#6",
+        "AP-CATALOG#17"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    },
+    {
+      "id": "n06",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "RA-04#9",
+        "GOV-01#4",
+        "G-01#8",
+        "STD-SEC-009#1",
+        "STD-TLC-014#1",
+        "A-02#5",
+        "G-01#2"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    },
+    {
+      "id": "n08",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "STD-SEC-009#2.2",
+        "STD-SEC-009#8",
+        "G-01#2",
+        "G-01#6",
+        "G-01#1",
+        "A-03#1"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    },
+    {
+      "id": "n09",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "PRE-02#5.2",
+        "A-01#9",
+        "A-02#3.4",
+        "PRE-02#5.1",
+        "G-01#3",
+        "A-01#7"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    },
+    {
+      "id": "n10",
+      "expect": "not_found",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "A-03#2",
+        "STD-CTR-012#4",
+        "STD-AI-013#6",
+        "A-03#3",
+        "RA-04#5",
+        "ADR-0012#2"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office."
+    }
+  ],
+  "failures": [
+    {
+      "id": "q18",
+      "expect": "answer",
+      "found": false,
+      "grounded": null,
+      "citations": [],
+      "retrieved": [
+        "RA-04#1",
+        "ADR-0012#8",
+        "STD-DAT-005#4.3",
+        "STD-INT-001#4.5",
+        "STD-INT-001#2.2",
+        "STD-DB-006#2",
+        "STD-INT-001#4.6"
+      ],
+      "answer": "I couldn't find this in the architecture repository. No principle, standard, ADR or reference architecture in the indexed corpus answers it, so I won't guess. The question has been logged as a possible documentation gap for the EA Office.",
+      "answer_in_context": false,
+      "keywords_ok": false,
+      "cites_relevant": false
+    },
+    {
+      "id": "q25",
+      "expect": "answer",
+      "found": true,
+      "grounded": true,
+      "citations": [
+        "ADR-0036",
+        "ADR-0036",
+        "ADR-0036"
+      ],
+      "retrieved": [
+        "ADR-0036#8",
+        "RA-03#9",
+        "ADR-0036#2",
+        "ADR-0027#8",
+        "ADR-0036#3",
+        "ADR-0036#6",
+        "GOV-02#5.1"
+      ],
+      "answer": "# Why We Moved Off MPLS for the WAN\n\nThe decision was driven by six key factors [5]:\n\n1. **Cost reduction** on WAN spend [5]\n2. **Direct, secured internet and cloud breakout at site** \u2014 previously 70%+ of traffic backhauled through Baltimore and Rotterdam hubs, adding 40\u2013120 ms latency to Microsoft 365 and Salesforce [3][5]\n3. **Resilience at terminals** \u2014 replacing single MPLS circuits with dual paths and cellular backup; two terminal outages in 2023 exceeded 6 hours [3][5]\n4. **Consolidated security** \u2014 replacing a mix of branch routers, ACLs, and three firewall vendors with a single policy model and central management [3][5]\n5. **IT/OT segmentation** capability at terminals [5]\n6. **Team skills** \u2014 7 of 11 network engineers already held Fortinet certifications [5]\n\n**Financial and operational outcome:** Target WAN savings of ~USD 2.1M/year once MPLS fully exits (FY2026), with latency improvements and elimination of carrier-level outages [6].\n\nThe major MPLS contracts were expiring June 2024\u2013March 2025 [3], making the transition window strategic.",
+      "groundedness_detail": {
+        "supported_rate": 1.0,
+        "invalid_citations": [],
+        "sentences": [
+          {
+            "sentence": "1. **Cost reduction** on WAN spend [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "2. **Direct, secured internet and cloud breakout at site** \u2014 previously 70%+ of traffic backhauled through Baltimore and Rotterdam hubs, adding 40\u2013120 ms latency to Microsoft 365 and Salesforce [3][5]",
+            "supported": true,
+            "overlap": 0.89,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "3. **Resilience at terminals** \u2014 replacing single MPLS circuits with dual paths and cellular backup; two terminal outages in 2023 exceeded 6 hours [3][5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "4. **Consolidated security** \u2014 replacing a mix of branch routers, ACLs, and three firewall vendors with a single policy model and central management [3][5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              3,
+              5
+            ]
+          },
+          {
+            "sentence": "5. **IT/OT segmentation** capability at terminals [5]",
+            "supported": true,
+            "overlap": 1.0,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "6. **Team skills** \u2014 7 of 11 network engineers already held Fortinet certifications [5]",
+            "supported": true,
+            "overlap": 0.75,
+            "cites": [
+              5
+            ]
+          },
+          {
+            "sentence": "**Financial and operational outcome:** Target WAN savings of ~USD 2.1M/year once MPLS fully exits (FY2026), with latency improvements and elimination of carrier-level outages [6].",
+            "supported": true,
+            "overlap": 0.71,
+            "cites": [
+              6
+            ]
+          },
+          {
+            "sentence": "The major MPLS contracts were expiring June 2024\u2013March 2025 [3], making the transition window strategic.",
+            "supported": true,
+            "overlap": 0.69,
+            "cites": [
+              3
+            ]
+          }
+        ]
+      },
+      "answer_in_context": true,
+      "keywords_ok": false,
+      "cites_relevant": true
+    }
+  ],
+  "hybrid_top5": {
+    "q01": [
+      "AP-CATALOG#13",
+      "STD-INT-001#4.1",
+      "RA-01#1",
+      "ADR-0015#5",
+      "RA-01#2"
+    ],
+    "q03": [
+      "ADR-0015#5",
+      "ADR-0015#2",
+      "ADR-0015#7",
+      "STD-INT-001#5",
+      "AP-CATALOG#13"
+    ],
+    "q04": [
+      "STD-EVT-003#2",
+      "STD-EVT-003#8",
+      "STD-DAT-004#7",
+      "RA-04#4",
+      "STD-EVT-003#4"
+    ],
+    "q06": [
+      "STD-API-002#5",
+      "AP-CATALOG#14",
+      "STD-INT-001#4.4",
+      "STD-API-002#11",
+      "STD-API-002#4.1"
+    ],
+    "q07": [
+      "ADR-0007#5",
+      "STD-EVT-003#4",
+      "ADR-0007#4",
+      "RA-04#9",
+      "ADR-0007#7"
+    ],
+    "q08": [
+      "ADR-0030#2",
+      "ADR-0030#3",
+      "ADR-0030#4",
+      "RA-01#7",
+      "ADD-01#3.1"
+    ],
+    "q10": [
+      "ADR-0019#5",
+      "STD-API-002#1",
+      "STD-API-002#7",
+      "ADR-0019#2",
+      "ADR-0019#8"
+    ],
+    "q11": [
+      "STD-DB-006#1",
+      "STD-DB-006#5.4",
+      "STD-DB-006#5.1",
+      "STD-DAT-004#6.1",
+      "ADR-0024#5"
+    ],
+    "q13": [
+      "ADR-0024#5",
+      "ADR-0024#8",
+      "ADR-0024#2",
+      "ADR-0012#8",
+      "STD-DB-006#3"
+    ],
+    "q14": [
+      "STD-DAT-005#4.2",
+      "ADR-0041#2",
+      "AP-CATALOG#11",
+      "ADR-0041#6",
+      "STD-DAT-005#1"
+    ],
+    "q16": [
+      "STD-DAT-004#5.4",
+      "STD-DAT-004#4",
+      "STD-DAT-004#5.2",
+      "STD-INT-001#6",
+      "STD-AI-013#5.1"
+    ],
+    "q17": [
+      "ADR-0012#8",
+      "ADR-0024#8",
+      "ADR-0012#7",
+      "ADR-0012#6",
+      "RA-04#9"
+    ],
+    "q18": [
+      "RA-04#1",
+      "ADR-0012#8",
+      "STD-DAT-005#4.3",
+      "STD-INT-001#4.5",
+      "STD-INT-001#2.2"
+    ],
+    "q19": [
+      "STD-CTR-012#7",
+      "STD-IAM-008#4.3",
+      "RA-02#1",
+      "RA-02#8",
+      "AP-CATALOG#15"
+    ],
+    "q21": [
+      "STD-IAM-008#7.1",
+      "STD-IAM-008#7.3",
+      "STD-IAM-008#7.2",
+      "AP-CATALOG#17",
+      "STD-DAT-004#6.1"
+    ],
+    "q22": [
+      "STD-DAT-004#6.1",
+      "STD-SEC-009#6.1",
+      "STD-SEC-009#5",
+      "STD-DAT-004#10",
+      "STD-API-002#6"
+    ],
+    "q23": [
+      "RA-03#1",
+      "STD-NET-011#2",
+      "ADR-0027#2",
+      "STD-NET-011#1",
+      "ADR-0036#5"
+    ],
+    "q25": [
+      "ADR-0036#8",
+      "RA-03#9",
+      "ADR-0036#2",
+      "ADR-0027#8",
+      "ADR-0036#3"
+    ],
+    "q26": [
+      "STD-CTR-012#7",
+      "STD-CTR-012#1",
+      "STD-CTR-012#6",
+      "RA-02#3",
+      "RA-02#5"
+    ],
+    "q27": [
+      "STD-OBS-010#7",
+      "STD-DAT-004#6.3",
+      "STD-OBS-010#1",
+      "STD-API-002#8",
+      "AP-CATALOG#7"
+    ],
+    "q28": [
+      "ADR-0027#3",
+      "ADR-0027#7",
+      "ADR-0027#8",
+      "RA-03#6",
+      "RA-03#9"
+    ],
+    "q30": [
+      "RA-03#8",
+      "ADR-0027#5",
+      "STD-CLD-007#2",
+      "ADR-0027#2",
+      "AP-CATALOG#9"
+    ],
+    "q31": [
+      "STD-AI-013#2.1",
+      "STD-AI-013#5.2",
+      "STD-AI-013#1",
+      "STD-DAT-004#6.1",
+      "ADR-0033#8"
+    ],
+    "q33": [
+      "STD-DB-006#4.1",
+      "STD-DB-006#6.4",
+      "GOV-02#4.2",
+      "STD-DB-006#1",
+      "ADR-0024#5"
+    ],
+    "q34": [
+      "GOV-02#4.2",
+      "ADD-01#6.1",
+      "PRE-02#3",
+      "A-01#2",
+      "STD-TLC-014#8"
+    ],
+    "q36": [
+      "ADR-0021#8",
+      "ADR-0021#1",
+      "ADR-0021#7",
+      "STD-CLD-007#10",
+      "GOV-02#4.1"
+    ],
+    "q37": [
+      "G-02#5",
+      "G-02#1",
+      "G-02#5.2",
+      "RA-01#7",
+      "GOV-02#4.4"
+    ],
+    "q38": [
+      "STD-DB-006#1",
+      "PRE-02#6",
+      "F-01#2",
+      "F-01#3.3",
+      "PRE-02#4"
+    ],
+    "q40": [
+      "PRE-01#4",
+      "AP-CATALOG#6",
+      "PRE-02#10",
+      "ADR-0007#2",
+      "G-02#6"
+    ]
+  }
+}

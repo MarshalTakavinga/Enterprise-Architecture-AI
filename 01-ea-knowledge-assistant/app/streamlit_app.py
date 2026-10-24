@@ -80,7 +80,10 @@ for i, a in enumerate(reversed(st.session_state["history"])):
     with st.chat_message("assistant"):
         if a.get("governance_notice"):
             st.warning(a["governance_notice"], icon="⚖️")
-        (st.markdown if a["found"] else st.info)(a["answer"])
+        if a.get("error"):
+            st.error(a["answer"])
+        else:
+            (st.markdown if a["found"] else st.info)(a["answer"])
         if a["citations"]:
             with st.expander(f"Sources ({len(a['citations'])})", expanded=False):
                 for c in a["citations"]:

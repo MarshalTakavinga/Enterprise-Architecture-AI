@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from eaka.answer import check_groundedness, generate  # noqa: E402
 from eaka.config import get_settings  # noqa: E402
 from eaka.engine import KnowledgeAssistant  # noqa: E402
-from eaka.retrieval import Retriever  # noqa: E402
+from eaka.retrieval import MAX_EXTRA, Retriever  # noqa: E402
 
 K = 5
 
@@ -130,9 +130,17 @@ def main() -> int:
         ans = ka.ask(q["question"], user="eval", log=False)
         latencies.append((time.perf_counter() - t0) * 1000)
         row = {"id": q["id"], "expect": q["expect"], "found": ans.found, "grounded": ans.grounded,
-               "citations": [c.doc_id for c in ans.citations]}
+               "citations": [c.doc_id for c in ans.citations], "retrieved": ans.retrieved,
+               "answer": ans.answer}
+        if ans.found:   # keep the per-sentence evidence so a low groundedness score can be audited
+            ctx = ka.retriever.search(q["question"], k=ka.s.top_k, max_extra=MAX_EXTRA)  # same as ask()
+            row["groundedness_detail"] = check_groundedness(ans.answer, ctx)[1]
         if q["expect"] == "answer":
             alts = [[a.lower() for a in kw.split("|")] for kw in q["answer_keywords"]]
+            # the key fact must sit in a retrieved passage from an expected document, not a stray mention
+            ctx_text = " ".join(c.text.lower() for c in ka.retriever.chunks
+                                if c.chunk_id in set(ans.retrieved) and c.doc_id in q["relevant_docs"])
+            row["answer_in_context"] = all(any(a in ctx_text for a in kw) for kw in alts)
             row["keywords_ok"] = ans.found and all(any(a in ans.answer.lower() for a in kw) for kw in alts)
             row["cites_relevant"] = any(d in q["relevant_docs"] for d in row["citations"])
         rows.append(row)
@@ -141,11 +149,13 @@ def main() -> int:
     nf_rows = [r for r in rows if r["expect"] == "not_found"]
     found_rows = [r for r in rows if r["found"]]
     e2e = {
+        "answer_in_context": sum(r["answer_in_context"] for r in ans_rows) / len(ans_rows),
         "answerable_answered": sum(r["found"] for r in ans_rows) / len(ans_rows),
         "out_of_corpus_refused": sum(not r["found"] for r in nf_rows) / len(nf_rows),
         "answer_contains_key_fact": sum(r["keywords_ok"] for r in ans_rows) / len(ans_rows),
         "answer_cites_relevant_doc": sum(r["cites_relevant"] for r in ans_rows) / len(ans_rows),
         "groundedness_rate": (sum(bool(r["grounded"]) for r in found_rows) / len(found_rows)) if found_rows else None,
+        "claim_support_rate": _claim_rate(found_rows),
         "every_answer_cited": all(r["citations"] for r in found_rows),
         "latency_ms_p50": statistics.median(latencies),
         "latency_ms_p95": sorted(latencies)[max(0, int(0.95 * len(latencies)) - 1)],
@@ -176,6 +186,12 @@ def main() -> int:
     return 0
 
 
+def _claim_rate(rows: list[dict]) -> float | None:
+    """Share of individual factual sentences supported by the passage they cite (all answers pooled)."""
+    sents = [x for r in rows for x in (r.get("groundedness_detail") or {}).get("sentences", [])]
+    return sum(x["supported"] for x in sents) / len(sents) if sents else None
+
+
 def pct(x):
     return "n/a" if x is None else f"{100 * x:.1f}%"
 
@@ -204,11 +220,13 @@ def render_md(o: dict) -> str:
         "",
         "| Metric | Value |",
         "|---|---|",
+        f"| Answer passage reached the model (key fact in a retrieved passage from an expected document) | {pct(e.get('answer_in_context'))} |",
         f"| Answerable questions answered (not wrongly refused) | {pct(e['answerable_answered'])} |",
         f"| Out-of-corpus questions correctly refused (\"not found\") | {pct(e['out_of_corpus_refused'])} |",
         f"| Answer contains the key fact | {pct(e['answer_contains_key_fact'])} |",
         f"| Answer cites a relevant document | {pct(e['answer_cites_relevant_doc'])} |",
-        f"| Groundedness (answers whose claims are supported by their citations) | {pct(e['groundedness_rate'])} |",
+        f"| Claim support (factual sentences supported by the passage they cite) | {pct(e.get('claim_support_rate'))} |",
+        f"| Fully grounded answers (>= 90% of an answer's sentences cited and supported) | {pct(e['groundedness_rate'])} |",
         f"| Every answer carries a citation | {'yes' if e['every_answer_cited'] else 'NO'} |",
         f"| Latency p50 / p95 | {e['latency_ms_p50']:.0f} ms / {e['latency_ms_p95']:.0f} ms |",
         "",
@@ -218,7 +236,8 @@ def render_md(o: dict) -> str:
     if not o["failures"]:
         lines.append("None.")
     for f in o["failures"]:
-        lines.append(f"- `{f['id']}` expected **{f['expect']}**, found={f['found']}, cited={f['citations']}")
+        ctx = "" if f.get("answer_in_context") is None else f", answer_in_context={f['answer_in_context']}"
+        lines.append(f"- `{f['id']}` expected **{f['expect']}**, found={f['found']}{ctx}, cited={f['citations']}")
     if o["label_sanity_problems"]:
         lines += ["", "## Label sanity problems", ""] + [f"- {p}" for p in o["label_sanity_problems"]]
     return "\n".join(lines) + "\n"
