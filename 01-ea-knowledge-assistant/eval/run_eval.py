@@ -182,6 +182,8 @@ def main() -> int:
     res_dir.mkdir(parents=True, exist_ok=True)
     (res_dir / f"{tag}.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     (res_dir / f"{tag}.md").write_text(render_md(out), encoding="utf-8")
+    from question_report import write as write_question_report  # noqa: E402  (same folder)
+    print("wrote", write_question_report(tag))
     print(render_md(out))
     return 0
 

@@ -1,0 +1,78 @@
+# Written analysis of flagged questions, keyed by result tag, then question id.
+#
+# These notes are written AFTER a run, by reading the stored answer, the retrieved passages and
+# the groundedness detail in results/<tag>.json. They explain failures; they never change scores.
+# Rule: labels in queries.yaml and the keyword rubric are not edited after seeing results.
+# If a note goes stale after a re-run, question_report.py still shows it, so update or delete it.
+
+claude:
+  q18: >
+    Retrieval miss, not a model error. The question asks how Tidewater is "organised into layers";
+    RA-04 describes the layers as bronze, silver and gold in section 5 "Flow Description" (Land, Conform, Publish)
+    and in the diagram. The question and the passage share almost no words, so neither BM25 nor the
+    offline LSA embedder ranked that section highly. Only RA-04 section 1 (Purpose) reached the model,
+    it does not mention the layers, and the assistant correctly said "not found" rather than guessing.
+    Expected fix: a neural embedding model, which matches meaning rather than shared words. Not yet measured.
+  q25: >
+    The answer is correct and fully grounded (6 reasons, all cited to ADR-0036), but the rubric
+    expects the literal term "SD-WAN" and the answer only says "moved off MPLS" and describes the
+    replacement. This is a scoring-rubric miss. The rubric was left unchanged after seeing the result,
+    so the reported key-fact score (93.1%) is slightly pessimistic rather than flattering.
+  q03: >
+    Correct (2025-06-30 cut-off, cited to ADR-0015), but the model added three short uncited summary
+    lines such as "No new flows are permitted." The facts are right; the evidence trail for those lines is not.
+  q04: >
+    Correct naming rule, cited to STD-EVT-003. The four example topic names are bullet points under
+    a cited sentence, and the checker scores each bullet on its own, so they count as uncited. Stricter
+    than a human reviewer would be; kept strict on purpose.
+  q06: >
+    Same pattern as q04: correct (6 months' notice, URI major versioning), but the bulleted list items
+    sit under one cited sentence and each bullet is scored as an uncited claim.
+  q08: >
+    One sentence paraphrases ADR-0030's consequences too loosely (word overlap 0.47, cut-off 0.50).
+    The claim is accurate; the check is a word-overlap heuristic, so close paraphrases can fall just short.
+  q23: >
+    Correct ("No direct internet from OT levels 0 to 2", cited to STD-NET-011 and RA-03). Only the
+    one-line opening "No." sentence is uncited.
+  q30: One uncited bridging sentence; every factual claim about ADR-0027 is cited and supported.
+  q31: >
+    Correct (Azure OpenAI), but the model added an uncited inference: "using another platform would
+    require an ARB decision". That is plausible but not stated in the passage, which is exactly the kind of
+    sentence the groundedness check exists to catch.
+  q33: Correct (Oracle is Contain, so no new use). Only the opening one-line verdict is uncited.
+  q34: >
+    Correct date (2026-06-30) and supported by the passage it cites, but that passage is in the
+    Exceptions Register (GOV-02), which restates the STD-TLC-014 date, rather than the standard itself.
+    The label lists only STD-TLC-014, so "cites relevant source" fails. A fair answer by a human
+    standard; a reminder that labels list the primary source, not every document that repeats a fact.
+  q36: >
+    One uncited inference: that the Q2 2027 cutover falls after the exception's final expiry. It is
+    arithmetically true from cited facts, but the sentence itself carries no citation.
+  q40: >
+    Correct target (95% within 5 minutes, REQ-HSP-014) and every sentence is supported, but the
+    cited passages come from documents that restate the target (principles catalog, PRE-02, G-02)
+    rather than the labelled sources. Same lesson as q34.
+  _patterns: >
+    Of 13 flagged answerable questions, only one gives a wrong or missing answer (q18, a retrieval miss)
+    and one is a rubric miss (q25). The other 11 are correct answers with a weaker evidence trail:
+    short uncited opening or summary lines (q03, q23, q30, q33), bullets under a cited sentence (q04, q06),
+    uncited inferences (q31, q36), a loose paraphrase (q08), or a correct citation to a document that
+    restates the fact (q34, q40). The useful next steps are a prompt rule ("cite every line, including
+    summaries") and a checker that lets bullets inherit their parent sentence's citation. Both should be
+    re-measured on the test split rather than assumed to help.
+
+offline_baseline:
+  q18: >
+    Same retrieval miss as in the LLM run (vocabulary mismatch between "layers" and bronze/silver/gold),
+    but here the score gate let it through and the extractive answer quoted RA-04's purpose section,
+    which does not contain the key fact.
+  n09: >
+    "SAP S/4HANA version upgrade" uses only words that do appear in the corpus (SAP S/4HANA is in
+    scope statements), so retrieval scores looked confident and the not-found gate let it through.
+    A score threshold cannot catch an out-of-corpus question that sounds in-corpus. In the LLM run the
+    model's NOT_FOUND rule catches it, which is the reason the design has two gates.
+  _patterns: >
+    Every other offline miss (q04, q08, q19, q22, q27, q31, q34) has the same cause: extractive mode
+    can only quote whole sentences, and it often quotes a sentence about the rule rather than the one
+    containing the number or name. Retrieval had found the right document in each case. This is the gap
+    LLM synthesis closes: key-fact accuracy goes from 72.4% offline to 93.1% with Claude Haiku 4.5.

@@ -62,6 +62,17 @@ An earlier LLM run showed 37% groundedness. That number was mostly a checker bug
 claims, `[7, §4.1]` citations mis-parsed), found by reading the failing answers rather than trusting
 the metric. It was fixed with regression tests before the run above.
 
+## Per-question reports and the full guide
+
+- [`results/claude_questions.md`](results/claude_questions.md) and
+  [`results/offline_baseline_questions.md`](results/offline_baseline_questions.md) list every test question
+  with the expected answer, what was retrieved, the answer itself and each check, plus written analysis of
+  every failure (from [`failure_notes.yaml`](failure_notes.yaml)). `run_eval.py` regenerates them on every
+  run; `python eval/question_report.py` rebuilds them from existing results.
+- [`EVALUATION_GUIDE.md`](EVALUATION_GUIDE.md) explains the whole method step by step: building the
+  question set, dev/test splits, each metric with worked examples, reading failures, and how to reuse the
+  approach in other projects.
+
 ## Re-running
 
 ```bash
