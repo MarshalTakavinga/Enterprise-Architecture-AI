@@ -1,6 +1,6 @@
 # Architecture Dependency Knowledge Graph & Impact Analyzer
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Part of the [Enterprise Architecture + AI Portfolio](../README.md): see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
 
 **Tier:** Intermediate · **Repo name:** `ea-dependency-graph`
 
@@ -8,11 +8,11 @@
 
 **Business Value.** Turns impact analysis from a multi-day investigation into a query. KPIs: time required for impact analysis (before/after); number of previously-unknown dependencies surfaced per analysis; reduction in change-related incidents attributable to missed dependencies.
 
-**AI Use Case.** The graph itself (capability → application → API → data entity → technology → infrastructure) is built from structured source data, not inferred by an LLM. AI's role is a natural-language-to-graph-query translator so an architect can ask "what depends on the Customer Master data entity?" in plain English and get a correct, explainable graph traversal back — plus an LLM that summarizes a multi-hop traversal result into plain language. **Not delegated to AI:** the graph's edges themselves must come from real configuration/integration data, not LLM inference, or impact analysis will be wrong exactly when it matters most.
+**AI Use Case.** The graph itself (capability → application → API → data entity → technology → infrastructure) is built from structured source data, not inferred by an LLM. AI's role is a natural-language-to-graph-query translator so an architect can ask "what depends on the Customer Master data entity?" in plain English and get a correct, explainable graph traversal back, plus an LLM that summarizes a multi-hop traversal result into plain language. **Not delegated to AI:** the graph's edges themselves must come from real configuration/integration data, not LLM inference, or impact analysis will be wrong exactly when it matters most.
 
 **Users.** Solution architects (pre-change impact analysis), enterprise architects, application owners, change advisory boards.
 
-**Example Scenario.** An architect asks, "If we retire the Legacy Billing Application, what else is affected?" The system translates this to a graph traversal, returns three dependent applications, two downstream reporting feeds, and one business capability (Revenue Recognition) that would lose data lineage — and the LLM summarizes: "Retiring Legacy Billing directly affects 3 applications and 2 reporting feeds; Revenue Recognition capability depends on data currently sourced only from this system — recommend confirming a replacement source before proceeding."
+**Example Scenario.** An architect asks, "If we retire the Legacy Billing Application, what else is affected?" The system translates this to a graph traversal, returns three dependent applications, two downstream reporting feeds, and one business capability (Revenue Recognition) that would lose data lineage, and the LLM summarizes: "Retiring Legacy Billing directly affects 3 applications and 2 reporting feeds; Revenue Recognition capability depends on data currently sourced only from this system, recommend confirming a replacement source before proceeding."
 
 **Architecture.**
 ```mermaid
@@ -33,7 +33,7 @@ flowchart LR
 
 **Recommended Stack:** Python, Neo4j (or a property graph library for a lighter footprint), an LLM API for NL translation and summarization, FastAPI, a graph visualization library (e.g., a Cytoscape.js-based front end), Docker.
 
-**Data Model:** Nodes — `Capability`, `Application`, `API`, `DataEntity`, `Technology`, `Infrastructure`; Edges — `SUPPORTS` (App→Capability), `EXPOSES` (App→API), `CONSUMES`/`PRODUCES` (App↔DataEntity), `RUNS_ON` (App→Technology/Infrastructure). This schema is exactly what makes multi-hop impact analysis possible: a single traversal from `DataEntity` to `Capability` answers "what business function loses functionality" questions a flat spreadsheet never could.
+**Data Model:** Nodes: `Capability`, `Application`, `API`, `DataEntity`, `Technology`, `Infrastructure`; Edges: `SUPPORTS` (App→Capability), `EXPOSES` (App→API), `CONSUMES`/`PRODUCES` (App↔DataEntity), `RUNS_ON` (App→Technology/Infrastructure). This schema is exactly what makes multi-hop impact analysis possible: a single traversal from `DataEntity` to `Capability` answers "what business function loses functionality" questions a flat spreadsheet never could.
 
 **AI Governance:** constrain NL-to-query translation to a small set of vetted query templates (rather than letting the LLM emit arbitrary Cypher against a live graph) to prevent malformed or unbounded queries; log every translated query alongside the original question for audit and for catching mistranslations; summaries must only restate what the traversal actually returned.
 

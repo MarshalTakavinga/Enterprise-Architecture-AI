@@ -1,18 +1,18 @@
 # Technology Lifecycle & EOL Risk Radar
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Part of the [Enterprise Architecture + AI Portfolio](../README.md): see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
 
 **Tier:** Intermediate · **Repo name:** `tech-lifecycle-risk-radar`
 
-**Enterprise Problem.** Vendor end-of-support dates, CVE exposure, and product roadmap changes are usually discovered reactively — during an incident or a renewal negotiation — rather than tracked continuously against the technology catalog.
+**Enterprise Problem.** Vendor end-of-support dates, CVE exposure, and product roadmap changes are usually discovered reactively (during an incident or a renewal negotiation) rather than tracked continuously against the technology catalog.
 
 **Business Value.** Converts lifecycle risk from a periodic audit into a continuously visible signal. KPIs: number of at-risk technologies flagged before vs. after an EOL/EOS deadline; mean lead time between risk detection and remediation planning; technology catalog coverage (% of catalog with a current lifecycle status).
 
-**AI Use Case.** Deterministic rules do the actual EOL-date comparison and CVE matching (this is *not* an AI problem); an anomaly-detection pass flags unusual risk concentration (e.g., a business capability suddenly dependent on three separately-flagged technologies); an LLM synthesizes the readable risk narrative and suggested next steps per capability, citing the underlying facts. **Not delegated to AI:** the EOL date lookup and CVE severity scoring themselves — those must be exact and come from authoritative feeds, not a language model's approximation.
+**AI Use Case.** Deterministic rules do the actual EOL-date comparison and CVE matching (this is *not* an AI problem); an anomaly-detection pass flags unusual risk concentration (e.g., a business capability suddenly dependent on three separately-flagged technologies); an LLM synthesizes the readable risk narrative and suggested next steps per capability, citing the underlying facts. **Not delegated to AI:** the EOL date lookup and CVE severity scoring themselves. Those must be exact and come from authoritative feeds, not a language model's approximation.
 
 **Users.** Technology/infrastructure architects, security architects, CIO/CTO (portfolio risk view), application owners.
 
-**Example Scenario.** The radar ingests a synthetic technology catalog with versions and a mocked EOL/CVE feed. It flags that the Payments capability depends on two components reaching end-of-support within 90 days and one with a high-severity open CVE, and the LLM drafts: "Payments capability carries concentrated technology risk: [Component A] EOS in 62 days, [Component B] EOS in 88 days, [Component C] has an unpatched high-severity CVE. Recommend prioritizing this capability in the next remediation cycle" — with every claim linked to its source record.
+**Example Scenario.** The radar ingests a synthetic technology catalog with versions and a mocked EOL/CVE feed. It flags that the Payments capability depends on two components reaching end-of-support within 90 days and one with a high-severity open CVE, and the LLM drafts: "Payments capability carries concentrated technology risk: [Component A] EOS in 62 days, [Component B] EOS in 88 days, [Component C] has an unpatched high-severity CVE. Recommend prioritizing this capability in the next remediation cycle", with every claim linked to its source record.
 
 **Architecture.**
 ```mermaid
@@ -35,7 +35,7 @@ flowchart TD
 
 **Data Model:** `Technology(id, name, version, vendor, eos_date, eol_date)` → `CapabilityTechnologyMap(capability_id, technology_id)` → `Vulnerability(id, technology_id, cve_id, severity, published_date)` → `RiskFinding(id, capability_id, risk_score, narrative, status)`.
 
-**AI Governance:** every narrative claim must trace to a specific `RiskFinding` record — no free-floating LLM claims; risk scores are fully deterministic and reproducible (same inputs, same score) so they can be audited; findings feed a risk register but never auto-trigger remediation actions.
+**AI Governance:** every narrative claim must trace to a specific `RiskFinding` record; no free-floating LLM claims; risk scores are fully deterministic and reproducible (same inputs, same score) so they can be audited; findings feed a risk register but never auto-trigger remediation actions.
 
 **Implementation Plan.**
 - *Phase 1:* deterministic EOL/CVE matching against a synthetic catalog and mock feed; simple scoring.
@@ -47,4 +47,4 @@ flowchart TD
 
 **Portfolio Deliverables:** README, architecture diagram, sample risk register output, dashboard screenshots, an explicit "what's deterministic vs. AI-generated" section (this distinction is itself a portfolio talking point).
 
-**Evaluation:** matching accuracy against the synthetic ground truth (should be ~100% since it's deterministic — the interesting metric is the anomaly detector's precision/recall on injected synthetic risk-concentration scenarios); narrative faithfulness (does every sentence trace to a real finding — checked programmatically).
+**Evaluation:** matching accuracy against the synthetic ground truth (should be ~100% since it's deterministic; the interesting metric is the anomaly detector's precision/recall on injected synthetic risk-concentration scenarios); narrative faithfulness (does every sentence trace to a real finding, checked programmatically).

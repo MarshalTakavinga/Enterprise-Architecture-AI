@@ -98,6 +98,12 @@ vocabulary, which is what the second (`NOT_FOUND`) gate is for. The full reports
 [`eval/results/offline_baseline.md`](eval/results/offline_baseline.md); method and metric
 definitions are in [`eval/README.md`](eval/README.md).
 
+- **Every question, answer and check:** [`eval/results/claude_questions.md`](eval/results/claude_questions.md)
+  (and the offline [`baseline`](eval/results/offline_baseline_questions.md)), including a written
+  explanation of each failure.
+- **How the testing works, step by step:** [`eval/EVALUATION_GUIDE.md`](eval/EVALUATION_GUIDE.md), a
+  practical guide to evaluating a RAG system using this project's real results.
+
 **Known weak spots, stated rather than tuned away:**
 
 - **q18** ("How is the Tidewater data platform organised into layers?") is wrongly refused. The
@@ -130,7 +136,7 @@ documentation backlog. The controls and limitations are set out in
 ├── app/                 Streamlit UI
 ├── data/corpus/         48-document synthetic architecture repository (+ data/README.md)
 ├── data/WORLD_BIBLE.md  shared facts about the fictional enterprise (reusable by Projects 2-10)
-├── eval/                queries.yaml (50 labelled questions), run_eval.py, results/
+├── eval/                queries.yaml (50 labelled questions), run_eval.py, question_report.py, EVALUATION_GUIDE.md, results/
 ├── tests/               ingestion, retrieval/answers, API, pgvector integration
 ├── docs/                architecture.md, governance-and-limitations.md, adr/ (ADR-P001…P005), images/
 ├── infra/Dockerfile · docker-compose.yml · Makefile · .env.example   (CI: ../.github/workflows/ea-knowledge-assistant.yml)

@@ -1,14 +1,14 @@
 # Solution Architecture Standards Compliance Checker
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Part of the [Enterprise Architecture + AI Portfolio](../README.md): see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
 
 **Tier:** Advanced · **Repo name:** `solution-compliance-checker`
 
-**Enterprise Problem.** Checking a submitted solution architecture document against every applicable principle, standard, and prior ADR is tedious and inconsistent between reviewers — one architect catches a data-residency violation another misses, simply because nobody can hold the entire standards corpus in their head during a review.
+**Enterprise Problem.** Checking a submitted solution architecture document against every applicable principle, standard, and prior ADR is tedious and inconsistent between reviewers: one architect catches a data-residency violation another misses, simply because nobody can hold the entire standards corpus in their head during a review.
 
 **Business Value.** Makes ARB pre-review consistent and fast, and gives architects self-service compliance feedback before formal submission. KPIs: ARB review cycle time; number of compliance issues caught pre-submission vs. during formal review; reviewer time spent per submission.
 
-**AI Use Case.** RAG-grounded classification: the submitted document is parsed into sections (data handling, integration approach, technology choices, security controls), each section is checked against the relevant retrieved standards/principles, and each finding is emitted as `{clause, requirement, submission_excerpt, verdict: compliant/non-compliant/needs-human-review, citation}`. **Not delegated to AI:** any "needs-human-review" verdict is mandatory whenever the check is ambiguous or the standard itself is open to interpretation — the tool is explicitly forbidden from forcing a binary pass/fail on genuinely ambiguous cases.
+**AI Use Case.** RAG-grounded classification: the submitted document is parsed into sections (data handling, integration approach, technology choices, security controls), each section is checked against the relevant retrieved standards/principles, and each finding is emitted as `{clause, requirement, submission_excerpt, verdict: compliant/non-compliant/needs-human-review, citation}`. **Not delegated to AI:** any "needs-human-review" verdict is mandatory whenever the check is ambiguous or the standard itself is open to interpretation. The tool is explicitly forbidden from forcing a binary pass/fail on genuinely ambiguous cases.
 
 **Users.** Solution architects (self-check before submission), ARB members, architecture governance lead.
 
@@ -27,7 +27,7 @@ flowchart TD
     HUMAN --> ARB
 ```
 
-**EA Artifacts consumed:** architecture principles, technology standards, prior ADRs, security/data policies. **Generated:** a structured compliance findings report attached to the submission for ARB review — advisory, not a gate that blocks submission on its own.
+**EA Artifacts consumed:** architecture principles, technology standards, prior ADRs, security/data policies. **Generated:** a structured compliance findings report attached to the submission for ARB review, advisory, not a gate that blocks submission on its own.
 
 **AI Techniques required:** RAG (grounding checks in the actual standards text), LLM classification with structured output, semantic search (matching design sections to the *relevant* subset of a large standards corpus). *Not used:* agents (this is a single-pass check-and-report workflow, escalated to Project 9 when the multi-step ARB process itself is automated).
 
@@ -35,7 +35,7 @@ flowchart TD
 
 **Data Model:** `Submission(id, title, sections[], submitted_by, status)` → `Finding(id, submission_id, section, principle_id, verdict, citation, excerpt, human_reviewed)`.
 
-**AI Governance:** every finding must cite the specific clause it's checking against; ambiguous cases are forced to "needs human review," never guessed; the tool never blocks a submission itself — it only informs the ARB's existing process; false "non-compliant" findings are logged when overturned by a human, building an evaluation set over time.
+**AI Governance:** every finding must cite the specific clause it's checking against; ambiguous cases are forced to "needs human review," never guessed; the tool never blocks a submission itself. It only informs the ARB's existing process; false "non-compliant" findings are logged when overturned by a human, building an evaluation set over time.
 
 **Implementation Plan.**
 - *Phase 1:* parse synthetic design docs into sections; manual mapping to a small standards set; basic pass/fail.

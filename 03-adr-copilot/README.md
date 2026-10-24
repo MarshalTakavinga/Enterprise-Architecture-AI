@@ -1,18 +1,18 @@
 # Architecture Decision Record (ADR) Copilot
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Part of the [Enterprise Architecture + AI Portfolio](../README.md): see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
 
 **Tier:** Intermediate · **Repo name:** `adr-copilot`
 
-**Enterprise Problem.** Real architecture decisions get made in meetings, design reviews, and Slack threads, and are rarely written up as formal ADRs afterward — so six months later nobody can reconstruct *why* a decision was made, and it gets silently reversed or re-litigated.
+**Enterprise Problem.** Real architecture decisions get made in meetings, design reviews, and Slack threads, and are rarely written up as formal ADRs afterward. So six months later nobody can reconstruct *why* a decision was made, and it gets silently reversed or re-litigated.
 
 **Business Value.** Increases ADR capture rate without adding architect workload; preserves institutional memory that reduces repeated debate and re-work. KPIs: ADRs captured per quarter vs. decisions actually made (estimated via meeting count); average time from decision to documented ADR; % of ADRs later found "still accurate" at 12-month review.
 
-**AI Use Case.** Given a meeting transcript, design doc thread, or bullet notes, the LLM extracts a structured ADR (context, decision drivers, options considered, decision, consequences) and classifies it by architecture domain and affected principles, using structured output (JSON schema) rather than free text. **Not delegated to AI:** the decision content itself is never invented — the copilot only extracts what was actually discussed; if the input doesn't contain a clear decision, it says so rather than fabricating one.
+**AI Use Case.** Given a meeting transcript, design doc thread, or bullet notes, the LLM extracts a structured ADR (context, decision drivers, options considered, decision, consequences) and classifies it by architecture domain and affected principles, using structured output (JSON schema) rather than free text. **Not delegated to AI:** the decision content itself is never invented. The copilot only extracts what was actually discussed; if the input doesn't contain a clear decision, it says so rather than fabricating one.
 
 **Users.** Solution architects, enterprise architects maintaining the ADR log, ARB secretariat.
 
-**Example Scenario.** A design review transcript discusses choosing Kafka over point-to-point REST calls for an order-events integration. The copilot drafts ADR-0142: context (growing number of consumers needing order events), options considered (point-to-point REST, message queue, event stream), decision (Apache Kafka), consequences (new operational dependency, but decouples 6 planned consumers), and tags it against the Integration Architecture principle — for the architect to edit and approve.
+**Example Scenario.** A design review transcript discusses choosing Kafka over point-to-point REST calls for an order-events integration. The copilot drafts ADR-0142: context (growing number of consumers needing order events), options considered (point-to-point REST, message queue, event stream), decision (Apache Kafka), consequences (new operational dependency, but decouples 6 planned consumers), and tags it against the Integration Architecture principle, for the architect to edit and approve.
 
 **Architecture.**
 ```mermaid

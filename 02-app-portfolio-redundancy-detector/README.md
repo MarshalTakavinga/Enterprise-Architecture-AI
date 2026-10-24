@@ -1,18 +1,18 @@
 # Application Portfolio Semantic Redundancy Detector
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Part of the [Enterprise Architecture + AI Portfolio](../README.md): see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
 
 **Tier:** Beginner · **Repo name:** `app-portfolio-redundancy-detector`
 
-**Enterprise Problem.** Application catalogs describe systems inconsistently — "Customer Engagement Hub," "CRM Lite," and "Client Relationship Tracker" may be the same capability wearing three names across three business units. Keyword search and manual review both miss this; it's discovered years later during a merger or a cost review.
+**Enterprise Problem.** Application catalogs describe systems inconsistently: "Customer Engagement Hub," "CRM Lite," and "Client Relationship Tracker" may be the same capability wearing three names across three business units. Keyword search and manual review both miss this; it's discovered years later during a merger or a cost review.
 
 **Business Value.** Surfaces redundancy candidates for architect review instead of relying on tribal knowledge. KPIs: number of validated redundant-application pairs found per 100 applications reviewed; estimated license/support cost of confirmed duplicates; reduction in application count post-rationalization cycle.
 
-**AI Use Case.** Embed each application's name, description, and capability tags; cluster and rank nearest neighbors as redundancy candidates; an LLM writes a short rationale for *why* two applications look similar. **Not delegated to AI:** the retire/consolidate decision — a false positive here (two genuinely distinct systems) has real cost, so every candidate is a suggestion an architect confirms against actual usage.
+**AI Use Case.** Embed each application's name, description, and capability tags; cluster and rank nearest neighbors as redundancy candidates; an LLM writes a short rationale for *why* two applications look similar. **Not delegated to AI:** the retire/consolidate decision, a false positive here (two genuinely distinct systems) has real cost, so every candidate is a suggestion an architect confirms against actual usage.
 
 **Users.** Enterprise architects, application portfolio managers, CIO/CTO (for portfolio cost conversations).
 
-**Example Scenario.** A synthetic 300-application catalog across five business units is loaded. The tool clusters "CRM Lite" (Sales), "Client Relationship Tracker" (Regional Ops), and "Customer Engagement Hub" (Marketing) into one candidate cluster with 0.89 similarity, and the LLM notes: "All three manage customer contact records and interaction history; descriptions suggest overlapping CRM capability — recommend architect review for consolidation."
+**Example Scenario.** A synthetic 300-application catalog across five business units is loaded. The tool clusters "CRM Lite" (Sales), "Client Relationship Tracker" (Regional Ops), and "Customer Engagement Hub" (Marketing) into one candidate cluster with 0.89 similarity, and the LLM notes: "All three manage customer contact records and interaction history; descriptions suggest overlapping CRM capability, recommend architect review for consolidation."
 
 **Architecture.**
 ```mermaid
@@ -27,7 +27,7 @@ flowchart TD
 
 **EA Artifacts consumed:** application catalog, business capability map (for capability-aligned clustering). **Generated:** a redundancy candidate report linked back to the capability map.
 
-**AI Techniques required:** embeddings, unsupervised clustering (HDBSCAN or cosine-similarity nearest-neighbor), LLM summarization. *Not used:* classification (there's no fixed label set — this is a similarity problem, not a classification problem); agents (single-pass batch job, no multi-step reasoning needed).
+**AI Techniques required:** embeddings, unsupervised clustering (HDBSCAN or cosine-similarity nearest-neighbor), LLM summarization. *Not used:* classification (there's no fixed label set; this is a similarity problem, not a classification problem); agents (single-pass batch job, no multi-step reasoning needed).
 
 **Recommended Stack:** Python, sentence-transformers or an embeddings API, scikit-learn/HDBSCAN, pandas, PostgreSQL + pgvector, Streamlit for the review UI.
 

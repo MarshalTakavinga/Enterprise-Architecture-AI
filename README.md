@@ -1,12 +1,12 @@
 # Enterprise Architecture + AI Portfolio
 
-A portfolio of ten realistic, enterprise-grade projects demonstrating how AI, GenAI, LLMs, and AI agents can improve Enterprise Architecture practice — built to be credible in front of a CIO, CTO, Chief Architect, or Architecture Review Board, not a collection of generic AI demos.
+A portfolio of ten realistic, enterprise-grade projects demonstrating how AI, GenAI, LLMs, and AI agents can improve Enterprise Architecture practice, built to be credible in front of a CIO, CTO, Chief Architect, or Architecture Review Board, not a collection of generic AI demos.
 
-**Author:** Marshal Tafadzwa Takavinga — Cloud & Enterprise Architecture practitioner (Azure Solutions Architect Expert, AWS Certified Professional, TOGAF in progress), M.S. Information Systems Technology, George Washington University.
+**Author:** Marshal Tafadzwa Takavinga, Cloud & Enterprise Architecture practitioner (Azure Solutions Architect Expert, AWS Certified Professional, TOGAF in progress), M.S. Information Systems Technology, George Washington University.
 
 ## Start Here
 
-1. Read **`EA-AI-Portfolio-Blueprint.docx`** (or `.md`) — the full blueprint. It contains:
+1. Read **`EA-AI-Portfolio-Blueprint.docx`** (or `.md`): the full blueprint. It contains:
    - An EA-lifecycle-wide assessment of where AI genuinely adds value vs. where automation or human judgment wins
    - The complete specification for all 10 projects below (problem, business value/KPIs, AI use case, architecture, data model, governance, phased plan, evaluation)
    - The prioritized build sequence and the reasoning behind the three flagship projects
@@ -31,10 +31,10 @@ A portfolio of ten realistic, enterprise-grade projects demonstrating how AI, Ge
 
 ## Design Principles Behind Every Project
 
-- **A human stays accountable for every decision.** AI drafts, classifies, scores, ranks, and surfaces evidence — it never approves an architecture, closes a risk, or finalizes a standard.
-- **AI techniques are chosen, not collected.** Every project spec states plainly which techniques are required and which would be over-engineering — including one project (#4) built specifically to demonstrate where deterministic logic beats an LLM.
-- **All data is synthetic.** Every project is designed to be prototyped with public, synthetic, or self-generated enterprise data — no confidential corporate systems required.
-- **It's one system, not ten demos.** Projects 1–2 establish core AI primitives (retrieval, similarity); 3–5 add structured extraction and graph reasoning; 6–7 apply those to real governance workflows; the three flagships recombine everything into progressively more ambitious systems.
+- **A human stays accountable for every decision.** AI drafts, classifies, scores, ranks, and surfaces evidence. It never approves an architecture, closes a risk, or finalizes a standard.
+- **AI techniques are chosen, not collected.** Every project spec states plainly which techniques are required and which would be over-engineering, including one project (#4) built specifically to demonstrate where deterministic logic beats an LLM.
+- **All data is synthetic.** Every project is designed to be prototyped with public, synthetic, or self-generated enterprise data; no confidential corporate systems required.
+- **It's one system, not ten demos.** Projects 1-2 establish core AI primitives (retrieval, similarity); 3-5 add structured extraction and graph reasoning; 6-7 apply those to real governance workflows; the three flagships recombine everything into progressively more ambitious systems.
 
 ## Folder Structure
 
@@ -42,8 +42,8 @@ A portfolio of ten realistic, enterprise-grade projects demonstrating how AI, Ge
 Portfolio/
 ├── README.md                          (this file)
 ├── ROADMAP.md                         (build sequence & flagship rationale)
-├── EA-AI-Portfolio-Blueprint.docx     (full blueprint — Word)
-├── EA-AI-Portfolio-Blueprint.md       (full blueprint — Markdown, with Mermaid diagram source)
+├── EA-AI-Portfolio-Blueprint.docx     (full blueprint, Word)
+├── EA-AI-Portfolio-Blueprint.md       (full blueprint, Markdown, with Mermaid diagram source)
 ├── 01-ea-knowledge-assistant/
 │   ├── README.md
 │   └── data/ src/ app/ docs/ tests/ eval/

@@ -1,18 +1,18 @@
 # M&A / Divestiture Architecture Due Diligence Assistant
 
-> Part of the [Enterprise Architecture + AI Portfolio](../README.md) — see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
+> Part of the [Enterprise Architecture + AI Portfolio](../README.md): see `../EA-AI-Portfolio-Blueprint.docx` (or `.md`) for the full specification, governance model, and (for Project 9) the complete 25-part implementation blueprint.
 
 **Tier:** Advanced · **Repo name:** `ma-architecture-due-diligence`
 
-**Enterprise Problem.** During a merger, two organizations' application and technology portfolios must be compared for overlap, integration risk, and rationalization opportunity — under a deal timeline measured in weeks, using inconsistent naming, taxonomies, and documentation quality on both sides.
+**Enterprise Problem.** During a merger, two organizations' application and technology portfolios must be compared for overlap, integration risk, and rationalization opportunity, under a deal timeline measured in weeks, using inconsistent naming, taxonomies, and documentation quality on both sides.
 
 **Business Value.** Turns a multi-month manual reconciliation into a structured first pass in days, so architects spend the deal window on judgment rather than data wrangling. KPIs: time to first-draft integration assessment; number of overlapping applications/capabilities identified; estimated consolidation savings identified pre-close vs. historically found post-close.
 
-**AI Use Case.** Cross-portfolio semantic matching (the same technique as Project 2, applied across two organizations' catalogs) finds capability and application overlaps despite different naming conventions and taxonomies; an LLM drafts an integration risk narrative per overlap cluster (data privacy regime differences, technology stack conflicts, contractual constraints) grounded in the matched records. **Not delegated to AI:** any conclusion about deal terms, workforce impact, or which entity's system "wins" in a consolidation — those are business and legal decisions with inputs far outside the architecture data this tool sees.
+**AI Use Case.** Cross-portfolio semantic matching (the same technique as Project 2, applied across two organizations' catalogs) finds capability and application overlaps despite different naming conventions and taxonomies; an LLM drafts an integration risk narrative per overlap cluster (data privacy regime differences, technology stack conflicts, contractual constraints) grounded in the matched records. **Not delegated to AI:** any conclusion about deal terms, workforce impact, or which entity's system "wins" in a consolidation. Those are business and legal decisions with inputs far outside the architecture data this tool sees.
 
 **Users.** Enterprise architects on the integration planning team, CIO/CTO, deal integration management office.
 
-**Example Scenario.** Company A's "Order Management System" and Company B's "Fulfillment Platform" are matched at 0.86 semantic similarity with overlapping capability tags. The assistant flags this as a high-priority integration decision, notes that Company B's system operates under a different data-residency regime, and drafts a risk narrative for the integration architecture workstream to validate — rather than silently recommending which one to keep.
+**Example Scenario.** Company A's "Order Management System" and Company B's "Fulfillment Platform" are matched at 0.86 semantic similarity with overlapping capability tags. The assistant flags this as a high-priority integration decision, notes that Company B's system operates under a different data-residency regime, and drafts a risk narrative for the integration architecture workstream to validate, rather than silently recommending which one to keep.
 
 **Architecture.**
 ```mermaid
